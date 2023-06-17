@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ManageBookLibrary\\ManageBookLibrary.csproj": {}
+    "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ManageBookLibrary\\ManageBookLibrary.csproj": {}
   },
   "projects": {
-    "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ManageBookLibrary\\ManageBookLibrary.csproj": {
+    "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ManageBookLibrary\\ManageBookLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ManageBookLibrary\\ManageBookLibrary.csproj",
+        "projectUniqueName": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ManageBookLibrary\\ManageBookLibrary.csproj",
         "projectName": "ManageBookLibrary",
-        "projectPath": "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ManageBookLibrary\\ManageBookLibrary.csproj",
+        "projectPath": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ManageBookLibrary\\ManageBookLibrary.csproj",
         "packagesPath": "C:\\Users\\duc21\\.nuget\\packages\\",
-        "outputPath": "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ManageBookLibrary\\obj\\",
+        "outputPath": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ManageBookLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\duc21\\AppData\\Roaming\\NuGet\\NuGet.Config",

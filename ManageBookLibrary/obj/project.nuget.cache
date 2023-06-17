@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1DI8PAZoNFoCo2gn/kjE205LWM1+sGR0oY8hFygl3gYwK6FwuYPpA/0HwVTpukJpU4GLLUdNYGo6CtkNfvzxuA==",
+  "dgSpecHash": "mWjA8Ct5hkb0tGnaDSVhZo70X8XWPJtHHQMCFbIFuRGgC0V8us3dd8CJooahgwki+Q0/EqNh1nIMwtf8/omQ0Q==",
   "success": true,
-  "projectFilePath": "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ManageBookLibrary\\ManageBookLibrary.csproj",
+  "projectFilePath": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ManageBookLibrary\\ManageBookLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\duc21\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\duc21\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

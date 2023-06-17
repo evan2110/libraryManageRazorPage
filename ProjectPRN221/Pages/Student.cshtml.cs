@@ -15,7 +15,6 @@ namespace ProjectPRN221.Pages
         {
             if(HttpContext.Session.GetString("UserRole") == "Student")
             {
-                Console.WriteLine(HttpContext.Session.GetString("UserRole"));
                 var pageNumber = handler ?? 1;
                 var pageSize = 10;
 

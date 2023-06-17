@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tUg2LkE0iL4JdppV2s6me18/0oc/Pv9mWIAtFaloT4dMBPQ7IzYSKCEKd/NG3O+O84SqMcS47RqogWE2Qk2RmQ==",
+  "dgSpecHash": "zQfw97nVNZsmoiBXX8Qagodg1IdTbKwj5gZyfOEXvQRlHwqC+tOtAJob3Ywe3BalgrfN4/KdHsmpytrfq/Zh7g==",
   "success": true,
-  "projectFilePath": "D:\\C Sharp\\PRN221_Trenlop\\ProjectPRN221\\ProjectPRN221\\ProjectPRN221.csproj",
+  "projectFilePath": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ProjectPRN221\\ProjectPRN221.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\duc21\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\duc21\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
