@@ -7,9 +7,10 @@
 @{
     var Books = ViewData["books"] as IPagedList<Book>;
     var totalBooks = ViewData["totalBooks"];
-
 }
+
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+
     <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book borrow system</h2>
 
         <table class="table border-collapse">
@@ -43,7 +44,7 @@
                             }
                             else
                             {
-                                @Html.ActionLink("Borrow", "Borrow", new { id = item.BookId }, new { @class = "inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link" })
+                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
                             }
                         </td>
 
@@ -108,6 +109,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function redirectToStudent(button) {
+        var bookId = button.getAttribute("data-bookid");
+        window.location.href = '/Student?handler=' + @Books.PageNumber + '&bookId=' + bookId;
+    }
+</script>
 
 
 

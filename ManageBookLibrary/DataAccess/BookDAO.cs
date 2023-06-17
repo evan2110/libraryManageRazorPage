@@ -51,7 +51,7 @@ namespace ManageBookLibrary.DataAccess
             return listBook;
         }
 
-        public Book GetBookByID(int bookID)
+        public Book GetBookByID(int? bookID)
         {
             Book book = null;
             try

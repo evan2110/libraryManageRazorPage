@@ -11,7 +11,7 @@ namespace ProjectPRN221.Pages
     {
         IBookRepository bookRepository = new BookRepository();
         public IPagedList<Book> PagedBooks { get; set; }
-        public void OnGet(int? handler)
+        public void OnGet(int? handler, int? bookId)
         {
             if(HttpContext.Session.GetString("UserRole") == "Student")
             {
@@ -21,6 +21,15 @@ namespace ProjectPRN221.Pages
                 var books = bookRepository.GetBooks();
                 PagedBooks = books.ToPagedList(pageNumber, pageSize);
                 var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                
+                if(bookId != null)
+                {
+                    Book book = bookRepository.GetBookByID(bookId);
+                    book.AvailableCopies--;
+                    bookRepository.UpdateBook(book);
+                    Response.Redirect($"Student?handler={PagedBooks.PageNumber}");
+
+                }
 
                 ViewData["totalBooks"] = totalBooks;
                 ViewData["books"] = PagedBooks;

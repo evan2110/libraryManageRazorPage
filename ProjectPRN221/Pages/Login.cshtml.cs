@@ -2,6 +2,7 @@ using Azure;
 using Azure.Core;
 using ManageBookLibrary.BusinessObject;
 using ManageBookLibrary.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -38,7 +39,8 @@ namespace ProjectPRN221.Pages
                 else if(acc.RoleId == 3)
                 {
                     HttpContext.Session.SetString("UserRole", "Student");
-                    HttpContext.Session.SetString("Email", email);
+                    HttpContext.Session.SetString("Email", acc.Email);
+                    HttpContext.Session.SetString("Password", acc.Password);
 
                     Response.Redirect("/Student");
                 }

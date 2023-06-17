@@ -13,7 +13,7 @@ namespace ManageBookLibrary.Repository
         public void DeleteBook(int bookId) => BookDAO.Instance.Remove(bookId);
 
 
-        public Book GetBookByID(int bookId) => BookDAO.Instance.GetBookByID(bookId);
+        public Book GetBookByID(int? bookId) => BookDAO.Instance.GetBookByID(bookId);
 
 
         public List<Book> GetBooks() => BookDAO.Instance.GetBookList();
