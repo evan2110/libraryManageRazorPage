@@ -26,6 +26,21 @@ namespace ManageBookLibrary.DataAccess
             }
         }
 
+        public Account GetAccountByID(int? accountID)
+        {
+            Account account = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                account = context.Accounts.SingleOrDefault(c => c.AccountId == accountID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return account;
+        }
+
         public Account GetAccountByEmailAndPass(Account account)
         {
             Account acc = null;
@@ -42,6 +57,27 @@ namespace ManageBookLibrary.DataAccess
             return acc;
         }
 
+        public void Update(Account account)
+        {
+            try
+            {
+                Account accountFind = GetAccountByID(account.AccountId);
+                if (accountFind != null)
+                {
+                        using var context = new DatabaseTestProjectContext();
+                        context.Accounts.Update(account);
+                        context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The account does not already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 }

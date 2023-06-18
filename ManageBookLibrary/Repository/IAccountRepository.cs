@@ -10,5 +10,6 @@ namespace ManageBookLibrary.Repository
     public interface IAccountRepository
     {
         Account GetAccountByEmailAndPass(Account account);
+        void UpdateAccount(Account account);
     }
 }

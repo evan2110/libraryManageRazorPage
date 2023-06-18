@@ -10,6 +10,9 @@ namespace ManageBookLibrary.Repository
 {
     public class BookBorrowRepository : IBookBorrowRepository
     {
+        public List<BookBorrowDTO> GetBooksBorrowByAccountId(int accountId) => BookBorrowDAO.Instance.GetBooksBorrowByAccountId(accountId);
+
+
         public void InsertBookBorrow(BooksBorrow booksBorrow) => BookBorrowDAO.Instance.AddNew(booksBorrow);
     }
 }

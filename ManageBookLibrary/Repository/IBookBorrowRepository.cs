@@ -10,5 +10,7 @@ namespace ManageBookLibrary.Repository
     public interface IBookBorrowRepository
     {
         void InsertBookBorrow(BooksBorrow booksBorrow);
+
+        List<BookBorrowDTO> GetBooksBorrowByAccountId(int accountID);
     }
 }

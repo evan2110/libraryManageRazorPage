@@ -13,5 +13,6 @@ namespace ManageBookLibrary.Repository
 
         public Account GetAccountByEmailAndPass(Account account) => AccountDAO.Instance.GetAccountByEmailAndPass(account);
 
+        public void UpdateAccount(Account account) => AccountDAO.Instance.Update(account);
     }
 }
