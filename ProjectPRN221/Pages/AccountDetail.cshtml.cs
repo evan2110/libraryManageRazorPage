@@ -29,6 +29,7 @@ namespace ProjectPRN221.Pages
 
             accountRepository.UpdateAccount(account);
             ViewData["acc"] = account;
+            ViewData["infor"] = "updatesuss";
         }
 
         

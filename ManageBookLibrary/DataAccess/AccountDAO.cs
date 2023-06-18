@@ -79,5 +79,23 @@ namespace ManageBookLibrary.DataAccess
             }
         }
 
+        public void AddNew(Account account)
+        {
+            try
+            {
+                Account accountFind = GetAccountByID(account.AccountId);
+                if (accountFind == null)
+                {
+                    using var context = new DatabaseTestProjectContext();
+                    context.Accounts.Add(account);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ManageBookLibrary.BusinessObject;
+using ManageBookLibrary.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace ManageBookLibrary.Repository
 {
-    public interface IAccountRepository
+    public class RoleRepository : IRoleRepository
     {
-        Account GetAccountByEmailAndPass(Account account);
-        void UpdateAccount(Account account);
-        void InsertAccount(Account account);
+        public List<Role> GetRoles() => RoleDAO.Instance.GetRoleList();
 
     }
 }

@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ManageBookLibrary.Repository
 {
-    public interface IAccountRepository
+    public interface IRoleRepository
     {
-        Account GetAccountByEmailAndPass(Account account);
-        void UpdateAccount(Account account);
-        void InsertAccount(Account account);
-
+        List<Role> GetRoles();
     }
 }
