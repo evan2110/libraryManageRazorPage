@@ -7,6 +7,7 @@
 @{
     var Books = ViewData["books"] as IPagedList<Book>;
     var totalBooks = ViewData["totalBooks"];
+    HttpContext context = Request.HttpContext;
 }
 
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -14,7 +15,14 @@
     <div class="flex" style="display: flex;
                         justify-content: space-between; 
                          margin-bottom:15px;">
-        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book borrow system</h2>
+        @if (context.Session.GetString("UserRole") == "Student")
+        {
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book borrow system</h2>
+        }
+        else
+        {
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book system</h2>
+        }
         <span class="ml-3 hidden sm:block">
             <button onclick="redirectToStudentHistory()" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -27,7 +35,7 @@
     </div>
     <div class="search-container">
         <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
-        <button onclick ="searching(this)" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button onclick="searching(this)" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
     </div>
         <table class="table border-collapse">
             <thead>
@@ -54,14 +62,23 @@
                         <td class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
                         <td class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
                         <td class="p-2">
+                        @if (context.Session.GetString("UserRole") == "Student")
+                        {
                             @if (item.AvailableCopies <= 0)
                             {
                                 <span class="text-orange-700">Clean</span>
                             }
                             else
                             {
-                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
+                                <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
                             }
+                        }
+                        else
+                        {
+                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
+                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                        }
+
                         </td>
 
                     </tr>

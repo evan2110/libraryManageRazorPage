@@ -13,16 +13,25 @@ namespace ProjectPRN221.Pages
 
         public IPagedList<BookBorrowDTO> PagedBookBorrows { get; set; }
 
-        public void OnGet(int? handler)
+        public void OnGet(int? handler, int? id)
         {
-            if (HttpContext.Session.GetString("UserRole") == "Student")
+            if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
             {
                 var pageNumber = handler ?? 1;
                 var pageSize = 10;
 
-                var booksBorrow = bookBorrowRepository.GetBooksBorrowByAccountId(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))).AccountId);
+                var booksBorrow = bookBorrowRepository.GetBooksBorrowByAccountId(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))).AccountId, HttpContext.Session.GetString("UserRole"));
                 PagedBookBorrows = booksBorrow.ToPagedList(pageNumber, pageSize);
                 var totalBooksBorrow = (PagedBookBorrows.Count * PagedBookBorrows.PageCount) / 10;
+
+                if(id != null)
+                {
+                    var booksBorrowFind = bookBorrowRepository.GetBooksBorrowByID(id);
+                    booksBorrowFind.DateReturn = DateTime.Now;
+                    bookBorrowRepository.UpdateBookBorrow(booksBorrowFind);
+                    ViewData["id"] = id;
+                    Response.Redirect("StudentHistory");
+                }
 
 
                 ViewData["totalBooksBorrow"] = totalBooksBorrow;

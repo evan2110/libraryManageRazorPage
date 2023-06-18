@@ -5,11 +5,12 @@
 @{
     var booksBorrow = ViewData["booksBorrow"] as IPagedList<BookBorrowDTO>;
     var totalBooksBorrow = ViewData["totalBooksBorrow"];
+    HttpContext context = Request.HttpContext;
 }
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
 
     <div class="flex" style="display: flex;
-                        justify-content: space-between;">
+                        justify-content: space-between; margin-bottom:15px;">
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book borrow history</h2>
         <span class="ml-3 hidden sm:block">
             <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
@@ -37,6 +38,11 @@
                 <th class="p-2">Title</th>
                 <th class="p-2">Author</th>
                 <th class="p-2">Shelf</th>
+                @if (context.Session.GetString("UserRole") == "Manager")
+                {
+                <th class="p-2">Done</th>
+                }
+
             </tr>
         </thead>
         <tbody>
@@ -56,7 +62,30 @@
                     <td class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
                     <td class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
                     <td class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
+                    @if (context.Session.GetString("UserRole") == "Manager")
+                    {
+                        <td>
+                            <div class="flex h-6 items-center">
+                                @if (item.DateReturn != null)
+                                {
+                                    <input checked id="@(item.BookBorrowId)" name="done" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" onchange="handleCheckboxChange(this)" style="display: none;">
+                                    <i class="fa-solid fa-check fa-shake fa-2xl" style="color: #06ef58;"></i>
+                                }
+                                else
+                                {
+                                    <input id="@(item.BookBorrowId)" name="done" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" onchange="handleCheckboxChange(this)" @(ViewData["id"] != null && ViewData["id"].ToString() == item.BookBorrowId.ToString() ? "style=\"display: none;\"" : "")>
+                                    @if (ViewData["id"] != null && ViewData["id"].ToString() == item.BookBorrowId.ToString())
+                                    {
+                                        <input checked id="@(item.BookBorrowId)" name="done" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" onchange="handleCheckboxChange(this)" style="display: none;">
+                                    }
+                                }
 
+
+
+                                
+                            </div>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>
@@ -129,3 +158,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function handleCheckboxChange(checkbox) {
+        if (checkbox.checked) {
+            
+            var id = checkbox.id;
+            window.location.href = "/StudentHistory?id=" + id;
+        } else {
+            
+        }
+    }
+</script>
+<script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>

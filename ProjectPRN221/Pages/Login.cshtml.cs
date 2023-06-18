@@ -38,7 +38,7 @@ namespace ProjectPRN221.Pages
                     HttpContext.Session.SetString("Email", acc.Email);
                     HttpContext.Session.SetString("Password", acc.Password);
 
-                    Response.Redirect("/Manager");
+                    Response.Redirect("/Student");
                 }
                 else if(acc.RoleId == 3)
                 {

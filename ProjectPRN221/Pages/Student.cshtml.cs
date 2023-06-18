@@ -15,7 +15,7 @@ namespace ProjectPRN221.Pages
         public IPagedList<Book> PagedBooks { get; set; }
         public void OnGet(int? handler, int? bookId, string? search)
         {
-            if(HttpContext.Session.GetString("UserRole") == "Student")
+            if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
             {
                 
                 var pageNumber = handler ?? 1;

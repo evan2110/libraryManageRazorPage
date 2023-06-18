@@ -55,33 +55,78 @@ namespace ManageBookLibrary.DataAccess
             }
         }
 
-        public List<BookBorrowDTO> GetBooksBorrowByAccountId(int accountID)
+        public void Update(BooksBorrow booksBorrow)
+        {
+            try
+            {
+                BooksBorrow booksBorrowFind = GetBooksBorrowByID(booksBorrow.BookBorrowId);
+                if (booksBorrowFind != null)
+                {
+                        using var context = new DatabaseTestProjectContext();
+                        context.BooksBorrows.Update(booksBorrow);
+                        context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<BookBorrowDTO> GetBooksBorrowByAccountId(int accountID, string roleName)
         {
             List<BookBorrowDTO> listBookBorrow = null;
             try
             {
                 using var context = new DatabaseTestProjectContext();
-                listBookBorrow = (from a in context.Accounts
-                                  join bb in context.BooksBorrows on a.AccountId equals bb.AccountId
-                                  join b in context.Books on bb.BookId equals b.BookId
-                                  where a.AccountId == accountID
-                                  select new BookBorrowDTO
-                                  {
-                                      BookBorrowId = bb.BookBorrowId,
-                                      FirstName = a.FirstName,
-                                      LastName = a.LastName,
-                                      Email = a.Email,
-                                      Phone = a.Phone,
-                                      Address = a.Address,
-                                      Gender = a.Gender,
-                                      DateBorrowed = bb.DateBorrowed,
-                                      DueDate = bb.DueDate,
-                                      DateReturn = bb.DateReturn,
-                                      ReceivedBy = bb.ReceivedBy,
-                                      Title = b.Title,
-                                      Author = b.Author,
-                                      ShelfLocation = b.ShelfLocation
-                                  }).ToList();
+                if(roleName == "Student")
+                {
+                    listBookBorrow = (from a in context.Accounts
+                                      join bb in context.BooksBorrows on a.AccountId equals bb.AccountId
+                                      join b in context.Books on bb.BookId equals b.BookId
+                                      where a.AccountId == accountID
+                                      select new BookBorrowDTO
+                                      {
+                                          BookBorrowId = bb.BookBorrowId,
+                                          FirstName = a.FirstName,
+                                          LastName = a.LastName,
+                                          Email = a.Email,
+                                          Phone = a.Phone,
+                                          Address = a.Address,
+                                          Gender = a.Gender,
+                                          DateBorrowed = bb.DateBorrowed,
+                                          DueDate = bb.DueDate,
+                                          DateReturn = bb.DateReturn,
+                                          ReceivedBy = bb.ReceivedBy,
+                                          Title = b.Title,
+                                          Author = b.Author,
+                                          ShelfLocation = b.ShelfLocation
+                                      }).ToList();
+                }
+                else
+                {
+                    listBookBorrow = (from a in context.Accounts
+                                      join bb in context.BooksBorrows on a.AccountId equals bb.AccountId
+                                      join b in context.Books on bb.BookId equals b.BookId
+                                      select new BookBorrowDTO
+                                      {
+                                          BookBorrowId = bb.BookBorrowId,
+                                          FirstName = a.FirstName,
+                                          LastName = a.LastName,
+                                          Email = a.Email,
+                                          Phone = a.Phone,
+                                          Address = a.Address,
+                                          Gender = a.Gender,
+                                          DateBorrowed = bb.DateBorrowed,
+                                          DueDate = bb.DueDate,
+                                          DateReturn = bb.DateReturn,
+                                          ReceivedBy = bb.ReceivedBy,
+                                          Title = b.Title,
+                                          Author = b.Author,
+                                          ShelfLocation = b.ShelfLocation
+                                      }).ToList();
+                }
+                
             }
             catch (Exception ex)
             {
