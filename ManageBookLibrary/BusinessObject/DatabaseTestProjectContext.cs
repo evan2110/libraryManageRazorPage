@@ -33,16 +33,15 @@ public partial class DatabaseTestProjectContext : DbContext
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("ProjectDB"));
 
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
         {
+            entity.HasKey(e => e.AccountId).HasName("PK__Account__3213E83FA848C035");
+
             entity.ToTable("Account");
 
-            entity.Property(e => e.AccountId)
-                .ValueGeneratedNever()
-                .HasColumnName("account_id");
+            entity.Property(e => e.AccountId).HasColumnName("account_id");
             entity.Property(e => e.Address)
                 .HasMaxLength(200)
                 .IsUnicode(false)
@@ -83,11 +82,9 @@ public partial class DatabaseTestProjectContext : DbContext
 
         modelBuilder.Entity<Book>(entity =>
         {
-            entity.HasKey(e => e.BookId).HasName("PK__books__490D1AE18D4D6129");
+            entity.HasKey(e => e.BookId).HasName("PK__Books__3213E83F099B2396");
 
-            entity.Property(e => e.BookId)
-                .ValueGeneratedNever()
-                .HasColumnName("book_id");
+            entity.Property(e => e.BookId).HasColumnName("book_id");
             entity.Property(e => e.Author)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -109,13 +106,11 @@ public partial class DatabaseTestProjectContext : DbContext
 
         modelBuilder.Entity<BooksBorrow>(entity =>
         {
-            entity.HasKey(e => e.BookBorrowId);
+            entity.HasKey(e => e.BookBorrowId).HasName("PK__BooksBor__3213E83F65D8D8AB");
 
             entity.ToTable("BooksBorrow");
 
-            entity.Property(e => e.BookBorrowId)
-                .ValueGeneratedNever()
-                .HasColumnName("book_borrow_id");
+            entity.Property(e => e.BookBorrowId).HasColumnName("book_borrow_id");
             entity.Property(e => e.AccountId).HasColumnName("account_id");
             entity.Property(e => e.BookId).HasColumnName("book_id");
             entity.Property(e => e.DateBorrowed)
@@ -146,11 +141,11 @@ public partial class DatabaseTestProjectContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__3213E83F40E60C58");
+
             entity.ToTable("Role");
 
-            entity.Property(e => e.RoleId)
-                .ValueGeneratedNever()
-                .HasColumnName("role_id");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.RoleName)
                 .HasMaxLength(50)
                 .IsUnicode(false)

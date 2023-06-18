@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ManageBookLibrary.Repository
 {
-    public class BookRepository: IBookRepository
+    public class BookRepository : IBookRepository
     {
         public void DeleteBook(int bookId) => BookDAO.Instance.Remove(bookId);
 

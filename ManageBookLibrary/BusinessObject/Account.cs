@@ -5,8 +5,6 @@ namespace ManageBookLibrary.BusinessObject;
 
 public partial class Account
 {
-    public int AccountId { get; set; }
-
     public string? FirstName { get; set; }
 
     public string? LastName { get; set; }
@@ -29,13 +27,14 @@ public partial class Account
 
     public string Password { get; set; } = null!;
 
+    public int AccountId { get; set; }
+
     public virtual ICollection<BooksBorrow> BooksBorrows { get; set; } = new List<BooksBorrow>();
 
     public virtual Role Role { get; set; } = null!;
 
-    public Account(int accountId, string? firstName, string? lastName, string email, int roleId, DateTime? createdTime, DateTime? updateTime, string? phone, string? address, bool gender, bool? status, string password, ICollection<BooksBorrow> booksBorrows, Role role)
+    public Account(string? firstName, string? lastName, string email, int roleId, DateTime? createdTime, DateTime? updateTime, string? phone, string? address, bool gender, bool? status, string password, int accountId, ICollection<BooksBorrow> booksBorrows, Role role)
     {
-        AccountId = accountId;
         FirstName = firstName;
         LastName = lastName;
         Email = email;
@@ -47,6 +46,7 @@ public partial class Account
         Gender = gender;
         Status = status;
         Password = password;
+        AccountId = accountId;
         BooksBorrows = booksBorrows;
         Role = role;
     }
@@ -57,5 +57,7 @@ public partial class Account
         Password = password;
     }
 
-    public Account() { }
+    public Account()
+    {
+    }
 }
