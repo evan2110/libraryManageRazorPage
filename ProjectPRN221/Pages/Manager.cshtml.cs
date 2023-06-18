@@ -1,13 +1,12 @@
-﻿using ManageBookLibrary.BusinessObject;
+using ManageBookLibrary.BusinessObject;
 using ManageBookLibrary.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PagedList;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace ProjectPRN221.Pages
 {
-    public class StudentModel : PageModel
+    public class ManagerModel : PageModel
     {
         IAccountRepository accountRepository = new AccountRepository();
         IBookRepository bookRepository = new BookRepository();
@@ -15,9 +14,9 @@ namespace ProjectPRN221.Pages
         public IPagedList<Book> PagedBooks { get; set; }
         public void OnGet(int? handler, int? bookId, string? search)
         {
-            if(HttpContext.Session.GetString("UserRole") == "Student")
+            if (HttpContext.Session.GetString("UserRole") == "Manager")
             {
-                
+
                 var pageNumber = handler ?? 1;
                 var pageSize = 10;
 
@@ -28,21 +27,21 @@ namespace ProjectPRN221.Pages
                 }
                 PagedBooks = books.ToPagedList(pageNumber, pageSize);
                 var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
-                
-                if(bookId != null)
+
+                if (bookId != null)
                 {
                     Book book = bookRepository.GetBookByID(bookId);
                     book.AvailableCopies--;
                     bookRepository.UpdateBook(book);
 
                     BooksBorrow booksBorrow = new BooksBorrow(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))).AccountId,
-                                                                bookId, DateTime.Now, DateTime.Now.AddDays(7),  true, null, HttpContext.Session.GetString("Email"));
+                                                                bookId, DateTime.Now, DateTime.Now.AddDays(7), true, null, HttpContext.Session.GetString("Email"));
 
                     bookBorrowRepository.InsertBookBorrow(booksBorrow);
-                    Response.Redirect($"Student?handler={PagedBooks.PageNumber}");
+                    Response.Redirect($"Manager?handler={PagedBooks.PageNumber}");
 
                 }
-                
+
 
                 ViewData["totalBooks"] = totalBooks;
                 ViewData["search"] = search;
@@ -52,7 +51,7 @@ namespace ProjectPRN221.Pages
             {
                 Response.Redirect("Error");
             }
-            
+
         }
     }
 }

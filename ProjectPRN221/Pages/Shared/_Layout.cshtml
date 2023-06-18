@@ -10,7 +10,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProjectPRN221</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProjectPRN221.styles.css" asp-append-version="true" />
@@ -24,11 +23,10 @@
             <div class="bg-white">
                 <header class="absolute inset-x-0 top-0 z-50">
                     <nav style="cursor: pointer;" class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-                        <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 back-button">Back</span>
 
                         <div class="flex lg:flex-1">
                             <a href="/Index" class="-m-1.5 p-1.5">
-                                <img class="h-8 w-auto" src="../Pages/Shared/355015333_284517453975659_7706100170185933897_n.png" alt="">
+                                <img class="h-12 w-12 w-auto" src="https://media.istockphoto.com/id/1270155083/vi/vec-to/vector-thi%E1%BA%BFt-k%E1%BA%BF-logo-s%C3%A1ch-%C4%91i%E1%BB%87n-t%E1%BB%AD-m%C3%A0u-xanh-k%C3%BD-hi%E1%BB%87u-th%C6%B0-vi%E1%BB%87n-s%C3%A1ch-%C4%91i%E1%BB%87n-t%E1%BB%AD.jpg?s=1024x1024&w=is&k=20&c=DoyYlk0gqY2xmcTDW3c9Bk3pwK-0cz874PKMb-1KAK0=" alt="">
                             </a>
                         </div>
                         <div class="flex lg:hidden">
@@ -78,7 +76,7 @@
                         else
                         {
                             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                                <a href="/AccountDetail" class="text-sm font-semibold leading-6 text-gray-900">Hello @context.Session.GetString("Email") <span aria-hidden="true">&rarr;</span></a>
+                                <a style="margin-right:10px;" href="/AccountDetail" class="text-sm font-semibold leading-6 text-gray-900">Hello @context.Session.GetString("Email")</a>
                                 <a href="/Login" class="text-sm font-semibold leading-6 text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a>
                             </div>
                         }
@@ -135,12 +133,6 @@
             <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
     </div>
-
-    <script>
-        document.querySelector('.back-button').addEventListener('click', function () {
-            window.history.back();
-        });
-    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

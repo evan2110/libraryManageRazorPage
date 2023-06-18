@@ -153,9 +153,9 @@ namespace ManageBookLibrary.DataAccess
             {
                 using var context = new DatabaseTestProjectContext();
                 books = context.Books.Where(b =>
-                b.Title.Contains(search) ||
-                b.Author.Contains(search) ||
-                b.ShelfLocation.Contains(search)
+                b.Title.Trim().Contains(search.Trim()) ||
+                b.Author.Trim().Contains(search.Trim()) ||
+                b.ShelfLocation.Trim().Contains(search.Trim())
             ).ToList();
             }
             catch (Exception ex)
