@@ -13,16 +13,21 @@
             <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
 
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-
-                    <div class="col-span-full">
-                    <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+                <div class="col-span-full" style="display:none;">
+                    <label for="id" class="block text-sm font-medium leading-6 text-gray-900">Id</label>
                     <div class="mt-2">
-                            <input asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
-
+                            <input asp-for="book.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.BookId : string.Empty)">
                     </div>
                 </div>
 
-                    <div class="col-span-full">
+                <div class="col-span-full">
+                    <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+                    <div class="mt-2">
+                            <input asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
+                    </div>
+                </div>
+
+                <div class="col-span-full">
                         <label for="publicationDate" class="block text-sm font-medium leading-6 text-gray-900">Publication Date</label>
                     <div class="mt-2">
                             <input asp-for="book.PublicationDate" type="text" name="PublicationDate" id="PublicationDate" autocomplete="PublicationDate" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(book != null ? book.PublicationDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
@@ -35,26 +40,27 @@
                             <input asp-for="book.Author" type="text" name="author" id="author" autocomplete="author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
                     </div>
                 </div>
-                    <div class="sm:col-span-2">
+
+                <div class="sm:col-span-2">
                         <label for="total_copies" class="block text-sm font-medium leading-6 text-gray-900">Total copies</label>
                         <div class="mt-2">
                             <input asp-for="book.TotalCopies" type="text" name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
                         </div>
-                    </div>
+                </div>
 
-                    <div class="sm:col-span-2">
+                <div class="sm:col-span-2">
                         <label for="available_copies" class="block text-sm font-medium leading-6 text-gray-900">Available copies</label>
                         <div class="mt-2">
                             <input asp-for="book.AvailableCopies" type="text" name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
                         </div>
-                    </div>
+                </div>
 
-                    <div class="sm:col-span-2">
+                <div class="sm:col-span-2">
                         <label for="shelf_location" class="block text-sm font-medium leading-6 text-gray-900">Shelf location</label>
                         <div class="mt-2">
-                            <input asp-for="book.ShelfLocation" type="text" name="shelf_location" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
+                            <input asp-for="book.ShelfLocation" type="text" name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
                         </div>
-                    </div>
+                </div>
 
             </div>
         </div>
@@ -62,6 +68,14 @@
     </div>
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
+            @if (ViewData["infor"] == "updatesuss")
+            {
+                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
+            }
+            @if (ViewData["infor"] == "insertsuss")
+            {
+                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Inserted success</span>
+            }
         <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
 </form>

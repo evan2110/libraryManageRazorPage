@@ -2,6 +2,7 @@ using ManageBookLibrary.BusinessObject;
 using ManageBookLibrary.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net;
 
 namespace ProjectPRN221.Pages
 {
@@ -22,7 +23,19 @@ namespace ProjectPRN221.Pages
 
         public void OnPost(Book book)
         {
-
+            Console.WriteLine(book.BookId);
+            if (book.BookId != 0)
+            {
+                bookRepository.UpdateBook(book);
+                var bookFind = bookRepository.GetBookByID(book.BookId);
+                ViewData["book"] = bookFind;
+                ViewData["infor"] = "updatesuss";
+            }
+            else
+            {
+                bookRepository.InsertBook(book);
+                ViewData["infor"] = "insertsuss";
+            }
         }
     }
 }
