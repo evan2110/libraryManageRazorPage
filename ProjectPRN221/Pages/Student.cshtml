@@ -33,9 +33,38 @@
             </button>
         </span>
     </div>
-    <div class="search-container">
-        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
-        <button onclick="searching(this)" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
+    
+    <div class="search-container" style="display:flex; justify-content:space-between;">
+        <div>
+            <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+            <button onclick="searching(this)" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
+        </div>
+        @if (context.Session.GetString("UserRole") == "Manager")
+        {
+            <div style="display:flex;">
+                <span class="hidden sm:block">
+                    <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <i  class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
+                        Create
+                    </button>
+                </span>
+
+                <span class="ml-3 hidden sm:block">
+                    <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
+                        Export
+                    </button>
+                </span>
+
+                <span class="ml-3 hidden sm:block">
+                    <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <i class="fa-solid fa-file-import" style="color: #4838ca; margin:3px;"></i>
+                        Import
+                    </button>
+                </span>
+            </div>
+        }
+        
     </div>
         <table class="table border-collapse">
             <thead>
