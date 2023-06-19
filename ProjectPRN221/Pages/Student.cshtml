@@ -7,11 +7,11 @@
 @{
     var Books = ViewData["books"] as IPagedList<Book>;
     var totalBooks = ViewData["totalBooks"];
+    bool account = (bool)ViewData["account"];
     HttpContext context = Request.HttpContext;
 }
 
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-
     <div class="flex" style="display: flex;
                         justify-content: space-between; 
                          margin-bottom:15px;">
@@ -43,7 +43,7 @@
         {
             <div style="display:flex;">
                 <span class="hidden sm:block">
-                    <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <button onclick="redirectToStudent(null, 'Create')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         <i  class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
                         Create
                     </button>
@@ -99,13 +99,13 @@
                             }
                             else
                             {
-                                <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
+                                <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Borrow')" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
                             }
                         }
                         else
                         {
-                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
-                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Edit')" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
+                            <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Delete')" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
                         }
 
                         </td>
@@ -185,9 +185,18 @@
 </div>
 
 <script>
-    function redirectToStudent(button) {
-        var bookId = button.getAttribute("data-bookid");
-        window.location.href = '/Student?handler=' + @Books.PageNumber + '&bookId=' + bookId;
+    function redirectToStudent(button, check) {
+        if (check === 'Borrow') {
+            var bookId = button.getAttribute("data-bookid");
+            window.location.href = '/Student?handler=' + @Books.PageNumber + '&bookId=' + bookId;
+        }
+        if (check === 'Create'){
+            window.location.href = '/Manager';
+        }
+        if (check === 'Edit') {
+            window.location.href = '/Manager?bookId=' + button.getAttribute("data-bookid");
+        }
+        
     }
 
     function searching(button){
@@ -199,6 +208,7 @@
     function redirectToStudentHistory() {
         window.location.href = "/StudentHistory";
     }
+
 </script>
 <script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>
 

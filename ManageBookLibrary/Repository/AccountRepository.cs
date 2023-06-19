@@ -10,6 +10,7 @@ namespace ManageBookLibrary.Repository
 {
     public class AccountRepository : IAccountRepository
     {
+        public bool CheckReturnBook(Account account) => AccountDAO.Instance.CheckReturnBook(account);
 
         public Account GetAccountByEmailAndPass(Account account) => AccountDAO.Instance.GetAccountByEmailAndPass(account);
 

@@ -42,8 +42,8 @@ namespace ProjectPRN221.Pages
                     Response.Redirect($"Student?handler={PagedBooks.PageNumber}");
 
                 }
-                
 
+                ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));
                 ViewData["totalBooks"] = totalBooks;
                 ViewData["search"] = search;
                 ViewData["books"] = PagedBooks;

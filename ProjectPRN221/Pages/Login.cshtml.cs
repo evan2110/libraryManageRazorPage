@@ -45,6 +45,15 @@ namespace ProjectPRN221.Pages
                     HttpContext.Session.SetString("UserRole", "Student");
                     HttpContext.Session.SetString("Email", acc.Email);
                     HttpContext.Session.SetString("Password", acc.Password);
+                    bool check =accountRepository.CheckReturnBook(acc);
+                    if (check)
+                    {
+                        HttpContext.Session.SetString("CheckReturnBook", "Yes");
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString("CheckReturnBook", "No");
+                    }
 
                     Response.Redirect("/Student");
                 }

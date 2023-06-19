@@ -46,4 +46,9 @@ public partial class BooksBorrow
         Account = account;
         Book = book;
     }
+
+    public BooksBorrow(DateTime dateBorrowed)
+    {
+        DateBorrowed = dateBorrowed;
+    }
 }

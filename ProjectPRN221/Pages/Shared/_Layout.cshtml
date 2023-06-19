@@ -2,7 +2,6 @@
 
 @{
     HttpContext context = Context.Request.HttpContext;
-
 }
 
 <!DOCTYPE html>
@@ -76,6 +75,15 @@
                         else
                         {
                             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                                @if (context.Session.GetString("CheckReturnBook") == "Yes")
+                                {
+                                    <div style="position:relative;">
+                                        <i id="notificationIcon" class="fa-solid fa-bell fa-shake fa-xl" style="color: #d86f6f; cursor:pointer;margin:10px;"></i>
+                                        <div id="notificationMessage" class="card-body" style="border-radius: 10px; border-top-left-radius: 0; border-bottom-right-radius: 0;background-color: #faebd7;padding: 1rem 4rem;position:absolute;display:none;right:-68px;">
+                                            <a href="StudentHistory"><p style="width:240%;margin-left: -10px; font-family: 'Arial', sans-serif; font-size: 16px; font-weight: bold; color: #333333; text-align: center;">Please check your history !</p></a>
+                                        </div>
+                                    </div>
+                                }
                                 <a style="margin-right:10px;" href="/AccountDetail" class="text-sm font-semibold leading-6 text-gray-900">Hello @context.Session.GetString("Email")</a>
                                 <a href="/Login" class="text-sm font-semibold leading-6 text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a>
                             </div>
@@ -141,3 +149,15 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script>
+    var notificationIcon = document.getElementById('notificationIcon');
+    var notificationMessage = document.getElementById('notificationMessage');
+
+    notificationIcon.addEventListener('click', function () {
+        if (notificationMessage.style.display === 'none') {
+            notificationMessage.style.display = 'block';
+        } else {
+            notificationMessage.style.display = 'none';
+        }
+    });
+</script>

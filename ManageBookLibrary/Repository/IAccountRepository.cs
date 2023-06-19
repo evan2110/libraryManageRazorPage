@@ -12,6 +12,7 @@ namespace ManageBookLibrary.Repository
         Account GetAccountByEmailAndPass(Account account);
         void UpdateAccount(Account account);
         void InsertAccount(Account account);
+        bool CheckReturnBook(Account account);
 
     }
 }

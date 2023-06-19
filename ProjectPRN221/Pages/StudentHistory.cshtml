@@ -41,6 +41,8 @@
                 @if (context.Session.GetString("UserRole") == "Manager")
                 {
                 <th class="p-2">Done</th>
+                }else{
+                <th class="p-2"></th>
                 }
 
             </tr>
@@ -79,10 +81,21 @@
                                         <input checked id="@(item.BookBorrowId)" name="done" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" onchange="handleCheckboxChange(this)" style="display: none;">
                                     }
                                 }
-
-
-
                                 
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <div class="flex h-6 items-center">
+                                @if (item.DateReturn != null)
+                                {
+                                    <i class="fa-solid fa-check fa-shake fa-2xl" style="color: #06ef58;"></i>
+                                }else{
+                                    <i class="ml-3 fa-solid fa-exclamation fa-beat fa-2xl" style="color: #ff1900;"></i>
+                                }
+
                             </div>
                         </td>
                     }

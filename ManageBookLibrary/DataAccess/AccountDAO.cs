@@ -1,4 +1,5 @@
 ﻿using ManageBookLibrary.BusinessObject;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,35 @@ namespace ManageBookLibrary.DataAccess
                     context.Accounts.Add(account);
                     context.SaveChanges();
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool CheckReturnBook(Account account)
+        {
+            List<BooksBorrow> booksBorrows = null;
+            try
+            {
+                Account accountFind = GetAccountByID(account.AccountId);
+                if (accountFind != null)
+                {
+                    using var context = new DatabaseTestProjectContext();
+                    booksBorrows = (from a in context.Accounts
+                           join bb in context.BooksBorrows on a.AccountId equals bb.AccountId
+                           where a.AccountId == account.AccountId && bb.DateReturn == null
+                           select new BooksBorrow
+                           {
+                               DateBorrowed = bb.DateBorrowed,
+                           }).ToList();
+                    if(booksBorrows.Count != 0)
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
             catch (Exception ex)
             {
