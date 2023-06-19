@@ -1,3 +1,5 @@
+using OfficeOpenXml;
+
 namespace ProjectPRN221
 {
     public class Program
@@ -24,6 +26,7 @@ namespace ProjectPRN221
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

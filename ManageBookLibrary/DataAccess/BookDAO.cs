@@ -124,7 +124,7 @@ namespace ManageBookLibrary.DataAccess
             }
         }
 
-        public void Remove(int bookID)
+        public void Remove(int? bookID)
         {
             try
             {

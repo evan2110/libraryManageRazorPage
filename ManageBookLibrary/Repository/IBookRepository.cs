@@ -12,7 +12,7 @@ namespace ManageBookLibrary.Repository
         List<Book> GetBooks();
         Book GetBookByID(int? bookId);
         void InsertBook(Book book);
-        void DeleteBook(int bookId);
+        void DeleteBook(int? bookId);
         void UpdateBook(Book book);
         List<Book> SearchBooksByTitleOrAuthorOrPublicDateOrLocaion(string search);
     }
