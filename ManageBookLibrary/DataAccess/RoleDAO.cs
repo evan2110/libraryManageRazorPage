@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,6 +45,38 @@ namespace ManageBookLibrary.DataAccess
                 throw new Exception(ex.Message);
             }
             return listRole;
+        }
+
+        public List<Role> SearchRoleByName(string name)
+        {
+            List<Role> roles = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                roles = context.Roles.Where(b =>
+                b.RoleName.Trim().Contains(name.Trim())
+            ).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return roles;
+        }
+
+        public Role GetRoleById(int? id)
+        {
+            Role role = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                role = context.Roles.SingleOrDefault(c => c.RoleId == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return role;
         }
     }
 }

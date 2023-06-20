@@ -30,6 +30,10 @@ namespace ProjectPRN221.Pages
             {
                 if(acc.RoleId == 1)
                 {
+                    HttpContext.Session.SetString("UserRole", "Admin");
+                    HttpContext.Session.SetString("Email", acc.Email);
+                    HttpContext.Session.SetString("Password", acc.Password);
+
                     Response.Redirect("/Admin");
                 }
                 else if(acc.RoleId == 2)

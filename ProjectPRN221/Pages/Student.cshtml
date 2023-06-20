@@ -89,15 +89,20 @@
                 </span>
 
                 <form method="post" enctype="multipart/form-data">
-                    <input asp-for="@Model.FileUpload" />
+                    <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
+                    <label for="img" class="upload-label ml-3">Upload file</label>
 
-                    <button class="btn btn-danger" asp-page="Student">Upload</button>
+                    <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                            <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
+                            Import
+                        </button>
                 </form>
 
             </div>
         }
         
     </div>
+    <div>
         <table class="table border-collapse">
             <thead>
                 <tr>
@@ -261,6 +266,17 @@
             window.location.href = "/Excel?mode=export";
         }else{
             window.location.href = "/Excel?mode=import";
+        }
+    }
+
+    function importFile() {
+        var fileInput = document.getElementById('img');
+        if (!fileInput.files || !fileInput.files[0]) {
+            var link = document.createElement('a');
+            link.href = '/Template.xlsx';
+            link.download = 'Template.xlsx';
+            link.target = '_blank';
+            link.click();
         }
     }
 

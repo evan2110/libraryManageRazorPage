@@ -129,6 +129,10 @@ namespace ProjectPRN221.Pages
                     }
                 }
             }
+            else
+            {
+
+            }
             var books = bookRepository.GetBooks();
             var pageNumber = 1;
             var pageSize = 10;

@@ -1,0 +1,450 @@
+﻿@page
+@using ManageBookLibrary.BusinessObject;
+@using PagedList;
+@model ProjectPRN221.Pages.AdminModel
+@{
+    HttpContext context = Request.HttpContext;
+    var roles = ViewData["roles"] as IPagedList<Role>;
+    var role = ViewData["role"] as Role;
+    var totalRoles = ViewData["totalRoles"];
+}
+
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title> Responsiive Admin Dashboard | CodingLab </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <a href="/Index">
+                <i class='bx bxl-c-plus-plus'></i>
+                <span class="logo_name">CodingLab</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="Admin?mode=dashboard" class="active mt-10">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="Admin?mode=role">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Role</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">Book</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-coin-stack'></i>
+                    <span class="links_name">BookBorrow</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div onclick="redirectAccountDetail()" class="profile-details" style="cursor:pointer;">
+                <span class="admin_name">Hello @context.Session.GetString("Email")</span>
+            </div>
+        </nav>
+        
+        @if (ViewData["mode"] == "dashboard" || ViewData["mode"] == null)
+        {
+            <div class="home-content">
+                <div class="overview-boxes">
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total Order</div>
+                            <div class="number">40,876</div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                <span class="text">Up from yesterday</span>
+                            </div>
+                        </div>
+                        <i class='bx bx-cart-alt cart'></i>
+                    </div>
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total Sales</div>
+                            <div class="number">38,876</div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                <span class="text">Up from yesterday</span>
+                            </div>
+                        </div>
+                        <i class='bx bxs-cart-add cart two'></i>
+                    </div>
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total Profit</div>
+                            <div class="number">$12,876</div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                <span class="text">Up from yesterday</span>
+                            </div>
+                        </div>
+                        <i class='bx bx-cart cart three'></i>
+                    </div>
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total Return</div>
+                            <div class="number">11,086</div>
+                            <div class="indicator">
+                                <i class='bx bx-down-arrow-alt down'></i>
+                                <span class="text">Down From Today</span>
+                            </div>
+                        </div>
+                        <i class='bx bxs-cart-download cart four'></i>
+                    </div>
+                </div>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <div class="title">Recent Sales</div>
+                        <div class="sales-details">
+                            <ul class="details">
+                                <li class="topic">Date</li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                                <li><a href="#">02 Jan 2021</a></li>
+                            </ul>
+                            <ul class="details">
+                                <li class="topic">Customer</li>
+                                <li><a href="#">Alex Doe</a></li>
+                                <li><a href="#">David Mart</a></li>
+                                <li><a href="#">Roe Parter</a></li>
+                                <li><a href="#">Diana Penty</a></li>
+                                <li><a href="#">Martin Paw</a></li>
+                                <li><a href="#">Doe Alex</a></li>
+                                <li><a href="#">Aiana Lexa</a></li>
+                                <li><a href="#">Rexel Mags</a></li>
+                                <li><a href="#">Tiana Loths</a></li>
+                            </ul>
+                            <ul class="details">
+                                <li class="topic">Sales</li>
+                                <li><a href="#">Delivered</a></li>
+                                <li><a href="#">Pending</a></li>
+                                <li><a href="#">Returned</a></li>
+                                <li><a href="#">Delivered</a></li>
+                                <li><a href="#">Pending</a></li>
+                                <li><a href="#">Returned</a></li>
+                                <li><a href="#">Delivered</a></li>
+                                <li><a href="#">Pending</a></li>
+                                <li><a href="#">Delivered</a></li>
+                            </ul>
+                            <ul class="details">
+                                <li class="topic">Total</li>
+                                <li><a href="#">$204.98</a></li>
+                                <li><a href="#">$24.55</a></li>
+                                <li><a href="#">$25.88</a></li>
+                                <li><a href="#">$170.66</a></li>
+                                <li><a href="#">$56.56</a></li>
+                                <li><a href="#">$44.95</a></li>
+                                <li><a href="#">$67.33</a></li>
+                                <li><a href="#">$23.53</a></li>
+                                <li><a href="#">$46.52</a></li>
+                            </ul>
+                        </div>
+                        <div class="button">
+                            <a href="#">See All</a>
+                        </div>
+                    </div>
+                    <div class="top-sales box">
+                        <div class="title">Top Seling Product</div>
+                        <ul class="top-sales-details">
+                            <li>
+                                <a href="#">
+                                    <img src="images/sunglasses.jpg" alt="">
+                                    <span class="product">Vuitton Sunglasses</span>
+                                </a>
+                                <span class="price">$1107</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/jeans.jpg" alt="">
+                                    <span class="product">Hourglass Jeans </span>
+                                </a>
+                                <span class="price">$1567</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/nike.jpg" alt="">
+                                    <span class="product">Nike Sport Shoe</span>
+                                </a>
+                                <span class="price">$1234</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/scarves.jpg" alt="">
+                                    <span class="product">Hermes Silk Scarves.</span>
+                                </a>
+                                <span class="price">$2312</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/blueBag.jpg" alt="">
+                                    <span class="product">Succi Ladies Bag</span>
+                                </a>
+                                <span class="price">$1456</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/bag.jpg" alt="">
+                                    <span class="product">Gucci Womens's Bags</span>
+                                </a>
+                                <span class="price">$2345</span>
+                            <li>
+                                <a href="#">
+                                    <img src="images/addidas.jpg" alt="">
+                                    <span class="product">Addidas Running Shoe</span>
+                                </a>
+                                <span class="price">$2345</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/shirt.jpg" alt="">
+                                    <span class="product">Bilack Wear's Shirt</span>
+                                </a>
+                                <span class="price">$1245</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }else if(ViewData["mode"] == "role")
+        {
+            <div class="home-content">
+                <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
+                    <div>
+                        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                        <button onclick="searching(this, 'role')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
+                    </div>
+                    
+                        <div style="display:flex;">
+                            <span class="hidden sm:block">
+                                <button onclick="redirectToAdmin('createRole', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                    <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
+                                    Create
+                                </button>
+                            </span>
+
+                            <span class="ml-3 hidden sm:block">
+                                <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                    <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
+                                    Export
+                                </button>
+                            </span>
+
+                            @*<form method="post" enctype="multipart/form-data">
+                                <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
+                                <label for="img" class="upload-label ml-3">Upload file</label>
+
+                                <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                    <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
+                                    Import
+                                </button>
+                            </form>*@
+
+                        </div>
+
+                </div>
+
+                <div style="background-color:white;">
+                    <table class="table border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="p-2">RoleID</th>
+                                <th class="p-2">RoleName</th>
+                                <th class="p-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in roles)
+                            {
+                                <tr>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.RoleName)</td>
+                                    <td class="p-2">
+                                        <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('editRole', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
+                                        <button type="button" data-bookid="@item.RoleId" onclick="redirectToStudent(this, 'Delete')" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+                    <div class="flex flex-1 justify-between sm:hidden">
+                        <a href="@Url.Page("Admin",  $"{@roles.PageNumber - 1}", new { page = @roles.PageNumber - 1 })" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+
+                        <a href="@Url.Page("Admin", $"{@roles.PageNumber + 1}", new { page = @roles.PageNumber + 1 })" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+
+                    </div>
+                    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-gray-700">
+                                Showing
+                                <span class="font-medium">@roles.PageNumber</span>
+                                /
+                                <span class="font-medium">@totalRoles</span>
+
+                            </p>
+                        </div>
+                        <div>
+                                @if (@roles.PageNumber == 1)
+                                {
+                                    <span class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0">
+                                        <span class="sr-only">Previous</span>
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.Page("Admin",  $"{@roles.PageNumber - 1}", new { page = @roles.PageNumber - 1, search = ViewData["search"], mode="role"  })" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                        <span class="sr-only">Previous</span>
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                }
+
+                                <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+                                @for (int i = 1; i <= @roles.PageCount; i++)
+                                {
+                                    <a href="@Url.Page("Admin", $"{i}", new { page = @i, search = ViewData["search"], mode="role"  })" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">@i</a>
+                                }
+
+                                @if (@roles.PageNumber == @roles.PageCount)
+                                {
+                                    <span class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0">
+                                        <span class="sr-only">Next</span>
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Page("Admin",  $"{@roles.PageNumber + 1}", new { page = @roles.PageNumber + 1, search = ViewData["search"] , mode="role"  })" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                        <span class="sr-only">Next</span>
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (ViewData["mode"] == "createRole")
+        {
+        <div class="home-content">
+                <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
+                    <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+                </div>
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
+                    <p class="mt-2 text-lg leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+                </div>
+                <form method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                        <div>
+                            <div class="mt-2.5">
+                                <input asp-for="role.RoleId" hidden value="@(role != null ? role.RoleId : string.Empty)" type="text" name="RoleId" id="role-id" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <label for="role-name" class="block text-sm font-semibold leading-6 text-gray-900">Role name</label>
+                            <div class="mt-2.5">
+                                <input asp-for="role.RoleName" value="@(role != null ? role.RoleName : string.Empty)" type="text" name="RoleName" id="role-name" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="mt-10">
+                        @if (ViewData["infor"] == "registersuss")
+                        {
+                            <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Register success</span>
+                        }
+                        <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                    </div>
+                </form>
+        </div>
+        }
+
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+        function redirectToAdmin(mode, button){
+            if (button !== null){
+                var Id = button.getAttribute("data-bookid");
+
+                window.location.href = "/Admin?mode=" + mode + "&id=" + Id;
+            }else{
+                window.location.href = "/Admin?mode=" + mode;
+            }
+        }
+
+        function redirectAccountDetail(){
+            window.location.href = "/AccountDetail";
+        }
+        function searching(button, mode) {
+            var searchInput = document.getElementById("search-input").value;
+            var url = '/Admin?mode='+ mode + '&search=' + encodeURIComponent(searchInput);
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>
+<script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>

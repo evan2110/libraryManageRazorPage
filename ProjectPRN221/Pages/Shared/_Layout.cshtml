@@ -23,11 +23,15 @@
                 <header class="absolute inset-x-0 top-0 z-50">
                     <nav style="cursor: pointer;" class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
 
-                        <div class="flex lg:flex-1">
-                            <a href="/Index" class="-m-1.5 p-1.5">
-                                <img class="h-12 w-12 w-auto" src="https://media.istockphoto.com/id/1270155083/vi/vec-to/vector-thi%E1%BA%BFt-k%E1%BA%BF-logo-s%C3%A1ch-%C4%91i%E1%BB%87n-t%E1%BB%AD-m%C3%A0u-xanh-k%C3%BD-hi%E1%BB%87u-th%C6%B0-vi%E1%BB%87n-s%C3%A1ch-%C4%91i%E1%BB%87n-t%E1%BB%AD.jpg?s=1024x1024&w=is&k=20&c=DoyYlk0gqY2xmcTDW3c9Bk3pwK-0cz874PKMb-1KAK0=" alt="">
-                            </a>
-                        </div>
+                        @if (context.Session.GetString("UserRole") != "Admin")
+                        {
+                            <div class="flex lg:flex-1">
+                                <a href="/Index" class="-m-1.5 p-1.5">
+                                    <img class="h-12 w-12 w-auto" src="https://media.istockphoto.com/id/1270155083/vi/vec-to/vector-thi%E1%BA%BFt-k%E1%BA%BF-logo-s%C3%A1ch-%C4%91i%E1%BB%87n-t%E1%BB%AD-m%C3%A0u-xanh-k%C3%BD-hi%E1%BB%87u-th%C6%B0-vi%E1%BB%87n-s%C3%A1ch-%C4%91i%E1%BB%87n-t%E1%BB%AD.jpg?s=1024x1024&w=is&k=20&c=DoyYlk0gqY2xmcTDW3c9Bk3pwK-0cz874PKMb-1KAK0=" alt="">
+                                </a>
+                            </div>
+                        }
+                        
                         <div class="flex lg:hidden">
                             <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                                 <span class="sr-only">Open main menu</span>

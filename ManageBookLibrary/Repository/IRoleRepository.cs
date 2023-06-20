@@ -10,5 +10,7 @@ namespace ManageBookLibrary.Repository
     public interface IRoleRepository
     {
         List<Role> GetRoles();
+        List<Role> SearchRoleByName(string name);
+        Role GetRoleById(int? roleId);
     }
 }
