@@ -127,5 +127,61 @@ namespace ManageBookLibrary.DataAccess
             }
         }
 
+        public List<Account> GetAllAccounts()
+        {
+            List<Account> listAccount = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                listAccount = context.Accounts.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return listAccount;
+        }
+
+        public void DeleteAccount(int? id)
+        {
+            try
+            {
+                Account accountFind = GetAccountByID(id);
+                if (accountFind != null)
+                {
+                    using var context = new DatabaseTestProjectContext();
+                    context.Accounts.Remove(accountFind);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The account does not already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Account> SearchAccByNameOrEmailOrPhoneOrAddress(string? search)
+        {
+            List<Account> accounts = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                accounts = context.Accounts.Where(b =>
+                (b.FirstName.Trim() + " " + b.LastName.Trim()) .Contains(search.Trim()) ||
+                b.Email.Trim().Contains(search.Trim()) ||
+                b.Phone.Trim().Contains(search.Trim()) ||
+                b.Address.Trim().Contains(search.Trim())
+            ).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return accounts;
+        }
     }
 }

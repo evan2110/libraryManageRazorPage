@@ -53,6 +53,7 @@ namespace ProjectPRN221.Pages
                 if(bookIdDelete != null)
                 {
                     bookRepository.DeleteBook(bookIdDelete);
+                    Response.Redirect("Student");
                 }
 
                 ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));

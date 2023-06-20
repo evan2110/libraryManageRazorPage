@@ -30,11 +30,13 @@ namespace ProjectPRN221.Pages
                 var bookFind = bookRepository.GetBookByID(book.BookId);
                 ViewData["book"] = bookFind;
                 ViewData["infor"] = "updatesuss";
+                Response.Redirect("Manager");
             }
             else
             {
                 bookRepository.InsertBook(book);
                 ViewData["infor"] = "insertsuss";
+                Response.Redirect("Manager");
             }
         }
     }

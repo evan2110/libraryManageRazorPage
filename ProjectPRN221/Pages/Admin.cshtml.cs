@@ -11,10 +11,32 @@ namespace ProjectPRN221.Pages
     public class AdminModel : PageModel
     {
         IRoleRepository roleRepository = new RoleRepository();
+        IAccountRepository accountRepository = new AccountRepository();
+        IBookBorrowRepository borrowRepository = new BookBorrowRepository();
+        IBookRepository bookRepository = new BookRepository();
         public IPagedList<Role> PagedRoles { get; set; }
+        public IPagedList<Account> PagedAccounts { get; set; }
+
         public Role role { get; set; }
-        public void OnGet(string? mode, int? handler, int? id, string? search)
+        public Account acc { get; set; }
+        public void OnGet(string? mode, int? handler, int? id, string? search, int? idDelete)
         {
+           
+            if(mode == "deleteRole")
+            {
+                roleRepository.DeleteRole(idDelete);
+                Response.Redirect("Admin?mode=role");
+            }
+            if (mode == "createRole")
+            {
+                ViewData["mode"] = "createRole";
+            }
+            if(mode == "editRole")
+            {
+                var role = roleRepository.GetRoleById(id);
+                ViewData["mode"] = "createRole";
+                ViewData["role"] = role;
+            }
             if(mode == "role")
             {
                 var roles = roleRepository.GetRoles();
@@ -29,17 +51,25 @@ namespace ProjectPRN221.Pages
                 ViewData["totalRoles"] = totalRoles;
                 ViewData["roles"] = PagedRoles;
                 ViewData["mode"] = "role";
-
             }
-            if(mode == "createRole")
+            if(mode == "acc")
             {
-                ViewData["mode"] = "createRole";
+                var accs = accountRepository.GetAllAccounts();
+                if (search != null)
+                {
+                    accs = accountRepository.SearchAccByNameOrEmailOrPhoneOrAddress(search.Trim());
+                }
+                var pageNumber = handler ?? 1;
+                var pageSize = 10;
+                PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
+                var totalAccs = (PagedAccounts.Count * PagedAccounts.PageCount) / 10;
+                ViewData["totalAccs"] = totalAccs;
+                ViewData["accs"] = PagedAccounts;
+                ViewData["mode"] = "acc";
             }
-            if(mode == "editRole")
+            if(mode == "createAcc")
             {
-                var role = roleRepository.GetRoleById(id);
-                ViewData["mode"] = "createRole";
-                ViewData["role"] = role;
+                ViewData["mode"] = "createAcc";
             }
             if (mode == null || mode == "dashboard")
             {
@@ -48,7 +78,7 @@ namespace ProjectPRN221.Pages
 
         }
 
-        public void OnPost(Role? role)
+        public void OnPost(Role? role, Account? acc)
         {
             if (role != null)
             {
@@ -68,6 +98,30 @@ namespace ProjectPRN221.Pages
                 ViewData["totalRoles"] = totalRoles;
                 ViewData["roles"] = PagedRoles;
                 ViewData["mode"] = "role";
+
+                Response.Redirect("Admin?mode=role");
+
+            }
+            if (acc != null)
+            {
+                if (acc.RoleId != 0)
+                {
+                    accountRepository.UpdateAccount(acc);
+                }
+                else
+                {
+                    accountRepository.InsertAccount(acc);
+                }
+                var accs = accountRepository.GetAllAccounts();
+                var pageNumber = 1;
+                var pageSize = 10;
+                PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
+                var totalAccs = (PagedAccounts.Count * PagedAccounts.PageCount) / 10;
+                ViewData["totalAccs"] = totalAccs;
+                ViewData["accs"] = PagedAccounts;
+                ViewData["mode"] = "acc";
+
+                Response.Redirect("Admin?mode=acc");
 
             }
 
