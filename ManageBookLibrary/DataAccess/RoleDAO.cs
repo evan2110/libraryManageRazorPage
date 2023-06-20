@@ -1,4 +1,5 @@
 ﻿using ManageBookLibrary.BusinessObject;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,6 +145,28 @@ namespace ManageBookLibrary.DataAccess
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public Role GetRoleByAccountId(int? accountId)
+        {
+            Role role = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                role = ((Role?)(from a in context.Accounts
+                        join r in context.Roles on a.RoleId equals r.RoleId
+                        where a.AccountId == accountId
+                        select new Role
+                        {
+                            RoleId = r.RoleId,
+                            RoleName = r.RoleName
+                        }));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return role;
         }
     }
 }

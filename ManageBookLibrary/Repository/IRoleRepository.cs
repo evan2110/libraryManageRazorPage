@@ -15,5 +15,6 @@ namespace ManageBookLibrary.Repository
         void InsertRole(Role role);
         void DeleteRole(int? roleId);
         void UpdateRole(Role role);
+        Role GetRoleByAccountId(int? accountId);
     }
 }

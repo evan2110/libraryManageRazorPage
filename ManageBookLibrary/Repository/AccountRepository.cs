@@ -12,9 +12,11 @@ namespace ManageBookLibrary.Repository
     {
         public bool CheckReturnBook(Account account) => AccountDAO.Instance.CheckReturnBook(account);
 
-        public void DeleteAccount(int id) => AccountDAO.Instance.DeleteAccount(id);
+        public void DeleteAccount(int? id) => AccountDAO.Instance.DeleteAccount(id);
 
         public Account GetAccountByEmailAndPass(Account account) => AccountDAO.Instance.GetAccountByEmailAndPass(account);
+
+        public Account GetAccountById(int? id) => AccountDAO.Instance.GetAccountByID(id);
 
         public List<Account> GetAllAccounts() => AccountDAO.Instance.GetAllAccounts();
 

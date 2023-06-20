@@ -12,6 +12,8 @@ namespace ManageBookLibrary.Repository
     {
         public void DeleteRole(int? roleId) => RoleDAO.Instance.DeleteRole(roleId);
 
+        public Role GetRoleByAccountId(int? accountId) => RoleDAO.Instance.GetRoleByAccountId(accountId);
+
         public Role GetRoleById(int? roleId) => RoleDAO.Instance.GetRoleById(roleId);
 
         public List<Role> GetRoles() => RoleDAO.Instance.GetRoleList();

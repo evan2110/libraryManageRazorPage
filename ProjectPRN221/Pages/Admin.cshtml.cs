@@ -21,8 +21,10 @@ namespace ProjectPRN221.Pages
         public Account acc { get; set; }
         public void OnGet(string? mode, int? handler, int? id, string? search, int? idDelete)
         {
-           
-            if(mode == "deleteRole")
+            List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
+            ViewData["listRoles"] = listRoles;
+
+            if (mode == "deleteRole")
             {
                 roleRepository.DeleteRole(idDelete);
                 Response.Redirect("Admin?mode=role");
@@ -71,6 +73,17 @@ namespace ProjectPRN221.Pages
             {
                 ViewData["mode"] = "createAcc";
             }
+            if(mode == "editAcc")
+            {
+                var acc = accountRepository.GetAccountById(id);
+                ViewData["mode"] = "createAcc";
+                ViewData["acc"] = acc;
+            }
+            if (mode == "deleteAcc")
+            {
+                accountRepository.DeleteAccount(idDelete);
+                Response.Redirect("Admin?mode=acc");
+            }
             if (mode == null || mode == "dashboard")
             {
                 ViewData["mode"] = "dashboard";
@@ -80,7 +93,7 @@ namespace ProjectPRN221.Pages
 
         public void OnPost(Role? role, Account? acc)
         {
-            if (role != null)
+            if (role.RoleName != null)
             {
                 if (role.RoleId != 0)
                 {
@@ -102,14 +115,20 @@ namespace ProjectPRN221.Pages
                 Response.Redirect("Admin?mode=role");
 
             }
-            if (acc != null)
+            else if (acc.FirstName != null)
             {
-                if (acc.RoleId != 0)
+                if (acc.AccountId != 0)
                 {
+                    Account accFind = accountRepository.GetAccountById(acc.AccountId);
+                    acc.CreatedTime = accFind.CreatedTime;
+                    acc.Status = accFind.Status;
+                    acc.UpdateTime = DateTime.Now;
                     accountRepository.UpdateAccount(acc);
                 }
                 else
                 {
+                    acc.CreatedTime = DateTime.Now;
+                    acc.Status = true;
                     accountRepository.InsertAccount(acc);
                 }
                 var accs = accountRepository.GetAllAccounts();

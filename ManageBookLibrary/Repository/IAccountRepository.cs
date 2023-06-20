@@ -11,7 +11,8 @@ namespace ManageBookLibrary.Repository
     {
         Account GetAccountByEmailAndPass(Account account);
         List<Account> GetAllAccounts();
-        void DeleteAccount(int id);
+        Account GetAccountById(int? id);
+        void DeleteAccount(int? id);
         void UpdateAccount(Account account);
         void InsertAccount(Account account);
         bool CheckReturnBook(Account account);
