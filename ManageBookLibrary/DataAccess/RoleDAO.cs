@@ -78,5 +78,72 @@ namespace ManageBookLibrary.DataAccess
             }
             return role;
         }
+
+        public void InsertRole(Role role)
+        {
+            try
+            {
+                Role roleFind = GetRoleById(role.RoleId);
+                if (roleFind == null)
+                {
+                        using var context = new DatabaseTestProjectContext();
+                        context.Roles.Add(role);
+                        context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The role is already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void UpdateRole(Role role)
+        {
+            try
+            {
+                Role roleFind = GetRoleById(role.RoleId);
+                if (roleFind != null)
+                {
+
+                    using var context = new DatabaseTestProjectContext();
+                    context.Roles.Update(role);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The role does not already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void DeleteRole(int? roleID)
+        {
+            try
+            {
+                Role roleFind = GetRoleById(roleID);
+                if (roleFind != null)
+                {
+                    using var context = new DatabaseTestProjectContext();
+                    context.Roles.Remove(roleFind);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The role does not already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

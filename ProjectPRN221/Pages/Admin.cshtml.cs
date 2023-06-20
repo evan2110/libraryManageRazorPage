@@ -15,7 +15,6 @@ namespace ProjectPRN221.Pages
         public Role role { get; set; }
         public void OnGet(string? mode, int? handler, int? id, string? search)
         {
-            Console.WriteLine(mode);
             if(mode == "role")
             {
                 var roles = roleRepository.GetRoles();
@@ -49,8 +48,28 @@ namespace ProjectPRN221.Pages
 
         }
 
-        public void OnPost(Role role)
+        public void OnPost(Role? role)
         {
+            if (role != null)
+            {
+                if (role.RoleId != 0)
+                {
+                    roleRepository.UpdateRole(role);
+                }
+                else
+                {
+                    roleRepository.InsertRole(role);
+                }
+                var roles = roleRepository.GetRoles();
+                var pageNumber = 1;
+                var pageSize = 10;
+                PagedRoles = roles.ToPagedList(pageNumber, pageSize);
+                var totalRoles = (PagedRoles.Count * PagedRoles.PageCount) / 10;
+                ViewData["totalRoles"] = totalRoles;
+                ViewData["roles"] = PagedRoles;
+                ViewData["mode"] = "role";
+
+            }
 
         }
     }

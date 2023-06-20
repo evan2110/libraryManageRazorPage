@@ -12,5 +12,8 @@ namespace ManageBookLibrary.Repository
         List<Role> GetRoles();
         List<Role> SearchRoleByName(string name);
         Role GetRoleById(int? roleId);
+        void InsertRole(Role role);
+        void DeleteRole(int? roleId);
+        void UpdateRole(Role role);
     }
 }
