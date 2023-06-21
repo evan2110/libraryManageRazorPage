@@ -16,16 +16,27 @@ namespace ProjectPRN221.Pages
         IBookRepository bookRepository = new BookRepository();
         public IPagedList<Role> PagedRoles { get; set; }
         public IPagedList<Account> PagedAccounts { get; set; }
+        public IPagedList<Book> PagedBooks { get; set; }
 
         public Role role { get; set; }
         public Account acc { get; set; }
+        public Book book { get; set; }
+
         public void OnGet(string? mode, int? handler, int? id, string? search, int? idDelete)
         {
             List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
             ViewData["listRoles"] = listRoles;
+            ViewData["search"] = search;
+
 
             if (mode == "deleteRole")
             {
+                List<Account> accounts = accountRepository.GetAccountByRoleId(idDelete);
+                foreach(var a in accounts)
+                {
+                    accountRepository.DeleteAccount(a.AccountId);
+                }
+
                 roleRepository.DeleteRole(idDelete);
                 Response.Redirect("Admin?mode=role");
             }
@@ -81,17 +92,57 @@ namespace ProjectPRN221.Pages
             }
             if (mode == "deleteAcc")
             {
+                List<BookBorrowDTO> bookBorrowDTOs = borrowRepository.GetBooksBorrowByAccountId(idDelete, "Student");
+                foreach(var bb  in bookBorrowDTOs)
+                {
+                    borrowRepository.DeleteBookBorrow(bb.BookBorrowId);
+                }
                 accountRepository.DeleteAccount(idDelete);
                 Response.Redirect("Admin?mode=acc");
+            }
+            if(mode == "book")
+            {
+                var books = bookRepository.GetBooks();
+                if (search != null)
+                {
+                    books = bookRepository.SearchBooksByTitleOrAuthorOrPublicDateOrLocaion(search.Trim());
+                }
+                var pageNumber = handler ?? 1;
+                var pageSize = 10;
+                PagedBooks = books.ToPagedList(pageNumber, pageSize);
+                var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                ViewData["totalBooks"] = totalBooks;
+                ViewData["books"] = PagedBooks;
+                ViewData["mode"] = "book";
             }
             if (mode == null || mode == "dashboard")
             {
                 ViewData["mode"] = "dashboard";
             }
+            if (mode == "createBook")
+            {
+                ViewData["mode"] = "createBook";
+            }
+            if (mode == "editBook")
+            {
+                var book = bookRepository.GetBookByID(id);
+                ViewData["mode"] = "createBook";
+                ViewData["book"] = book;
+            }
+            if (mode == "deleteBook")
+            {
+                List<BookBorrowDTO> bookBorrowDTO = borrowRepository.GetBooksBorrowByBookId(idDelete);
+                foreach (var b in bookBorrowDTO)
+                {
+                    borrowRepository.DeleteBookBorrow(b.BookBorrowId);
+                }
+                bookRepository.DeleteBook(idDelete);
+                Response.Redirect("Admin?mode=book");
+            }
 
         }
 
-        public void OnPost(Role? role, Account? acc)
+        public void OnPost(Role? role, Account? acc, Book? book)
         {
             if (role.RoleName != null)
             {
@@ -141,6 +192,28 @@ namespace ProjectPRN221.Pages
                 ViewData["mode"] = "acc";
 
                 Response.Redirect("Admin?mode=acc");
+
+            }
+            else if (book.Title != null)
+            {
+                if (book.BookId != 0)
+                {
+                    bookRepository.UpdateBook(book);
+                }
+                else
+                {
+                    bookRepository.InsertBook(book);
+                }
+                var books = bookRepository.GetBooks();
+                var pageNumber = 1;
+                var pageSize = 10;
+                PagedBooks = books.ToPagedList(pageNumber, pageSize);
+                var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                ViewData["totalBooks"] = totalBooks;
+                ViewData["books"] = PagedBooks;
+                ViewData["mode"] = "book";
+
+                Response.Redirect("Admin?mode=book");
 
             }
 

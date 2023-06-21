@@ -18,6 +18,8 @@ namespace ManageBookLibrary.Repository
 
         public Account GetAccountById(int? id) => AccountDAO.Instance.GetAccountByID(id);
 
+        public List<Account> GetAccountByRoleId(int? roleId) => AccountDAO.Instance.GetAccountByRoleId(roleId);
+
         public List<Account> GetAllAccounts() => AccountDAO.Instance.GetAllAccounts();
 
 

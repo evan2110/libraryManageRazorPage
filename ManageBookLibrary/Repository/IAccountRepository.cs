@@ -17,6 +17,7 @@ namespace ManageBookLibrary.Repository
         void InsertAccount(Account account);
         bool CheckReturnBook(Account account);
         List<Account> SearchAccByNameOrEmailOrPhoneOrAddress(string? search);
+        List<Account> GetAccountByRoleId(int? roleId);
 
     }
 }

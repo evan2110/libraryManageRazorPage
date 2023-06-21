@@ -73,7 +73,7 @@ namespace ManageBookLibrary.DataAccess
             }
         }
 
-        public List<BookBorrowDTO> GetBooksBorrowByAccountId(int accountID, string roleName)
+        public List<BookBorrowDTO> GetBooksBorrowByAccountId(int? accountID, string roleName)
         {
             List<BookBorrowDTO> listBookBorrow = null;
             try
@@ -127,6 +127,57 @@ namespace ManageBookLibrary.DataAccess
                                       }).ToList();
                 }
                 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return listBookBorrow;
+        }
+
+        public void DeleteBookBorrow(int? id)
+        {
+            try
+            {
+                BooksBorrow bookborrowFind = GetBooksBorrowByID(id);
+                if (bookborrowFind != null)
+                {
+                    using var context = new DatabaseTestProjectContext();
+                    context.BooksBorrows.Remove(bookborrowFind);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The book borrow does not already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<BookBorrowDTO> GetBooksBorrowByBookId(int? bookID)
+        {
+            List<BookBorrowDTO> listBookBorrow = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                
+                    listBookBorrow = (from b in context.Books
+                                      join bb in context.BooksBorrows on b.BookId equals bb.BookId
+                                      where bb.BookId == bookID
+                                      select new BookBorrowDTO
+                                      {
+                                          BookBorrowId = bb.BookBorrowId,
+                                          DateBorrowed = bb.DateBorrowed,
+                                          DueDate = bb.DueDate,
+                                          DateReturn = bb.DateReturn,
+                                          ReceivedBy = bb.ReceivedBy,
+                                          Title = b.Title,
+                                          Author = b.Author,
+                                          ShelfLocation = b.ShelfLocation
+                                      }).ToList();
             }
             catch (Exception ex)
             {

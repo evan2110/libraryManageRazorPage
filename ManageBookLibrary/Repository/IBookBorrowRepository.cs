@@ -11,9 +11,12 @@ namespace ManageBookLibrary.Repository
     {
         void InsertBookBorrow(BooksBorrow booksBorrow);
 
-        List<BookBorrowDTO> GetBooksBorrowByAccountId(int accountID, string roleName);
+        List<BookBorrowDTO> GetBooksBorrowByAccountId(int? accountID, string roleName);
+        List<BookBorrowDTO> GetBooksBorrowByBookId(int? bookID);
+
 
         void UpdateBookBorrow(BooksBorrow booksBorrow);
+        void DeleteBookBorrow(int id);
 
         BooksBorrow GetBooksBorrowByID(int? booksBorrowId);
     }

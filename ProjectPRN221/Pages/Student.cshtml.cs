@@ -52,7 +52,13 @@ namespace ProjectPRN221.Pages
 
                 if(bookIdDelete != null)
                 {
+                    List<BookBorrowDTO> bookBorrowDTO = bookBorrowRepository.GetBooksBorrowByBookId(bookIdDelete);
+                    foreach (var b in bookBorrowDTO)
+                    {
+                        bookBorrowRepository.DeleteBookBorrow(b.BookBorrowId);
+                    }
                     bookRepository.DeleteBook(bookIdDelete);
+                    
                     Response.Redirect("Student");
                 }
 

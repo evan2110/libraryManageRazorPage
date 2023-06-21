@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -178,6 +179,27 @@ namespace ManageBookLibrary.DataAccess
             ).ToList();
             }
             catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return accounts;
+        }
+
+        public List<Account> GetAccountByRoleId(int? roleId)
+        {
+            List<Account> accounts = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                accounts = (from a in context.Accounts
+                                  join r in context.Roles on a.RoleId equals r.RoleId
+                                  where a.RoleId == roleId
+                                  select new Account
+                                  {
+                                      AccountId = a.AccountId
+                                  }).ToList();
+            }
+            catch(Exception ex)
             {
                 throw new Exception(ex.Message);
             }
