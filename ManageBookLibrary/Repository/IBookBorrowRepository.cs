@@ -16,8 +16,10 @@ namespace ManageBookLibrary.Repository
 
 
         void UpdateBookBorrow(BooksBorrow booksBorrow);
-        void DeleteBookBorrow(int id);
+        void DeleteBookBorrow(int? id);
 
         BooksBorrow GetBooksBorrowByID(int? booksBorrowId);
+        List<BooksBorrow> GetBooksBorrows();
+        List<BooksBorrow> SearchBookBorrowByReceivedBy(string? search);
     }
 }

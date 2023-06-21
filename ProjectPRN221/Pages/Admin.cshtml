@@ -19,6 +19,13 @@
     var book = ViewData["book"] as Book;
     var totalBooks = ViewData["totalBooks"];
 
+    var bookBorrows = ViewData["bookBorrows"] as IPagedList<BooksBorrow>;
+    var bookBorrow = ViewData["bookBorrow"] as BooksBorrow;
+    var totalBookBorrows = ViewData["totalBookBorrows"];
+
+    var recentBorrow = ViewData["recentBorrow"] as IOrderedEnumerable<BooksBorrow>;
+    var topBorrow = ViewData["topBorrow"] as Dictionary<string, int>;
+
 }
 <div id="model" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display:none;">
 
@@ -133,7 +140,7 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Borrow</div>
-                            <div class="number">40,876</div>
+                            <div class="number">@ViewData["totalBorrow"]</div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Up from yesterday</span>
@@ -144,7 +151,7 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Register</div>
-                            <div class="number">38,876</div>
+                            <div class="number">@ViewData["totalAcc"]</div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Up from yesterday</span>
@@ -155,7 +162,7 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Book</div>
-                            <div class="number">$12,876</div>
+                            <div class="number">@ViewData["totalBook"]</div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Up from yesterday</span>
@@ -166,7 +173,7 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Return</div>
-                            <div class="number">11,086</div>
+                            <div class="number">@ViewData["totalReturn"]</div>
                             <div class="indicator">
                                 <i class='bx bx-down-arrow-alt down'></i>
                                 <span class="text">Down From Today</span>
@@ -181,114 +188,52 @@
                         <div class="title">Recent Borrow</div>
                         <div class="sales-details">
                             <ul class="details">
-                                <li class="topic">Date</li>
-                                <li><a href="#">02 Jan 2021</a></li>
-                                <li><a href="#">02 Jan 2021</a></li>
-                                <li><a href="#">02 Jan 2021</a></li>
-                                <li><a href="#">02 Jan 2021</a></li>
-                                <li><a href="#">02 Jan 2021</a></li>
-                                <li><a href="#">02 Jan 2021</a></li>
-                                <li><a href="#">02 Jan 2021</a></li>
+                                <li class="topic">Date Borrow</li>
+                                @foreach (var i in @recentBorrow)
+                                {
+                                    <li><a href="#">@i.DateBorrowed</a></li>
+                                }
                             </ul>
                             <ul class="details">
                                 <li class="topic">Customer</li>
-                                <li><a href="#">Alex Doe</a></li>
-                                <li><a href="#">David Mart</a></li>
-                                <li><a href="#">Roe Parter</a></li>
-                                <li><a href="#">Diana Penty</a></li>
-                                <li><a href="#">Martin Paw</a></li>
-                                <li><a href="#">Doe Alex</a></li>
-                                <li><a href="#">Aiana Lexa</a></li>
-                                <li><a href="#">Rexel Mags</a></li>
-                                <li><a href="#">Tiana Loths</a></li>
+                                @foreach (var i in @recentBorrow)
+                                {
+                                <li><a href="#">@i.ReceivedBy</a></li>
+                                }
                             </ul>
                             <ul class="details">
-                                <li class="topic">Sales</li>
-                                <li><a href="#">Delivered</a></li>
-                                <li><a href="#">Pending</a></li>
-                                <li><a href="#">Returned</a></li>
-                                <li><a href="#">Delivered</a></li>
-                                <li><a href="#">Pending</a></li>
-                                <li><a href="#">Returned</a></li>
-                                <li><a href="#">Delivered</a></li>
-                                <li><a href="#">Pending</a></li>
-                                <li><a href="#">Delivered</a></li>
+                                <li class="topic">Date Due</li>
+                                @foreach (var i in @recentBorrow)
+                                {
+                                <li><a href="#">@i.DueDate</a></li>
+                                }
                             </ul>
                             <ul class="details">
-                                <li class="topic">Total</li>
-                                <li><a href="#">$204.98</a></li>
-                                <li><a href="#">$24.55</a></li>
-                                <li><a href="#">$25.88</a></li>
-                                <li><a href="#">$170.66</a></li>
-                                <li><a href="#">$56.56</a></li>
-                                <li><a href="#">$44.95</a></li>
-                                <li><a href="#">$67.33</a></li>
-                                <li><a href="#">$23.53</a></li>
-                                <li><a href="#">$46.52</a></li>
+                                <li class="topic">Date Return</li>
+                                @foreach (var i in recentBorrow)
+                                {
+                                    <li><a href="#">@(i.DateReturn != null ? i.DateReturn.ToString() : "Haven't returned the book")</a></li>
+                                }
+
                             </ul>
                         </div>
                         <div class="button">
-                            <a href="#">See All</a>
+                            <a href="Admin?mode=bookborrow">See All</a>
                         </div>
                     </div>
                     <div class="top-sales box">
                         <div class="title">Top Borrow Book</div>
                         <ul class="top-sales-details">
-                            <li>
-                                <a href="#">
-                                    <img src="https://cdn.tgdd.vn/Files/2022/02/21/1416534/tim-hieu-day-du-thong-tin-ve-chu-tich-tap-doan-alibaba-jack-ma_1280x767-800-resize.jpg" alt="">
-                                    <span class="product">Vuitton Sunglasses</span>
-                                </a>
-                                <span class="price">$1107</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="https://nld.mediacdn.vn/2017/billgates-1499489607097.jpg" alt="">
-                                    <span class="product">Hourglass Jeans </span>
-                                </a>
-                                <span class="price">$1567</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/384px-President_Barack_Obama.jpg" alt="">
-                                    <span class="product">Nike Sport Shoe</span>
-                                </a>
-                                <span class="price">$1234</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="https://cdn.bongdaplus.vn/Assets/Media/2016/05/31/67/reus310516-00.jpg" alt="">
-                                    <span class="product">Hermes Silk Scarves.</span>
-                                </a>
-                                <span class="price">$2312</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUVFRgVFRIYGBgYGhgYGBkYGBgSGBgYGBgZGRgUGBgcIS4lHB4rIRgYJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHxISHDQsISs0NDQ0MTQ0NDQ0NDQ0NDQ0NDE0NTQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAK4BIgMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAUGBwj/xAA7EAACAQIEAwUFBgUEAwAAAAABAgADEQQSITEFQVEGImFxgRMykaGxB0JSwdHwYoKS4fEjM3KiFBWy/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAECAwQFBv/EACoRAAICAgIBAwMDBQAAAAAAAAABAhEDIQQxEgVBUSJhkTKxwRMjQnGh/9oADAMBAAIRAxEAPwCvQll4GgJZdZ8k2ewiCRZZJBFeSWTCxGPeNBoENJJIiEURAQvCUpEiTpSUDCtANCsYIymCGZZDIToBC76TRwrKnLXr49BOnBx3lfejOc6BYTgbtYtZR4nWbOH4HTXcknz0lb/zr6AFj0/Uy4ldyPdA6T1sfEwxXV/7MJSyS+xDEcIp8rj1lf8A9UnImWy7dfzjMx/Fb5yv6GFbpC+v5KFXhwtodflMrG4dl94W9ZuVapA0MrO4cFTv48/LxnPl4sJbjplxlKP6ujlX3lrDyvjEKOQfTyhsM2k8ycGtM3TsPUGkajHbaNRkUUWmGkBaFvpBqZMkJEGWSSImS5RJjYCqYG8JU3gjKQiwhj2gVaTVo6ERxC6QdEQtSRpCAyT7QFTaWXgWGkESVbxSWWKXaGFoNrLl9JSoLrLjbSJAhXkCZJZB4kUTBkgIIGFUwkgQxhEaCcySGJIGPeSpmQMelBdgywRBGFgXjYIkh1HjtDIMxA/YlFq1nsPIdB1JlvCOLjXrf1nuYYKGNI5k/KTNjBqALCXFaZ9G4Os0Ke200Vst0iZ1kSkKAOcZ/KU4kqRSqjlMvGabHX6TUxJ3PIfOY9e4AJ3N/nIapl3aKfFTnVX5218xKuH2hMS5sq9Sfh0kMMJxcyKUk/lE4nposk6RUYm2ioTgaNkGaAUw9TaVl3kSBEzHBjMJG8UdjZF94No7nWRcyq2JDKYVRALLCS2JA6kelGrxYcyRslUkVMO6SCpE2SgFooS0UBipJrC1IkGsk4isCCSLiTQR8sS7KBhYRY5WPaU2CBsZJBGtJrJsBNFSGsYmEowj2DCmBO8OYO0b0CMnFghzbz+M0MHra37tAYsd/blDYIWIt/m897G/LHFnNHUmjYpE9dfjNIVxYAj4azIzsraLfS+psPWVsXxkg5UqUR4NURdfAc5rGNBKWzpFcHYgx3qAC5InMYCtW9smbLY39wkg5tRfTbT5y1xZ6isFUKPPVepNzYiVY/FGnWfNpf8AxKGJplrDpeYx7SUkbLVxS5vBHZddgGB+e0uUcUrkPTqZ1N7kaWNtreog0hKWytiKGqnkCb/GRw6S+ENjpsb+h5QSJYn/ADPO58apjx9sgy6SNJYdhpBoJ5rezck40lYDWWyJWI1ikCHMbLETHUyY6GytUGsYrC1BrI2lWCGRYYLFTEk8V2Ir1xGw4kq0ahKBlo7SBGkRMdDJYkBymKFtFCxjCO50kwkHVgugGWTSDpyYMTGTeRETGMINAhRXj2jAQBkRD0IG0LRiQMO0hCNBExgioKge5KFSCVBOoIBtf99Zdw9NbgdLesDxDFmnTXImZmYDzva4HjYmV8Limz9463n0MWlBJIw8fqs28Vw81RlLaHQ2uGK81uBz6yqezOHU3TDrfe7gty3152mthq+u/KWatcKpJM2i37EeO9mKuGWkyhVAsCdNJYx6AlSdQd+fyMzcTic7lw9rctBe0nj8fTamB7UA21sdRffWT47NaNGngFsAqrbplAHpaO2ARWuFsTvYkXtsSBpKXC+L7KTccm5MJfxOKB1Et7WyHFmdUr5GK9dB6yvQTKLep8ySTBcQuzX2sc3oNbQraOR+9p5/Nf0JfcuK9wjGQpxMY1OeS0aIKRKx3lljpK53kyBEXEZIQrGURJjYJ5AmFqiBYSgQamY7mCRoYx1QgFXaQomFrLpB0VhYFkrpGAhANIzDSTexA80UjaKOkMtAQVZYcSNWQmBXQRyIgY8oZEx1ETCSURyBDCFVZAbwyLJ9gYErJ0xHYSSLJi9gyRkGkzI2lsEOKecBdiGDK3IHmD4ETFdmzklbMDqN5tZyuq7+Ox8JR4s6Zg4BF9G0tr57GevgzRlBRvaM3pl2hipZWsGPe2GkycMoJEDxWpWo6ohcdBvO2DE3Rc4pwKnWbOw6cyPW0or2bp63uw2sxzD5zGTtmdrZbaEMGuD5AeFpbHFnYXVqr7W9nhm35jMxAm6I8l8nQUsMiJkAAA28Iwc2PUTnaT43MpallVybZzlewFySovb1nVYSh3CTvaZytFKV7RnoMzi+o3/fhCrqSb3136wDg5xY2sBfS97308JZoLPJ5mVNqPv2VFBMshTh8sgonBJlIRgBvLBWBI1kyGiQkrRlMkBM09jZWeDcQ1QayBWaAgaCGkUWSYx3YgbyVFZB4SiJLAsARmWTSM0TEgGSKSvFCxkwYnOke0G5gugIWjgyQGkhzjTGTIjqseSWKTBDBZMRRhJ7BihKYg7QtM6xLsGTNODK6yzAvvKsSIMspcQpZkYc7XHprL7CAq21vtbXy5zWDcZJiMTh2KHM6idKzB1BvOLemQcyHUfAjlNXhXErHK3P92n0EdGdmkKCgnlrfTa4+9ba8stjmtl9o5FrAAL0I5DxhMiutxGp4YXuQfU2m62tj8U9lVFu19SeZJuest18SEQ+MZ3VQdhboZzuLxTVXCLqGYAfSRLQNotISe8dzb4W0/fjLuFgMQve8obCz5zLJyk2+y/YuNArvDGDQazMEFCys6ay5fSVHOshsaIZZNY4EQESexsG6wZEM8g0sSBiRaTAiyR3oAbLGpmFcaQdMawTBltBpItDU10gqqxXbEDiitFHQwyrBVFlkQbESYuwB04xWFyaQYMKpjEY6CJhEscgQmMdJBjEjRLoGGMZDI3jBpMVbBloNGIleriEQZndVHViFHzlfBcYp1SxpEuEIBaxCX3ygn3v7zphx55Gkk6+fgjySdWXmnIdoeJLWqU8HTe/tKiJVZT90sAUBHrfytKfa/jFYuEDlFK3ZV0JJJ3I1tYbTmMDivZVqdT8FRH9FYE/K89rienqElOTv4X8nHnz9xR7D2g4Fp7amDawDqBqANA6j6j16zkquH/yPrPXsB3hcbGx+MyeNdlFe70gFc6lNlY9R+E/Kd8se7RljzUvGR51Q4jUp6XJjPxiq+2YedrfC8vYjAlCVZSrC4IO4MpqgLEX8JmdCkwL4qoy5SRbnbnOh7I8HZn9s47iHS/3nGwHgND8pZ4J2YarZ3uib3tYsOij853AwqogRFsqiwA5S4wt2zHLlpUuzy8Y4jF18M57ysXQnTMj2cL4lc1vIeBmrQE4n7QsSycRLobMiJr42OnwM0uCdrabkJWshOz/AHCeh/D9J5XN4MvJzxrXujXBmTjUns69YlEVJgQCCCDsQQQfURxvPGn2dSGdpWY6w7mVC2sco6GiwpjExhGaZxWymM5jtBMYQGUwRALJ5ZBmtEKkuKslkaukaiNZDFVLCNhXg4NdBZpoNJF1k0MTGZvsCtkikrxR7HoZmgc9iIQwb9ZUEMti1oPJrK64iHSqCbzSgE4tIAx673gWqBQWYhQBckmwA6kyHEBNEhtvOX4v2tRCVogOfxm4T+UbtOWx3Fa1b36hI/CNF/pGk9DB6blmrlpf9/By5OTGOls77HdpcPTuM+dvwp3vTN7o+M5nH9sKz3FNVQdfff4nQfCc3eNPUw+m4ce6t/c5Z8icvsExWKdzmd2Y9WJb/E9D4Pw5sPh1DXVyC79QW+6fIBR6Tiuz+F9piEW1wGztz7qa6+BNh6z0vE03qKwVSxOnz11Ok6Z0qii+OruTPMuN181Zze+w3vsBMzcy/wAbwVSlWdaqFGJZgDYgqSbEEaGZ6zWPRzzdydn0t2Nq58JQf8VJD/0F50QWcZ9l+JD8Oo/wZ0/odh9BNXjeFrYhcitkpH3gCVeoOlx7q+G559JTWyDlO2fanAs5pqj1nQ2epSZQFO2QE6ObkA8hfe4IHJ9ne02Cp4gNXw9QodnLrVyEnRmpqi5hpfc20sDNXtr2co4alQeii0yXNN8otmDK7KT1Iy6es4vDcGqYmuKVEXO5PJFuVBPosTguxqUkqvR9F4Z0qIroyujAMrKQysp2II3EbFL3TOJ7MYKvw5VQE1KOpdNyrE3aonTnddj5zt2qK6ZlIKkXBHOFEHzp9oBvj6/gUH/RJz06Dtyb4/Ef8x/8LMK0GikWuG8VrUDenUZfC91Pmp0M6zh/bbUCtT/mT80P6zhSlzqdIW058vExZf1R38+5rHLKPTPW8LxGlWF6dQN1GzDzU6iORrPKaVQqQQSCNiDYjyIm7gu1NZLB7OB+LRv6h+YnmZ/S5Jf23f2fZ0w5S/yR6AJFpiYHtNQfRiUb+L3f6v1tNkm4uDcHYjW88meCeJ1OLR1RnGSuLBPCLI5YQjSQ+y0NTS5vE6EAnaSovaAx2I0sNptFKiH2V6puJawNM22mar94TUw1W0vVCdlvlIsZBHkjOeS2UgV48Voo9DIGCqSYkHW9gOZA+MIrQ7BBZOiDNwcHS2xv1mRUpFHKnl9JTi4h5J9EWnH9u+I2C0FO/fby2VfiCfQTs2nlPaLFe0xFVuWbKPJO7+V/Wd3p2Lzy+T9v3ObkzqNL3KJNx5SSyCGJDrafRI80JNPgnBqmJcqhCqou7tsoOwsNyekzJ6X9nuDC4fNuXYt4ADugf9b+sUpeKNcUFKVPoNwTs2mEVnL53awLZcgy/hUXPP8ALpNWjxF1OlBigtsNSOdpYxdQJb/TdjyCrdf6tpHC8UVjldDTJuFDDfnp1M5+3bO1RUVSWgXaHgdLHUSRo41Rrd5G6MOnIj8wJ41i8K9Ko1OouVkNiPzHUHe89lxNdqBL30fRugNtD62t8JyfGsPRr069eqtqiAIjZiuu63ANiO9LjKjHJivaK3Zzt8+CwwoJRDtnZszsVWzG9rDUm9+k6bgn2uh3CYqgqKdPaU2LBfFkbW3iD6TzDDWtZKYY/ja59AOUTqpOWqmS+zqNj4+EvyZy0jv/ALTu0SYmtTwlJgyI2Z3Gql2GgUjQhQfHVjtaZvYnjX/h4hmZSyOMxAABCE2uo6iy26gkHkZznBqBFWxNyhCgqVOlrgjNy0mvRp+6bEb/AHlBso0vr1E1irVkM94wzpUAdCGRgChGxVhcEehnF9vO3C4Aihh0Vq7DM175KYOxKjdj008ZofZ9xAHBXY/7bupu2aw0qC58nE8X45jTXxNaqpDl3LFyLDoFXwAAF/CRK0NKzO4hxB61RqtTV3ILHLlBIAAsOWgEucJxGHXN7ek7qQMuRkVlIvc94EEG46bSTY+r7P2bCm6XuQAMw694TPNNR3lPdbkd1I3UyU3dMrXsanHa+DfIcLQqUvezh2zg7ZcpLsfxdNxMm+0eMo1PwmiEwka8a8YmMCYeavCeO1KBFjmQnVDt5j8J8RMe8jm73kPrM5wjNVJWhxk4u0eqcF4quIQuoKlTldTrY7ix5g9ZoNtPN+xmP9niQhPdqjKemYaqfjcfzT0hxPl+dx1hy1Hp7R6eDJ5xt9gLwOJNxDSL07mc8X7GrM5DLlJyZIYfQyNJbS2xF5DpJ5oNdoxmbWwJZooOKVQBFSROhU9CD84UGCxJ0kRlsbR2CYhSNxOc4yR7W6/hH5zGp8YdO6RmA2MMmJLks25nVldxRnGNMhj8SKaM5Ngqlj6CeQ2vqd+fnPQO29UjD2GzOobyF2t8QJwC7T1vTIJY3L5f7HHypXJL4ILHc2MdhI1NvKeocoVDPXeya5cNTUDXICRzvux+JM8hwaFmVRuxC/E2nrWApDJ5ePLp5TOb6R1cdds06/EaaNZ2yH+I6Hy8fCEpYqlWWwYMuouNdQeXQgjecD2mwQcFhmFv4mYfAmY3DKuJw5z0z3SdV3DW305ekg3cqZ6Lx7FinSdW7xCMVPWw0/Kea8Y4q7oqN1zNbS5/Sdo3EaeIonPdHy6A62NrWB5jWedcUqBqjZdh3R6X1+MIq2Z5pVHXuSo0nqC98qDQa5R/cwdRmQlGN1PXX1EPheI9xaLs3s1JZVXL7zbkneV8XTvYqSy8jz8j4yzjNrgTKyL3NQxDHKrhrAkXB6XmkqWAOX7jHSmnx/vMXg1VAoGgIJLXvcltBax20E1jlyn3fcPJ+s3g9Es6Ph+IZeHcQRbgqlM7BSBUQo1gvgk8xpAtZb2UDWdvh+0NPCjEo9MVBWQUyoulrKdTm394zhKD5Te1x02vM5vY0X8Zw16KrVFwjEhW6kbi0q0nux8dfWPisTnNlUgchcsPEiKhTsNdzEuxhCYkGkZ/rHvLAeNFeIGMBQac/OTYwaHT1MTAlTYqQwPeUhl81NwfiJ7BRrh0VxswDDyYXH1njmaeldl8XnwydVGQ/wAug+Vj6zx/VsdwUl7OvydfEl9TRrk6yYqAfCAMrY2pYTyMcHJ0dkpUWXxQ1EJQF5z1GoS282sNUmufC41Qoys0lEWSCV4Rak43aKF7OKSzRQ8mMrq8DiH0hwJVxY0lR2xGadTLuHNpnpvLtIzoyRaWxppmD24xdqa0gffOZv8Aiu3zPynFIdJqdrK5OJcH7uVR5ZQfqTMhDPoOFDwxRXzv8nl535TZMyLnQwm8Nw7AmtVSkpANRgoLXsCTa5tOxmJY7LUC+IW33QzHyC/qRO/TG5FsdPrJYHs9Swt/Z3JBKl21Y2O9thtsIHG0xc8utt5zt27O7HHxjsBiK+dGAF76XPXb5X+sq+3VEymxsxt+sr4vFkDTRRsJy+NxzE5dh+sEm2OU1FFzifErXVDqfl/eYRiYyBM0So45TcnbNDheDFarTps2UO6pm6ZiFB+JEu8W4XWwNZqFZdDsR7rrydTMrBVyjq43RlYeasCPpPaPtRwa1aCMQM2hVrai8dWQeQNhLsMrWvzmicS6f6eYlmACnOQLbm4Bt9JltembXve3zlxVZwatwDTW421sBuLRppALiOAIZmarc6gfeJbQ8thqdZSXCl6i00F2Nl8zzPlLHEcTmfyudgu5ty8AJ2/ZXgooYdsa5Ds1Gu6AfcCoSdTzMGk3oDz7DgAQhMgmw8oxMaGan/o8Q1BMQlJnpM5pgqM7Br2AKjWxOgOxOm9rm452XxWDSm+IpZVqaAhg+VrX9m9vde2tvPobdl2c+0nCYTDU6C4esxRQCbU1BO7H3ju1zC8U+1DB16b0auCqNTcWZSyDyYHkwOoPIiFi2eYxTo+B9ocDh0Ibh5xLkEM1aooAU90imgQhfPfx5Tm61UFmKKVS5KqWzlV1ygtYZiBYXsLxjBVmtIu1gBIE3MdBcybAnRXnOw7CV/8AdTxVh63U/RZyZ2m32Ie2II6ow+BU/lObnR8sMl9r/BrhdTR3zGZ2PaaUy+Miy3nz+B1JI9Ca0ZVHEd603cE15xlCsS86zhj3np8mC8LOeMtm2q6SSKZPD7QjCeHJ7o6kQtFFFJKP/9k=" alt="">
-                                    <span class="product">Succi Ladies Bag</span>
-                                </a>
-                                <span class="price">$1456</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="https://danviet.mediacdn.vn/upload/4-2017/images/2017-12-05/Tong-thong-Abraham-Lincoln-va-15-bi-mat-cuoc-doi-chua-ke-11-1512446550-width600height564.jpg" alt="">
-                                    <span class="product">Gucci Womens's Bags</span>
-                                </a>
-                                <span class="price">$2345</span>
-                            <li>
-                                <a href="#">
-                                    <img src="https://i.pinimg.com/736x/05/24/be/0524be5d3c5336a94d211a6ba2f9ecfc.jpg" alt="">
-                                    <span class="product">Addidas Running Shoe</span>
-                                </a>
-                                <span class="price">$2345</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/09/anh-naruto-2.jpg?fit=564%2C1003&ssl=1" alt="">
-                                    <span class="product">Bilack Wear's Shirt</span>
-                                </a>
-                                <span class="price">$1245</span>
-                            </li>
+                            @foreach (var item in topBorrow)
+                            {
+                                <li>
+                                    <a href="#">
+                                        <img src="https://img.lovepik.com/photo/40007/5587.jpg_wh860.jpg" alt="">
+                                        <span class="product">@item.Key</span>
+                                    </a>
+                                    <span class="price">@item.Value</span>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -933,6 +878,233 @@
                 </form>
             </div>
         }
+        else if (ViewData["mode"] == "bookborrow")
+        {
+            <div class="home-content">
+                <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
+                    <div>
+                        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                        <button onclick="searching(this, 'bookborrow')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
+                    </div>
+
+                    <div style="display:flex;">
+                        <span class="hidden sm:block">
+                            <button onclick="redirectToAdmin('createBookBorrow', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
+                                Create
+                            </button>
+                        </span>
+
+                        <span class="ml-3 hidden sm:block">
+                            <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
+                                Export
+                            </button>
+                        </span>
+
+                        @*<form method="post" enctype="multipart/form-data">
+                    <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
+                    <label for="img" class="upload-label ml-3">Upload file</label>
+
+                    <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
+                    Import
+                    </button>
+                    </form>*@
+
+                    </div>
+
+                </div>
+
+                <div style="background-color:white;">
+                    <table class="table border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="p-2">ID</th>
+                                <th class="p-2">AccountID</th>
+                                <th class="p-2">BookID</th>
+                                <th class="p-2">DateBorrowed</th>
+                                <th class="p-2">DueDate</th>
+                                <th class="p-2">DateReturn</th>
+                                <th class="p-2">ReceivedBy</th>
+                                <th class="p-2">Status</th>
+                                <th class="p-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in bookBorrows)
+                            {
+                                <tr>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.DateBorrowed)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
+                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td class="p-2">
+                                        <button type="button" data-bookid="@item.BookBorrowId" onclick="redirectToAdmin('editBookBorrow', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
+                                        <button type="button" data-bookid="@item.BookBorrowId" onclick="redirectToAdmin('deleteBookBorrow', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+                    <div class="flex flex-1 justify-between sm:hidden">
+                        <a href="@Url.Page("Admin",  $"{@bookBorrows.PageNumber - 1}", new { page = @bookBorrows.PageNumber - 1 })" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+
+                        <a href="@Url.Page("Admin", $"{@bookBorrows.PageNumber + 1}", new { page = @bookBorrows.PageNumber + 1 })" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+
+                    </div>
+                    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-gray-700">
+                                Showing
+                                <span class="font-medium">@bookBorrows.PageNumber</span>
+                                /
+                                <span class="font-medium">@totalBookBorrows</span>
+
+                            </p>
+                        </div>
+                        <div>
+                            @if (@bookBorrows.PageNumber == 1)
+                            {
+                                <span class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0">
+                                    <span class="sr-only">Previous</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+
+                            }
+                            else
+                            {
+                                <a href="@Url.Page("Admin",  $"{@bookBorrows.PageNumber - 1}", new { page = @bookBorrows.PageNumber - 1, search = ViewData["search"], mode="bookborrow"  })" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                    <span class="sr-only">Previous</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            }
+
+                            <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+                            @for (int i = 1; i <= @bookBorrows.PageCount; i++)
+                            {
+                                <a href="@Url.Page("Admin", $"{i}", new { page = @i, search = ViewData["search"], mode="bookborrow"  })" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">@i</a>
+                            }
+
+                            @if (@bookBorrows.PageNumber == @bookBorrows.PageCount)
+                            {
+                                <span class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0">
+                                    <span class="sr-only">Next</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            }
+                            else
+                            {
+                                <a href="@Url.Page("Admin",  $"{@bookBorrows.PageNumber + 1}", new { page = @bookBorrows.PageNumber + 1, search = ViewData["search"] , mode="bookborrow"  })" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                    <span class="sr-only">Next</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (ViewData["mode"] == "createBookBorrow")
+        {
+            <div class="home-content">
+                <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
+                    <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+                </div>
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
+                    <p class="mt-2 text-lg leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+                </div>
+                <form method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div class="space-y-12">
+                        <div class="border-b border-gray-900/10 pb-12">
+                            <h2 class="text-base font-semibold leading-7 text-gray-900">Book Information</h2>
+                            <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+
+                            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                                <div class="col-span-full" style="display:none;">
+                                    <label for="BookBorrowId" class="block text-sm font-medium leading-6 text-gray-900">Id</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.BookBorrowId" type="text" name="BookBorrowId" id="BookBorrowId" autocomplete="BookBorrowId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookBorrowId : string.Empty)">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="AccountId" class="block text-sm font-medium leading-6 text-gray-900">Account ID</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.AccountId" type="text" name="AccountId" id="AccountId" autocomplete="AccountId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.AccountId : string.Empty)">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="BookId" class="block text-sm font-medium leading-6 text-gray-900">Book ID</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookId : string.Empty)">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="DateBorrowed" class="block text-sm font-medium leading-6 text-gray-900">DateBorrowed</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.DateBorrowed" type="text" name="DateBorrowed" id="DateBorrowed" autocomplete="DateBorrowed" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateBorrowed.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="DueDate" class="block text-sm font-medium leading-6 text-gray-900">DueDate</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.DueDate" type="text" name="DueDate" id="DueDate" autocomplete="DueDate" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DueDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="DateReturn" class="block text-sm font-medium leading-6 text-gray-900">DateReturn</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.DateReturn" type="text" name="DateReturn" id="DateReturn" autocomplete="DateReturn" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateReturn : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="ReceivedBy" class="block text-sm font-medium leading-6 text-gray-900">ReceivedBy</label>
+                                    <div class="mt-2">
+                                        <input asp-for="bookBorrow.ReceivedBy" type="text" name="ReceivedBy" id="ReceivedBy" autocomplete="ReceivedBy" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? bookBorrow.ReceivedBy : string.Empty)">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        @if (ViewData["infor"] == "updatesuss")
+                        {
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
+                        }
+                        @if (ViewData["infor"] == "insertsuss")
+                        {
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Inserted success</span>
+                        }
+                        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                    </div>
+                </form>
+            </div>
+        }
 
     </section>
 
@@ -958,6 +1130,8 @@
                 }else if(mode == "editAcc"){
                     window.location.href = "/Admin?mode=" + mode + "&id=" + bookIdDelete;
                 }else if(mode == "editBook"){
+                    window.location.href = "/Admin?mode=" + mode + "&id=" + bookIdDelete;
+                }else if(mode == "editBookBorrow"){
                     window.location.href = "/Admin?mode=" + mode + "&id=" + bookIdDelete;
                 }
                 else{
@@ -990,11 +1164,6 @@
             window.location.href = '/Admin?mode=' + modeS + '&idDelete=' + bookIdDelete;
         }
 
-        flatpickr('.datetimepicker', {
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            // Các tùy chọn khác tùy theo nhu cầu của bạn
-        });
     </script>
 
 
@@ -1003,3 +1172,11 @@
 <link rel="stylesheet" href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" >
 <script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr" ></script>
+<script>
+    flatpickr('.datetimepicker', {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        // Các tùy chọn khác tùy theo nhu cầu của bạn
+    });
+</script>
+

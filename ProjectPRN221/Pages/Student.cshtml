@@ -91,11 +91,12 @@
                 <form method="post" enctype="multipart/form-data">
                     <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
                     <label for="img" class="upload-label ml-3">Upload file</label>
-
-                    <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                   
+                    <button onclick="importFile()"  class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                             <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
                             Import
                         </button>
+                    <a href="Template.xlsx" download style="text-decoration: none;color: #00a8ff">Download template</a>
                 </form>
 
             </div>

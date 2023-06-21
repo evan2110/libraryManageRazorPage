@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -184,6 +185,38 @@ namespace ManageBookLibrary.DataAccess
                 throw new Exception(ex.Message);
             }
             return listBookBorrow;
+        }
+
+        public List<BooksBorrow> GetBooksBorrows()
+        {
+            List<BooksBorrow> listBookBorrow = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                listBookBorrow = context.BooksBorrows.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return listBookBorrow;
+        }
+
+        public List<BooksBorrow> SearchBookBorrowByReceivedBy(string search)
+        {
+            List<BooksBorrow> booksBorrows = null;
+            try
+            {
+                using var context = new DatabaseTestProjectContext();
+                booksBorrows = context.BooksBorrows.Where(b =>
+                b.ReceivedBy.Trim().Contains(search.Trim()) 
+            ).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return booksBorrows;
         }
     }
 }
