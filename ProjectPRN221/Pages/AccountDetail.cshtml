@@ -13,48 +13,48 @@
 
 
                 <div class="border-b border-gray-900/10 pb-12">
-                    <h2 class="mt-5 text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+                    <h2 class="mt-5 text-base font-semibold leading-7 text-gray-900">Account Information</h2>
 
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="sm:col-span-3">
-                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                            <label for="first-name" class="text-sm font-semibold leading-6 text-gray-900">First name</label>
                             <div class="mt-2">
-                                <input asp-for="account.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.FirstName">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.FirstName">
                             </div>
                         </div>
 
                         <div class="sm:col-span-3">
-                            <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                            <label for="last-name" class="text-sm font-semibold leading-6 text-gray-900">Last name</label>
                             <div class="mt-2">
-                                <input asp-for="account.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.LastName">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.LastName">
                             </div>
                         </div>
 
-                        <div class="sm:col-span-4">
-                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                        <div class="sm:col-span-3">
+                            <label for="email" class="text-sm font-semibold leading-6 text-gray-900">Email address</label>
                             <div class="mt-2">
-                                <input asp-for="account.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Email">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Email">
                             </div>
                         </div>
 
-                        <div class="col-span-full">
-                            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                        <div class="col-span-3">
+                            <label for="password" class="text-sm font-semibold leading-6 text-gray-900">Password</label>
                             <div class="mt-2">
-                                <input asp-for="account.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Password.Trim()">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Password.Trim()">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2 sm:col-start-1">
-                            <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone</label>
+                            <label for="phone" class="text-sm font-semibold leading-6 text-gray-900">Phone</label>
                             <div class="mt-2">
-                                <input asp-for="account.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Phone">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Phone">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
+                            <label for="address" class="text-sm font-semibold leading-6 text-gray-900">Address</label>
                             <div class="mt-2">
-                                <input asp-for="account.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Address">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Address">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
@@ -84,7 +84,7 @@
 
 
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
+                    <p style="color: green;" class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
                 </div>
             </div>
 

@@ -50,14 +50,14 @@
                          margin-bottom:15px;">
         @if (context.Session.GetString("UserRole") == "Student")
         {
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book borrow system</h2>
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book Borrow System</h2>
         }
         else
         {
-            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book system</h2>
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book System</h2>
         }
         <span class="ml-3 hidden sm:block">
-            <button onclick="redirectToStudentHistory()" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                <button id="button" style=" border: 1px solid #ACD3FF;" onclick="redirectToStudentHistory()" type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
                 <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
                     <path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" />
@@ -69,21 +69,21 @@
     
     <div class="search-container" style="display:flex; justify-content:space-between;">
         <div>
-            <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+            <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
             <button onclick="searching(this)" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
         </div>
         @if (context.Session.GetString("UserRole") == "Manager")
         {
             <div style="display:flex;">
                 <span class="hidden sm:block">
-                    <button onclick="redirectToStudent(null, 'Create')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        <i  class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
+                    <button id="button" style=" border: 1px solid #ACD3FF;" onclick="redirectToStudent(null, 'Create')" type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                            <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
                         Create
                     </button>
                 </span>
 
                 <span class="ml-3 hidden sm:block">
-                    <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <button id="button" style=" border: 1px solid #ACD3FF;" onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
                         <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
                         Export
                     </button>
@@ -92,12 +92,11 @@
                 <form method="post" enctype="multipart/form-data">
                     <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
                     <label for="img" class="upload-label ml-3">Upload file</label>
-                   
-                    <button onclick="importFile()"  class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                            <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
-                            Import
-                        </button>
-                    <a href="Template.xlsx" download style="text-decoration: none;color: #00a8ff">Download template</a>
+
+                    <button id="button" style=" border: 1px solid #ACD3FF;" onclick="importFile()" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                        <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
+                        Import
+                    </button>
                 </form>
 
             </div>
@@ -105,36 +104,36 @@
         
     </div>
     <div>
-        <table class="table border-collapse">
-            <thead>
-                <tr>
-                    <th class="p-2">BookId</th>
-                    <th class="p-2">Title</th>
-                    <th class="p-2">Author</th>
-                    <th class="p-2">PublicationDate</th>
-                    <th class="p-2">AvailableCopies</th>
-                    <th class="p-2">TotalCopies</th>
-                    <th class="p-2">ShelfLocation</th>
-                    <th class="p-2"></th>
+        <table class="table border-collapse mt-3">
+                <thead style="background-color:#DBECFF;">
+                    <tr style="border: 1px solid #ACD3FF;">
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">BookId</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Title</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Author</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Books)
                 {
                     <tr>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
-                        <td class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
-                        <td class="p-2">
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">
                         @if (context.Session.GetString("UserRole") == "Student")
                         {
                             @if (item.AvailableCopies <= 0)
                             {
-                                <span class="text-orange-700">Clean</span>
+                                <button style="width:54px; text-align:center;" type="button" class="text-white inline-flex items-center rounded-md bg-red-500 px-2 py-1 text-xs font-medium ring-1 ring-inset ring-red-500/10 borrow-link" disabled>Clear</button>
                             }
                             else
                             {
@@ -284,6 +283,11 @@
 
 </script>
 <script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>
+<style>
+        #button:hover {
+            background-color: #ACD3FF;
+        }
+</style>
 }
 
 

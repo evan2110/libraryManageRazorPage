@@ -264,7 +264,7 @@
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
                     <div class="ml-5">
-                        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                            <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'role')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
                     
@@ -299,20 +299,20 @@
 
                 <div style="background-color:white;">
                     <table class="table border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="p-2">RoleID</th>
-                                <th class="p-2">RoleName</th>
-                                <th class="p-2"></th>
+                            <thead style="background-color:#DBECFF;">
+                            <tr style="border: 1px solid #ACD3FF;">
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">RoleID</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">RoleName</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in roles)
                             {
                                 <tr>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.RoleName)</td>
-                                    <td class="p-2">
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleName)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">
                                         <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('editRole', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('deleteRole', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
                                     </td>
@@ -426,7 +426,7 @@
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
                         <div class="ml-5">
-                        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                            <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'acc')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
@@ -461,38 +461,38 @@
 
                 <div style="background-color:white;">
                     <table class="table border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="p-2">ID</th>
-                                <th class="p-2">Name</th>
-                                <th class="p-2">Email</th>
-                                <th class="p-2">RoleID</th>
-                                <th class="p-2">CreatedTime</th>
-                                <th class="p-2">UpdatedTime</th>
-                                <th class="p-2">Phone</th>
-                                <th class="p-2">Address</th>
-                                <th class="p-2">Gender</th>
-                                <th class="p-2">Status</th>
-                                <th class="p-2">Pass</th>
-                                <th class="p-2"></th>
+                            <thead style="background-color:#DBECFF;">
+                            <tr style="border: 1px solid #ACD3FF;">
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">ID</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Name</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Email</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">RoleID</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">CreatedTime</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">UpdatedTime</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Phone</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Address</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Gender</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Status</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Pass</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in accs)
                             {
                                 <tr>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Email)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.CreatedTime)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.UpdateTime)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Phone)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Password)</td>
-                                    <td class="p-2">
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.CreatedTime)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.UpdateTime)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Phone)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Password)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">
                                         <button type="button" data-bookid="@item.AccountId" onclick="redirectToAdmin('editAcc', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.AccountId" onclick="redirectToAdmin('deleteAcc', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
                                     </td>
@@ -679,7 +679,7 @@
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
                         <div class="ml-5">
-                        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                            <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'book')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
@@ -714,30 +714,30 @@
 
                 <div style="background-color:white;">
                     <table class="table border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="p-2">ID</th>
-                                <th class="p-2">Title</th>
-                                <th class="p-2">Author</th>
-                                <th class="p-2">PublicationDate</th>
-                                <th class="p-2">TotalCopies</th>
-                                <th class="p-2">AvailableCopies</th>
-                                <th class="p-2">ShelfLocation</th>
-                                <th class="p-2"></th>
+                        <thead style="background-color:#DBECFF;">
+                            <tr style="border: 1px solid #ACD3FF;">
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">ID</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Title</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Author</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in books)
                             {
                                 <tr>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
-                                    <td class="p-2">
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
+                                        <td style="border: 1px solid #ACD3FF;" class="p-2">
                                         <button type="button" data-bookid="@item.BookId" onclick="redirectToAdmin('editBook', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.BookId" onclick="redirectToAdmin('deleteBook', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
                                     </td>
@@ -904,7 +904,7 @@
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
                         <div class="ml-5">
-                        <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                            <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'bookborrow')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
@@ -939,32 +939,32 @@
 
                 <div style="background-color:white;">
                     <table class="table border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="p-2">ID</th>
-                                <th class="p-2">AccountID</th>
-                                <th class="p-2">BookID</th>
-                                <th class="p-2">DateBorrowed</th>
-                                <th class="p-2">DueDate</th>
-                                <th class="p-2">DateReturn</th>
-                                <th class="p-2">ReceivedBy</th>
-                                <th class="p-2">Status</th>
-                                <th class="p-2"></th>
+                        <thead style="background-color:#DBECFF;">
+                            <tr style="border: 1px solid #ACD3FF;" >
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">ID</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">AccountID</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">BookID</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">DateBorrowed</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">DueDate</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">DateReturn</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">ReceivedBy</th>
+                                <th style="border: 1px solid #ACD3FF;"  class="p-2">Status</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in bookBorrows)
                             {
                                 <tr>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.DateBorrowed)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
-                                    <td class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
-                                    <td class="p-2">
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.DateBorrowed)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">
                                         <button type="button" data-bookid="@item.BookBorrowId" onclick="redirectToAdmin('editBookBorrow', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.BookBorrowId" onclick="redirectToAdmin('deleteBookBorrow', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
                                     </td>

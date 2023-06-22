@@ -14,37 +14,28 @@
     <div class="flex" style="display: flex;
                         justify-content: space-between; margin-bottom:15px;">
         <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book borrow history</h2>
-        <span class="ml-3 hidden sm:block">
-            <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
-                    <path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" />
-                </svg>
-                History
-            </button>
-        </span>
     </div>
     <table class="table border-collapse">
-        <thead>
-            <tr>
-                <th class="p-2">ID</th>
-                <th class="p-2">FullName</th>
-                <th class="p-2">Email</th>
-                <th class="p-2">Phone</th>
-                <th class="p-2">Address</th>
-                <th class="p-2">Gender</th>
-                <th class="p-2">Date Borrowed</th>
-                <th class="p-2">Due Date</th>
-                <th class="p-2">DateReturn</th>
-                <th class="p-2">Receive By</th>
-                <th class="p-2">Title</th>
-                <th class="p-2">Author</th>
-                <th class="p-2">Shelf</th>
+        <thead style="background-color:#DBECFF;">
+            <tr style="border: 1px solid #ACD3FF;">
+                <th style="border: 1px solid #ACD3FF;" class="p-2">ID</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">FullName</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Email</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Phone</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Address</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Gender</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Date Borrowed</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Due Date</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">DateReturn</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Receive By</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Title</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Author</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Shelf</th>
                 @if (context.Session.GetString("UserRole") == "Manager")
                 {
-                <th class="p-2">Done</th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2">Done</th>
                 }else{
-                <th class="p-2"></th>
+                <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                 }
 
             </tr>
@@ -53,22 +44,22 @@
             @foreach (var item in booksBorrow)
             {
                 <tr>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.Email)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.Phone)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.DateBorrowed)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
-                    <td class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Phone)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.DateBorrowed)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
+                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
                     @if (context.Session.GetString("UserRole") == "Manager")
                     {
-                        <td>
+                        <td style="border: 1px solid #ACD3FF;">
                             <div class="flex h-6 items-center">
                                 @if (item.DateReturn != null)
                                 {
