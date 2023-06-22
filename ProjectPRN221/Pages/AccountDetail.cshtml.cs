@@ -12,8 +12,16 @@ namespace ProjectPRN221.Pages
 
         public void OnGet()
         {
-            Account acc = accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password")));
-            ViewData["acc"] = acc;
+            if(HttpContext.Session.GetString("UserRole") != null)
+            {
+                Account acc = accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password")));
+                ViewData["acc"] = acc;
+            }
+            else
+            {
+                Response.Redirect("Error");
+            }
+
         }
 
         public void OnPost(Account account)

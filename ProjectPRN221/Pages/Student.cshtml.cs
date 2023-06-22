@@ -22,9 +22,10 @@ namespace ProjectPRN221.Pages
         }
         public void OnGet(int? handler, int? bookId, string? search, int? bookIdDelete)
         {
+            
             if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
             {
-                
+                Console.WriteLine(HttpContext.Session.GetString("UserRole"));
                 var pageNumber = handler ?? 1;
                 var pageSize = 10;
 

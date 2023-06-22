@@ -7,6 +7,8 @@
     var totalBooksBorrow = ViewData["totalBooksBorrow"];
     HttpContext context = Request.HttpContext;
 }
+@if (context.Session.GetString("UserRole") == "Student" || context.Session.GetString("UserRole") == "Manager")
+{
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
 
     <div class="flex" style="display: flex;
@@ -184,3 +186,4 @@
     }
 </script>
 <script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>
+}

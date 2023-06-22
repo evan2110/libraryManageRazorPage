@@ -7,9 +7,10 @@
 @{
     var Books = ViewData["books"] as IPagedList<Book>;
     var totalBooks = ViewData["totalBooks"];
-    bool account = (bool)ViewData["account"];
     HttpContext context = Request.HttpContext;
 }
+@if (context.Session.GetString("UserRole") == "Student" || context.Session.GetString("UserRole") == "Manager")
+{
 <div id="model" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display:none;">
     
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -221,7 +222,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script>
     var bookIdDelete;
 
@@ -283,6 +284,7 @@
 
 </script>
 <script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>
+}
 
 
 

@@ -9,21 +9,28 @@ namespace ProjectPRN221.Pages
     
     public class ManagerModel : PageModel
     {
+        
         IBookRepository bookRepository = new BookRepository();
         public Book book { get; set; }
 
         public void OnGet(int? bookId)
         {
-            if(bookId != null)
+            if (HttpContext.Session.GetString("UserRole") == "Manager")
             {
-                var book = bookRepository.GetBookByID(bookId);
-                ViewData["book"] = book;
+                if (bookId != null)
+                {
+                    var book = bookRepository.GetBookByID(bookId);
+                    ViewData["book"] = book;
+                }
+            }
+            else
+            {
+                Response.Redirect("Error");
             }
         }
 
         public void OnPost(Book book)
         {
-            Console.WriteLine(book.BookId);
             if (book.BookId != 0)
             {
                 bookRepository.UpdateBook(book);

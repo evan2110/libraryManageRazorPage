@@ -29,174 +29,182 @@ namespace ProjectPRN221.Pages
 
         public void OnGet(string? mode, int? handler, int? id, string? search, int? idDelete)
         {
-            List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
-            ViewData["listRoles"] = listRoles;
-            ViewData["search"] = search;
+            if (HttpContext.Session.GetString("UserRole") == "Admin")
+            {
+                List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
+                ViewData["listRoles"] = listRoles;
+                ViewData["search"] = search;
 
 
-            if (mode == "deleteRole")
-            {
-                List<Account> accounts = accountRepository.GetAccountByRoleId(idDelete);
-                foreach(var a in accounts)
+                if (mode == "deleteRole")
                 {
-                    accountRepository.DeleteAccount(a.AccountId);
-                }
+                    List<Account> accounts = accountRepository.GetAccountByRoleId(idDelete);
+                    foreach (var a in accounts)
+                    {
+                        accountRepository.DeleteAccount(a.AccountId);
+                    }
 
-                roleRepository.DeleteRole(idDelete);
-                Response.Redirect("Admin?mode=role");
-            }
-            if (mode == "createRole")
-            {
-                ViewData["mode"] = "createRole";
-            }
-            if(mode == "editRole")
-            {
-                var role = roleRepository.GetRoleById(id);
-                ViewData["mode"] = "createRole";
-                ViewData["role"] = role;
-            }
-            if(mode == "role")
-            {
-                var roles = roleRepository.GetRoles();
-                if (search != null)
-                {
-                    roles = roleRepository.SearchRoleByName(search.Trim());
+                    roleRepository.DeleteRole(idDelete);
+                    Response.Redirect("Admin?mode=role");
                 }
-                var pageNumber = handler ?? 1;
-                var pageSize = 10;
-                PagedRoles = roles.ToPagedList(pageNumber, pageSize);
-                var totalRoles = (PagedRoles.Count * PagedRoles.PageCount) / 10;
-                ViewData["totalRoles"] = totalRoles;
-                ViewData["roles"] = PagedRoles;
-                ViewData["mode"] = "role";
-            }
-            if(mode == "acc")
-            {
-                var accs = accountRepository.GetAllAccounts();
-                if (search != null)
+                if (mode == "createRole")
                 {
-                    accs = accountRepository.SearchAccByNameOrEmailOrPhoneOrAddress(search.Trim());
+                    ViewData["mode"] = "createRole";
                 }
-                var pageNumber = handler ?? 1;
-                var pageSize = 10;
-                PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
-                var totalAccs = (PagedAccounts.Count * PagedAccounts.PageCount) / 10;
-                ViewData["totalAccs"] = totalAccs;
-                ViewData["accs"] = PagedAccounts;
-                ViewData["mode"] = "acc";
-            }
-            if(mode == "createAcc")
-            {
-                ViewData["mode"] = "createAcc";
-            }
-            if(mode == "editAcc")
-            {
-                var acc = accountRepository.GetAccountById(id);
-                ViewData["mode"] = "createAcc";
-                ViewData["acc"] = acc;
-            }
-            if (mode == "deleteAcc")
-            {
-                List<BookBorrowDTO> bookBorrowDTOs = borrowRepository.GetBooksBorrowByAccountId(idDelete, "Student");
-                foreach(var bb  in bookBorrowDTOs)
+                if (mode == "editRole")
                 {
-                    borrowRepository.DeleteBookBorrow(bb.BookBorrowId);
+                    var role = roleRepository.GetRoleById(id);
+                    ViewData["mode"] = "createRole";
+                    ViewData["role"] = role;
                 }
-                accountRepository.DeleteAccount(idDelete);
-                Response.Redirect("Admin?mode=acc");
-            }
-            if(mode == "book")
-            {
-                var books = bookRepository.GetBooks();
-                if (search != null)
+                if (mode == "role")
                 {
-                    books = bookRepository.SearchBooksByTitleOrAuthorOrPublicDateOrLocaion(search.Trim());
+                    var roles = roleRepository.GetRoles();
+                    if (search != null)
+                    {
+                        roles = roleRepository.SearchRoleByName(search.Trim());
+                    }
+                    var pageNumber = handler ?? 1;
+                    var pageSize = 10;
+                    PagedRoles = roles.ToPagedList(pageNumber, pageSize);
+                    var totalRoles = (PagedRoles.Count * PagedRoles.PageCount) / 10;
+                    ViewData["totalRoles"] = totalRoles;
+                    ViewData["roles"] = PagedRoles;
+                    ViewData["mode"] = "role";
                 }
-                var pageNumber = handler ?? 1;
-                var pageSize = 10;
-                PagedBooks = books.ToPagedList(pageNumber, pageSize);
-                var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
-                ViewData["totalBooks"] = totalBooks;
-                ViewData["books"] = PagedBooks;
-                ViewData["mode"] = "book";
-            }
-            if (mode == "createBook")
-            {
-                ViewData["mode"] = "createBook";
-            }
-            if (mode == "editBook")
-            {
-                var book = bookRepository.GetBookByID(id);
-                ViewData["mode"] = "createBook";
-                ViewData["book"] = book;
-            }
-            if (mode == "deleteBook")
-            {
-                List<BookBorrowDTO> bookBorrowDTO = borrowRepository.GetBooksBorrowByBookId(idDelete);
-                foreach (var b in bookBorrowDTO)
+                if (mode == "acc")
                 {
-                    borrowRepository.DeleteBookBorrow(b.BookBorrowId);
+                    var accs = accountRepository.GetAllAccounts();
+                    if (search != null)
+                    {
+                        accs = accountRepository.SearchAccByNameOrEmailOrPhoneOrAddress(search.Trim());
+                    }
+                    var pageNumber = handler ?? 1;
+                    var pageSize = 10;
+                    PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
+                    var totalAccs = (PagedAccounts.Count * PagedAccounts.PageCount) / 10;
+                    ViewData["totalAccs"] = totalAccs;
+                    ViewData["accs"] = PagedAccounts;
+                    ViewData["mode"] = "acc";
                 }
-                bookRepository.DeleteBook(idDelete);
-                Response.Redirect("Admin?mode=book");
-            }
-            if (mode == "bookborrow")
-            {
-                var bookborrows = borrowRepository.GetBooksBorrows();
-                if (search != null)
+                if (mode == "createAcc")
                 {
-                    bookborrows = borrowRepository.SearchBookBorrowByReceivedBy(search.Trim());
+                    ViewData["mode"] = "createAcc";
                 }
-                var pageNumber = handler ?? 1;
-                var pageSize = 10;
-                PagedBooksBorrows = bookborrows.ToPagedList(pageNumber, pageSize);
-                var totalBookBorrows = (PagedBooksBorrows.Count * PagedBooksBorrows.PageCount) / 10;
-                ViewData["totalBookBorrows"] = totalBookBorrows;
-                ViewData["bookBorrows"] = PagedBooksBorrows;
-                ViewData["mode"] = "bookborrow";
-            }
-            if (mode == "createBookBorrow")
-            {
-                ViewData["mode"] = "createBookBorrow";
-            }
-            if (mode == "editBookBorrow")
-            {
-                var bookBorrow = borrowRepository.GetBooksBorrowByID(id);
-                ViewData["mode"] = "createBookBorrow";
-                ViewData["bookBorrow"] = bookBorrow;
-            }
-            if (mode == "deleteBookBorrow")
-            {
-                borrowRepository.DeleteBookBorrow(idDelete);
-                Response.Redirect("Admin?mode=bookborrow");
-            }
-            if (mode == null || mode == "dashboard")
-            {
-                ViewData["totalBorrow"] = borrowRepository.GetBooksBorrows().Count;
-                ViewData["totalAcc"] = accountRepository.GetAllAccounts().Count;
-                ViewData["totalBook"] = bookRepository.GetBooks().Count;
-                ViewData["totalReturn"] = borrowRepository.GetBooksBorrows()
-                                .Where(borrow => borrow.DateReturn != null).Count();
-                var lstRecentBorrow = borrowRepository.GetBooksBorrows().Take(10);
+                if (mode == "editAcc")
+                {
+                    var acc = accountRepository.GetAccountById(id);
+                    ViewData["mode"] = "createAcc";
+                    ViewData["acc"] = acc;
+                }
+                if (mode == "deleteAcc")
+                {
+                    List<BookBorrowDTO> bookBorrowDTOs = borrowRepository.GetBooksBorrowByAccountId(idDelete, "Student");
+                    foreach (var bb in bookBorrowDTOs)
+                    {
+                        borrowRepository.DeleteBookBorrow(bb.BookBorrowId);
+                    }
+                    accountRepository.DeleteAccount(idDelete);
+                    Response.Redirect("Admin?mode=acc");
+                }
+                if (mode == "book")
+                {
+                    var books = bookRepository.GetBooks();
+                    if (search != null)
+                    {
+                        books = bookRepository.SearchBooksByTitleOrAuthorOrPublicDateOrLocaion(search.Trim());
+                    }
+                    var pageNumber = handler ?? 1;
+                    var pageSize = 10;
+                    PagedBooks = books.ToPagedList(pageNumber, pageSize);
+                    var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                    ViewData["totalBooks"] = totalBooks;
+                    ViewData["books"] = PagedBooks;
+                    ViewData["mode"] = "book";
+                }
+                if (mode == "createBook")
+                {
+                    ViewData["mode"] = "createBook";
+                }
+                if (mode == "editBook")
+                {
+                    var book = bookRepository.GetBookByID(id);
+                    ViewData["mode"] = "createBook";
+                    ViewData["book"] = book;
+                }
+                if (mode == "deleteBook")
+                {
+                    List<BookBorrowDTO> bookBorrowDTO = borrowRepository.GetBooksBorrowByBookId(idDelete);
+                    foreach (var b in bookBorrowDTO)
+                    {
+                        borrowRepository.DeleteBookBorrow(b.BookBorrowId);
+                    }
+                    bookRepository.DeleteBook(idDelete);
+                    Response.Redirect("Admin?mode=book");
+                }
+                if (mode == "bookborrow")
+                {
+                    var bookborrows = borrowRepository.GetBooksBorrows();
+                    if (search != null)
+                    {
+                        bookborrows = borrowRepository.SearchBookBorrowByReceivedBy(search.Trim());
+                    }
+                    var pageNumber = handler ?? 1;
+                    var pageSize = 10;
+                    PagedBooksBorrows = bookborrows.ToPagedList(pageNumber, pageSize);
+                    var totalBookBorrows = (PagedBooksBorrows.Count * PagedBooksBorrows.PageCount) / 10;
+                    ViewData["totalBookBorrows"] = totalBookBorrows;
+                    ViewData["bookBorrows"] = PagedBooksBorrows;
+                    ViewData["mode"] = "bookborrow";
+                }
+                if (mode == "createBookBorrow")
+                {
+                    ViewData["mode"] = "createBookBorrow";
+                }
+                if (mode == "editBookBorrow")
+                {
+                    var bookBorrow = borrowRepository.GetBooksBorrowByID(id);
+                    ViewData["mode"] = "createBookBorrow";
+                    ViewData["bookBorrow"] = bookBorrow;
+                }
+                if (mode == "deleteBookBorrow")
+                {
+                    borrowRepository.DeleteBookBorrow(idDelete);
+                    Response.Redirect("Admin?mode=bookborrow");
+                }
+                if (mode == null || mode == "dashboard")
+                {
+                    ViewData["totalBorrow"] = borrowRepository.GetBooksBorrows().Count;
+                    ViewData["totalAcc"] = accountRepository.GetAllAccounts().Count;
+                    ViewData["totalBook"] = bookRepository.GetBooks().Count;
+                    ViewData["totalReturn"] = borrowRepository.GetBooksBorrows()
+                                    .Where(borrow => borrow.DateReturn != null).Count();
+                    var lstRecentBorrow = borrowRepository.GetBooksBorrows().Take(10);
 
-                IOrderedEnumerable<BooksBorrow> result = from s in lstRecentBorrow orderby s.DateBorrowed descending 
-                             select s;
-                ViewData["recentBorrow"] = result;
+                    IOrderedEnumerable<BooksBorrow> result = from s in lstRecentBorrow
+                                                             orderby s.DateBorrowed descending
+                                                             select s;
+                    ViewData["recentBorrow"] = result;
 
-                var lstTopBorrow = borrowRepository.GetBooksBorrows().Take(10);
-                var accounts = lstTopBorrow.GroupBy(borrow => borrow.AccountId)
-                          .Select(group => group.Key);
-                Dictionary<string, int> dict = new Dictionary<string, int>();
-                foreach (var account in accounts)
-                {
-                    var lst = borrowRepository.GetBooksBorrowByAccountId(account, "Student").Count();
-                    string accountName = accountRepository.GetAccountById(account).FirstName + accountRepository.GetAccountById(account).LastName;
-                    dict[accountName] = lst;
+                    var lstTopBorrow = borrowRepository.GetBooksBorrows().Take(10);
+                    var accounts = lstTopBorrow.GroupBy(borrow => borrow.AccountId)
+                              .Select(group => group.Key);
+                    Dictionary<string, int> dict = new Dictionary<string, int>();
+                    foreach (var account in accounts)
+                    {
+                        var lst = borrowRepository.GetBooksBorrowByAccountId(account, "Student").Count();
+                        string accountName = accountRepository.GetAccountById(account).FirstName + accountRepository.GetAccountById(account).LastName;
+                        dict[accountName] = lst;
+                    }
+                    ViewData["topBorrow"] = dict.OrderByDescending(pair => pair.Value)
+                         .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+                    ViewData["mode"] = "dashboard";
                 }
-                ViewData["topBorrow"] = dict.OrderByDescending(pair => pair.Value)
-                     .ToDictionary(pair => pair.Key, pair => pair.Value);
-
-                ViewData["mode"] = "dashboard";
+            }
+            else
+            {
+                Response.Redirect("Error");
             }
 
         }

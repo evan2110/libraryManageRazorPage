@@ -3,93 +3,101 @@
 @model ProjectPRN221.Pages.AccountDetailModel
 @{
     var acc = ViewData["acc"] as Account;
+    HttpContext context = Request.HttpContext;
 }
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-<form method="POST">
-    <div class="space-y-12">
-        
+@if (context.Session.GetString("UserRole") != null)
+{
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <form method="POST">
+            <div class="space-y-12">
 
-        <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="mt-5 text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div class="sm:col-span-3">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
-                    <div class="mt-2">
-                            <input asp-for="account.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.FirstName">
+                <div class="border-b border-gray-900/10 pb-12">
+                    <h2 class="mt-5 text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                            <div class="mt-2">
+                                <input asp-for="account.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.FirstName">
+                            </div>
                         </div>
-                </div>
 
-                <div class="sm:col-span-3">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
-                    <div class="mt-2">
-                            <input asp-for="account.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.LastName">
-                    </div>
-                </div>
+                        <div class="sm:col-span-3">
+                            <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                            <div class="mt-2">
+                                <input asp-for="account.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.LastName">
+                            </div>
+                        </div>
 
-                <div class="sm:col-span-4">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                    <div class="mt-2">
-                            <input asp-for="account.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Email">
-                    </div>
-                </div>
+                        <div class="sm:col-span-4">
+                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                            <div class="mt-2">
+                                <input asp-for="account.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Email">
+                            </div>
+                        </div>
 
-                <div class="col-span-full">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                    <div class="mt-2">
-                            <input asp-for="account.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Password.Trim()">
-                    </div>
-                </div>
+                        <div class="col-span-full">
+                            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                            <div class="mt-2">
+                                <input asp-for="account.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Password.Trim()">
+                            </div>
+                        </div>
 
-                <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone</label>
-                    <div class="mt-2">
-                            <input asp-for="account.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Phone">
-                    </div>
-                </div>
+                        <div class="sm:col-span-2 sm:col-start-1">
+                            <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone</label>
+                            <div class="mt-2">
+                                <input asp-for="account.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Phone">
+                            </div>
+                        </div>
 
-                <div class="sm:col-span-2">
-                    <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
-                    <div class="mt-2">
-                            <input asp-for="account.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Address">
-                    </div>
-                </div>
-                <div class="sm:col-span-2">
-                    <fieldset>
-                        <legend class="text-sm font-semibold leading-6 text-gray-900">Gender</legend>
-                        <div class="mt-6 space-y-6">
-                                <div class="flex items-center gap-x-3">
-                                    <input id="male" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" @(acc.Gender ? "checked" : "") asp-for="account.Gender" value="true">
-                                    <label for="male" class="block text-sm font-medium leading-6 text-gray-900">Male</label>
+                        <div class="sm:col-span-2">
+                            <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
+                            <div class="mt-2">
+                                <input asp-for="account.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Address">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <fieldset>
+                                <legend class="text-sm font-semibold leading-6 text-gray-900">Gender</legend>
+                                <div class="mt-6 space-y-6">
+                                    <div class="flex items-center gap-x-3">
+                                        <input id="male" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" @(
+                                    acc.Gender ? "checked" : ""
+                                    ) asp-for="account.Gender" value="true">
+                                        <label for="male" class="block text-sm font-medium leading-6 text-gray-900">Male</label>
 
-                                    <input id="female" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" @(acc.Gender ? "" : "checked") asp-for="account.Gender" value="false">
-                                    <label for="female" class="block text-sm font-medium leading-6 text-gray-900">Female</label>
+                                        <input id="female" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" @(
+                                    acc.Gender ? "" : "checked"
+                                    ) asp-for="account.Gender" value="false">
+                                        <label for="female" class="block text-sm font-medium leading-6 text-gray-900">Female</label>
+                                    </div>
                                 </div>
+                            </fieldset>
                         </div>
-                    </fieldset>
+
+                    </div>
                 </div>
 
+                <div class="border-b border-gray-900/10 pb-12">
+
+
+
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="border-b border-gray-900/10 pb-12">
-
-                
-
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
-        </div>
+            <div class="mt-6 flex items-center justify-end gap-x-6">
+                @if (ViewData["infor"] == "updatesuss")
+                {
+                    <span  class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
+                }
+                <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+            </div>
+        </form>
     </div>
-
-    <div class="mt-6 flex items-center justify-end gap-x-6">
-            @if (ViewData["infor"] == "updatesuss")
-            {
-                <span  class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
-            }
-        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-    </div>
-</form>
-</div>
+}
 
  
 

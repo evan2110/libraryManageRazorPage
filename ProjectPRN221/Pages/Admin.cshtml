@@ -27,6 +27,9 @@
     var topBorrow = ViewData["topBorrow"] as Dictionary<string, int>;
 
 }
+@if(context.Session.GetString("UserRole") == "Admin")
+{
+    
 <div id="model" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display:none;">
 
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -111,7 +114,7 @@
                 </a>
             </li>
             <li class="log_out">
-                <a href="#">
+                <a href="/Login">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -122,11 +125,29 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Dashboard</span>
-            </div>
+                    @if (ViewData["mode"] == "dashboard" || ViewData["mode"] == null)
+                    {
+                        <span class="dashboard">Dashboard</span>
+                    }
+                    else if(ViewData["mode"] == "role")
+                    {
+                         <span class="dashboard">Role</span>
+                    }
+                    else if (ViewData["mode"] == "acc")
+                    {
+                        <span class="dashboard">Account</span>
+                    }else if(ViewData["mode"] == "book")
+                    {
+                         <span class="dashboard">Book</span>
+                    }
+                    else if (ViewData["mode"] == "bookborrow")
+                    {
+                        <span class="dashboard">BookBorrow</span>
+                    }
+                </div>
             <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
+                    <input id="searchInput" type="text" placeholder="Search...">
+                    <i style="cursor:pointer;" onclick="redirectToSearch()" class='bx bx-search'></i>
             </div>
             <div onclick="redirectAccountDetail()" class="profile-details" style="cursor:pointer;">
                 <span class="admin_name">Hello @context.Session.GetString("Email")</span>
@@ -242,25 +263,25 @@
         {
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
-                    <div>
+                    <div class="ml-5">
                         <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'role')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
                     
                         <div style="display:flex;">
-                            <span class="hidden sm:block">
+                            <span class="hidden sm:block mr-5">
                                 <button onclick="redirectToAdmin('createRole', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                     <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
                                     Create
                                 </button>
                             </span>
 
-                            <span class="ml-3 hidden sm:block">
+                            @*<span class="ml-3 hidden sm:block">
                                 <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                     <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
                                     Export
                                 </button>
-                            </span>
+                            </span>*@
 
                             @*<form method="post" enctype="multipart/form-data">
                                 <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
@@ -404,25 +425,25 @@
         {
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
-                    <div>
+                        <div class="ml-5">
                         <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'acc')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
                     <div style="display:flex;">
-                        <span class="hidden sm:block">
+                            <span class="hidden sm:block mr-5">
                             <button onclick="redirectToAdmin('createAcc', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                 <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
                                 Create
                             </button>
                         </span>
 
-                        <span class="ml-3 hidden sm:block">
+                        @*<span class="ml-3 hidden sm:block">
                             <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                 <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
                                 Export
                             </button>
-                        </span>
+                        </span>*@
 
                         @*<form method="post" enctype="multipart/form-data">
                     <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
@@ -657,25 +678,25 @@
         {
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
-                    <div>
+                        <div class="ml-5">
                         <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'book')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
                     <div style="display:flex;">
-                        <span class="hidden sm:block">
+                            <span class="hidden sm:block mr-5">
                             <button onclick="redirectToAdmin('createBook', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                 <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
                                 Create
                             </button>
                         </span>
 
-                        <span class="ml-3 hidden sm:block">
+                        @*<span class="ml-3 hidden sm:block">
                             <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                 <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
                                 Export
                             </button>
-                        </span>
+                        </span>*@
 
                         @*<form method="post" enctype="multipart/form-data">
                     <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
@@ -882,25 +903,25 @@
         {
             <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
-                    <div>
+                        <div class="ml-5">
                         <input value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
                         <button onclick="searching(this, 'bookborrow')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
                     <div style="display:flex;">
-                        <span class="hidden sm:block">
+                            <span class="hidden sm:block mr-5">
                             <button onclick="redirectToAdmin('createBookBorrow', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                 <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
                                 Create
                             </button>
                         </span>
 
-                        <span class="ml-3 hidden sm:block">
+                        @*<span class="ml-3 hidden sm:block">
                             <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                                 <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
                                 Export
                             </button>
-                        </span>
+                        </span>*@
 
                         @*<form method="post" enctype="multipart/form-data">
                     <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
@@ -1164,11 +1185,18 @@
             window.location.href = '/Admin?mode=' + modeS + '&idDelete=' + bookIdDelete;
         }
 
+        function redirectToSearch() {
+            var inputValue = document.getElementById("searchInput").value;
+                window.location.href = '/Admin?mode=' + inputValue.toLowerCase();
+        }
+
     </script>
 
 
 </body>
 </html>
+}
+
 <link rel="stylesheet" href = "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" >
 <script src="https://kit.fontawesome.com/dcb7ffb312.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr" ></script>
