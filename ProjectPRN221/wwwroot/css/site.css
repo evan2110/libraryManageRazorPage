@@ -564,6 +564,32 @@ nav .profile-details i {
         left: 60px;
         width: calc(100% - 60px);
     }
+    .library-description {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+    }
+
+    h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    h3 {
+        font-size: 20px;
+        color: #333;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #555;
+    }
 
 }
 
