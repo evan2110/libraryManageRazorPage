@@ -3,10 +3,15 @@
 @model ProjectPRN221.Pages.SignUpModel
 @{
     List<Role> listRoles = ViewData["listRoles"] as List<Role>;
-    string code = ViewData["code"] as string; 
+    string code = ViewData["code"] as string;
+    string accPhone = ViewData["accountPhone"] as string;
 }
 @if (ViewData["LetCheck"] == "Check")
 {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            countdown();
+        });</script>
     <div id="model" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -22,13 +27,16 @@
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500">A OTP code sent to your phone number.Please enter OTP code.</p>
                                 </div>
-                                    <input type="text" name="otp" id="otp" autocomplete="family-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="otp" id="otp" autocomplete="family-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <button class="mt-3" id="countdownButton">Timeout:</button>
+                                <span id="countdownDisplay"></span>
                             </div>
                         </div>
                     </div>
-                    <div style="display:none;" id="infor" class="alert alert-danger" role="alert">Wrong OTP</div>
+                    <div style="display:none; text-align:center;" id="infor" class="alert alert-danger" role="alert">Wrong OTP. Let's check OTP code again.</div>
+                    
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button onclick="checkNumberPhone('@code')" type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Verify</button>
+                        <button onclick="checkNumberPhone('@code', '@accPhone')" type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Verify</button>
                         <button onclick="closeModal()" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
                     </div>
                 </div>
@@ -129,15 +137,37 @@
         modal.style.display = "none";
     }
 
-    function checkNumberPhone(code){
+    function checkNumberPhone(code, accPhone) {
         var otp = document.getElementById("otp");
         var otpValue = otp.value;
         var checkCode = code;
         if (otpValue == checkCode) {
-            window.location.href = "/Index";
+            window.location.href = "/SignUp?accPhone=" + accPhone;
         } else {
             var modal = document.getElementById("infor");
             modal.style.display = "block";
         }
     }
+
+    function countdown() {
+        var seconds = 120;
+        var countdownDisplay = document.getElementById("countdownDisplay");
+
+        var countdownInterval = setInterval(function () {
+            if (seconds === 0) {
+                clearInterval(countdownInterval);
+                countdownDisplay.textContent = "Đếm ngược đã đạt đến 0 giây";
+                var modal = document.getElementById("model");
+                modal.style.display = "none";
+            } else {
+                countdownDisplay.textContent = seconds;
+                seconds--;
+            }
+        }, 1000);
+    }
+
+    var button = document.getElementById("countdownButton");
+    button.addEventListener("click", countdown);
+
+
 </script>

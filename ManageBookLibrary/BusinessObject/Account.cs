@@ -23,6 +23,7 @@ public partial class Account
 
     public DateTime? UpdateTime { get; set; }
 
+    [Required(ErrorMessage = "Phone number is required")]
     [Phone(ErrorMessage = "Invalid phone number")]
     public string? Phone { get; set; }
 

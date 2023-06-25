@@ -26,7 +26,7 @@ namespace ProjectPRN221.Pages
             
 
             var acc = accountRepository.GetAccountByEmailAndPass(new Account(email, password));
-            if(acc != null)
+            if(acc != null && acc.Status == true)
             {
                 if(acc.RoleId == 1)
                 {
