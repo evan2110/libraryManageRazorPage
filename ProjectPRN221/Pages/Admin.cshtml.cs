@@ -67,7 +67,7 @@ namespace ProjectPRN221.Pages
                     var pageNumber = handler ?? 1;
                     var pageSize = 10;
                     PagedRoles = roles.ToPagedList(pageNumber, pageSize);
-                    var totalRoles = (PagedRoles.Count * PagedRoles.PageCount) / 10;
+                    var totalRoles = PagedRoles.PageCount;
                     ViewData["totalRoles"] = totalRoles;
                     ViewData["roles"] = PagedRoles;
                     ViewData["mode"] = "role";
@@ -82,7 +82,7 @@ namespace ProjectPRN221.Pages
                     var pageNumber = handler ?? 1;
                     var pageSize = 10;
                     PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
-                    var totalAccs = (PagedAccounts.Count * PagedAccounts.PageCount) / 10;
+                    var totalAccs = PagedAccounts.PageCount;
                     ViewData["totalAccs"] = totalAccs;
                     ViewData["accs"] = PagedAccounts;
                     ViewData["mode"] = "acc";
@@ -117,7 +117,7 @@ namespace ProjectPRN221.Pages
                     var pageNumber = handler ?? 1;
                     var pageSize = 10;
                     PagedBooks = books.ToPagedList(pageNumber, pageSize);
-                    var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                    var totalBooks = PagedBooks.PageCount;
                     ViewData["totalBooks"] = totalBooks;
                     ViewData["books"] = PagedBooks;
                     ViewData["mode"] = "book";
@@ -152,7 +152,7 @@ namespace ProjectPRN221.Pages
                     var pageNumber = handler ?? 1;
                     var pageSize = 10;
                     PagedBooksBorrows = bookborrows.ToPagedList(pageNumber, pageSize);
-                    var totalBookBorrows = (PagedBooksBorrows.Count * PagedBooksBorrows.PageCount) / 10;
+                    var totalBookBorrows = PagedBooksBorrows.PageCount;
                     ViewData["totalBookBorrows"] = totalBookBorrows;
                     ViewData["bookBorrows"] = PagedBooksBorrows;
                     ViewData["mode"] = "bookborrow";
@@ -225,7 +225,7 @@ namespace ProjectPRN221.Pages
                 var pageNumber = 1;
                 var pageSize = 10;
                 PagedRoles = roles.ToPagedList(pageNumber, pageSize);
-                var totalRoles = (PagedRoles.Count * PagedRoles.PageCount) / 10;
+                var totalRoles = PagedRoles.PageCount;
                 ViewData["totalRoles"] = totalRoles;
                 ViewData["roles"] = PagedRoles;
                 ViewData["mode"] = "role";
@@ -253,7 +253,7 @@ namespace ProjectPRN221.Pages
                 var pageNumber = 1;
                 var pageSize = 10;
                 PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
-                var totalAccs = (PagedAccounts.Count * PagedAccounts.PageCount) / 10;
+                var totalAccs = PagedAccounts.PageCount;
                 ViewData["totalAccs"] = totalAccs;
                 ViewData["accs"] = PagedAccounts;
                 ViewData["mode"] = "acc";
@@ -275,7 +275,7 @@ namespace ProjectPRN221.Pages
                 var pageNumber = 1;
                 var pageSize = 10;
                 PagedBooks = books.ToPagedList(pageNumber, pageSize);
-                var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                var totalBooks = PagedBooks.PageCount;
                 ViewData["totalBooks"] = totalBooks;
                 ViewData["books"] = PagedBooks;
                 ViewData["mode"] = "book";
@@ -297,7 +297,7 @@ namespace ProjectPRN221.Pages
                 var pageNumber = 1;
                 var pageSize = 10;
                 PagedBooksBorrows = bookBorrows.ToPagedList(pageNumber, pageSize);
-                var totalBookBorrows = (PagedBooksBorrows.Count * PagedBooksBorrows.PageCount) / 10;
+                var totalBookBorrows = PagedBooksBorrows.PageCount;
                 ViewData["totalBookBorrows"] = totalBookBorrows;
                 ViewData["bookBorrows"] = PagedBooksBorrows;
                 ViewData["mode"] = "bookborrow";

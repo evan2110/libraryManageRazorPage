@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ManageBookLibrary.BusinessObject;
 
 public partial class Account
 {
+    [Required(ErrorMessage = "First name is required")]
     public string? FirstName { get; set; }
 
+    [Required(ErrorMessage = "Last name is required")]
     public string? LastName { get; set; }
 
+    [Required(ErrorMessage = "Email is required")]
+    [EmailAddress(ErrorMessage = "Invalid email format")]
     public string Email { get; set; } = null!;
 
+    [Required(ErrorMessage = "Role ID is required")]
     public int RoleId { get; set; }
 
     public DateTime? CreatedTime { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
+    [Phone(ErrorMessage = "Invalid phone number")]
     public string? Phone { get; set; }
 
     public string? Address { get; set; }
@@ -25,6 +32,7 @@ public partial class Account
 
     public bool? Status { get; set; }
 
+    [Required(ErrorMessage = "Password is required")]
     public string Password { get; set; } = null!;
 
     public int AccountId { get; set; }

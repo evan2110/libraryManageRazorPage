@@ -107,7 +107,10 @@
         <table class="table border-collapse mt-3">
                 <thead style="background-color:#DBECFF;">
                     <tr style="border: 1px solid #ACD3FF;">
+                        @if (context.Session.GetString("UserRole") == "Manager")
+                        {
                         <th style="border: 1px solid #ACD3FF;" class="p-2">BookId</th>
+                        }
                         <th style="border: 1px solid #ACD3FF;" class="p-2">Title</th>
                         <th style="border: 1px solid #ACD3FF;" class="p-2">Author</th>
                         <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate</th>
@@ -121,7 +124,10 @@
                 @foreach (var item in Books)
                 {
                     <tr>
+                        @if (context.Session.GetString("UserRole") == "Manager")
+                        {
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
+                        }
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>

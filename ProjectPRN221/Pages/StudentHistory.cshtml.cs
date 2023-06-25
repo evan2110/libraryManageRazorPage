@@ -22,7 +22,7 @@ namespace ProjectPRN221.Pages
 
                 var booksBorrow = bookBorrowRepository.GetBooksBorrowByAccountId(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))).AccountId, HttpContext.Session.GetString("UserRole"));
                 PagedBookBorrows = booksBorrow.ToPagedList(pageNumber, pageSize);
-                var totalBooksBorrow = (PagedBookBorrows.Count * PagedBookBorrows.PageCount) / 10;
+                var totalBooksBorrow = PagedBookBorrows.PageCount;
 
                 if(id != null)
                 {

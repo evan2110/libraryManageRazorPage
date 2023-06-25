@@ -396,7 +396,7 @@
                     <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
                 </div>
                 <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Role Information</h2>
                     <p class="mt-2 text-lg leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
                 </div>
                 <form method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
@@ -407,7 +407,7 @@
                             </div>
                             <label for="role-name" class="block text-sm font-semibold leading-6 text-gray-900">Role name</label>
                             <div class="mt-2.5">
-                                <input asp-for="role.RoleName" value="@(role != null ? role.RoleName : string.Empty)" type="text" name="RoleName" id="role-name" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="role.RoleName" value="@(role != null ? role.RoleName : string.Empty)" type="text" name="RoleName" id="role-name" autocomplete="given-name" class="block w-full rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                         
@@ -576,7 +576,7 @@
                     <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
                 </div>
                 <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Account Information</h2>
                     <p class="mt-2 text-lg leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
                 </div>
                 <form method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
@@ -592,45 +592,51 @@
                                 <div class="sm:col-span-3">
                                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
                                     <div class="mt-2">
-                                        <input asp-for="acc.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.FirstName : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.FirstName : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
                                     <div class="mt-2">
-                                        <input asp-for="acc.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.LastName : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;"  asp-for="acc.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.LastName : string.Empty)">
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-4">
+                                <div class="sm:col-span-3">
                                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                                     <div class="mt-2">
-                                        <input asp-for="acc.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Email : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Email : string.Empty)">
                                     </div>
                                 </div>
 
-                                <div class="col-span-full">
+                                <div class="sm:col-span-3">
                                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                                     <div class="mt-2">
-                                        <input asp-for="acc.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Password.Trim() : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Password.Trim() : string.Empty)">
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-2 sm:col-start-1">
+                                <div class="sm:col-span-3">
                                     <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone</label>
                                     <div class="mt-2">
-                                        <input asp-for="acc.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Phone : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Phone : string.Empty)">
                                     </div>
                                 </div>
 
-                                <div class="sm:col-span-2">
+                                <div class="sm:col-span-3">
                                     <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
                                     <div class="mt-2">
-                                        <input asp-for="acc.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Address : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Address : string.Empty)">
                                     </div>
                                 </div>
-                                <div class="sm:col-span-2">
+                                    <div class="sm:col-span-3">
+                                        <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
+                                        <div style=" border: 1px solid #ACD3FF;" class="mt-2">
+                                            <select id="role" name="roleid" autocomplete="role-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="acc.RoleId" asp-items="@(new SelectList(listRoles, "RoleId", "RoleName"))"></select>
+                                        </div>
+                                    </div>
+                                <div class="sm:col-span-3">
                                     <fieldset>
                                         <legend class="text-sm font-semibold leading-6 text-gray-900">Gender</legend>
                                         <div class="mt-6 space-y-6">
@@ -645,20 +651,10 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                                <div class="mt-6 space-y-6">
-                                    <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
-                                    <div class="mt-2">
-                                        <select id="role" name="roleid" autocomplete="role-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="acc.RoleId" asp-items="@(new SelectList(listRoles, "RoleId", "RoleName"))"></select>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
                         <div class="border-b border-gray-900/10 pb-12">
-
-
-
                             <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
                             <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
                         </div>
@@ -841,42 +837,42 @@
                                 <div class="col-span-full">
                                     <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                                     <div class="mt-2">
-                                        <input asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="publicationDate" class="block text-sm font-medium leading-6 text-gray-900">Publication Date</label>
                                     <div class="mt-2">
-                                        <input asp-for="book.PublicationDate" type="text" name="PublicationDate" id="PublicationDate" autocomplete="PublicationDate" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(book != null ? book.PublicationDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.PublicationDate" type="text" name="PublicationDate" id="PublicationDate" autocomplete="PublicationDate" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(book != null ? book.PublicationDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Author</label>
                                     <div class="mt-2">
-                                        <input asp-for="book.Author" type="text" name="author" id="author" autocomplete="author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.Author" type="text" name="author" id="author" autocomplete="author" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label for="total_copies" class="block text-sm font-medium leading-6 text-gray-900">Total copies</label>
                                     <div class="mt-2">
-                                        <input asp-for="book.TotalCopies" type="text" name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.TotalCopies" type="text" name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label for="available_copies" class="block text-sm font-medium leading-6 text-gray-900">Available copies</label>
                                     <div class="mt-2">
-                                        <input asp-for="book.AvailableCopies" type="text" name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.AvailableCopies" type="text" name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <label for="shelf_location" class="block text-sm font-medium leading-6 text-gray-900">Shelf location</label>
                                     <div class="mt-2">
-                                        <input asp-for="book.ShelfLocation" type="text" name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.ShelfLocation" type="text" name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
                                     </div>
                                 </div>
 
@@ -1054,56 +1050,56 @@
                 <form method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
                     <div class="space-y-12">
                         <div class="border-b border-gray-900/10 pb-12">
-                            <h2 class="text-base font-semibold leading-7 text-gray-900">Book Information</h2>
+                            <h2 class="text-base font-semibold leading-7 text-gray-900">Book Borrow Information</h2>
                             <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
 
                             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div class="col-span-full" style="display:none;">
                                     <label for="BookBorrowId" class="block text-sm font-medium leading-6 text-gray-900">Id</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.BookBorrowId" type="text" name="BookBorrowId" id="BookBorrowId" autocomplete="BookBorrowId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookBorrowId : string.Empty)">
+                                        <input asp-for="bookBorrow.BookBorrowId" type="text" name="BookBorrowId" id="BookBorrowId" autocomplete="BookBorrowId" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookBorrowId : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="AccountId" class="block text-sm font-medium leading-6 text-gray-900">Account ID</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.AccountId" type="text" name="AccountId" id="AccountId" autocomplete="AccountId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.AccountId : string.Empty)">
+                                        <input style="border: 1px solid #ACD3FF;"  asp-for="bookBorrow.AccountId" type="text" name="AccountId" id="AccountId" autocomplete="AccountId" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.AccountId : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="BookId" class="block text-sm font-medium leading-6 text-gray-900">Book ID</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookId : string.Empty)">
+                                        <input style="border: 1px solid #ACD3FF;"  asp-for="bookBorrow.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookId : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="DateBorrowed" class="block text-sm font-medium leading-6 text-gray-900">DateBorrowed</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.DateBorrowed" type="text" name="DateBorrowed" id="DateBorrowed" autocomplete="DateBorrowed" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateBorrowed.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                        <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.DateBorrowed" type="text" name="DateBorrowed" id="DateBorrowed" autocomplete="DateBorrowed" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateBorrowed.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="DueDate" class="block text-sm font-medium leading-6 text-gray-900">DueDate</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.DueDate" type="text" name="DueDate" id="DueDate" autocomplete="DueDate" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DueDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                        <input style="border: 1px solid #ACD3FF;"  asp-for="bookBorrow.DueDate" type="text" name="DueDate" id="DueDate" autocomplete="DueDate" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DueDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="DateReturn" class="block text-sm font-medium leading-6 text-gray-900">DateReturn</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.DateReturn" type="text" name="DateReturn" id="DateReturn" autocomplete="DateReturn" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateReturn : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                        <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.DateReturn" type="text" name="DateReturn" id="DateReturn" autocomplete="DateReturn" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateReturn : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="ReceivedBy" class="block text-sm font-medium leading-6 text-gray-900">ReceivedBy</label>
                                     <div class="mt-2">
-                                        <input asp-for="bookBorrow.ReceivedBy" type="text" name="ReceivedBy" id="ReceivedBy" autocomplete="ReceivedBy" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? bookBorrow.ReceivedBy : string.Empty)">
+                                        <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.ReceivedBy" type="text" name="ReceivedBy" id="ReceivedBy" autocomplete="ReceivedBy" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? bookBorrow.ReceivedBy : string.Empty)">
                                     </div>
                                 </div>
 

@@ -170,3 +170,11 @@ D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\obj\Debug\net
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\obj\Debug\net6.0\ManageBookLibrary.pdb
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\obj\Debug\net6.0\ManageBookLibrary.genruntimeconfig.cache
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\obj\Debug\net6.0\ref\ManageBookLibrary.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\MailKit.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\MimeKit.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\System.Formats.Asn1.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ManageBookLibrary\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll

@@ -25,7 +25,6 @@ namespace ProjectPRN221.Pages
             
             if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
             {
-                Console.WriteLine(HttpContext.Session.GetString("UserRole"));
                 var pageNumber = handler ?? 1;
                 var pageSize = 10;
 
@@ -35,7 +34,7 @@ namespace ProjectPRN221.Pages
                     books = bookRepository.SearchBooksByTitleOrAuthorOrPublicDateOrLocaion(search.Trim());
                 }
                 PagedBooks = books.ToPagedList(pageNumber, pageSize);
-                var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
+                var totalBooks = PagedBooks.PageCount;
                 
                 if(bookId != null)
                 {
@@ -145,8 +144,7 @@ namespace ProjectPRN221.Pages
             var pageNumber = 1;
             var pageSize = 10;
             PagedBooks = books.ToPagedList(pageNumber, pageSize);
-            var totalBooks = (PagedBooks.Count * PagedBooks.PageCount) / 10;
-            ViewData["totalBooks"] = totalBooks;
+            var totalBooks = PagedBooks.PageCount;
             ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));
             ViewData["books"] = PagedBooks;
         }

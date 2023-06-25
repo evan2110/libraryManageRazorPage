@@ -18,49 +18,49 @@
                         <div class="col-span-full" style="display:none;">
                             <label for="id" class="block text-sm font-medium leading-6 text-gray-900">Id</label>
                             <div class="mt-2">
-                                <input asp-for="book.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.BookId : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.BookId : string.Empty)">
                             </div>
                         </div>
 
                         <div class="col-span-full">
                             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                             <div class="mt-2">
-                                <input asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
                             </div>
                         </div>
 
                         <div class="col-span-full">
                             <label for="publicationDate" class="block text-sm font-medium leading-6 text-gray-900">Publication Date</label>
                             <div class="mt-2">
-                                <input asp-for="book.PublicationDate" type="text" name="PublicationDate" id="PublicationDate" autocomplete="PublicationDate" class="mb-10 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(book != null ? book.PublicationDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.PublicationDate" type="text" name="PublicationDate" id="PublicationDate" autocomplete="PublicationDate" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(book != null ? book.PublicationDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
                             </div>
                         </div>
 
                         <div class="col-span-full">
                             <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Author</label>
                             <div class="mt-2">
-                                <input asp-for="book.Author" type="text" name="author" id="author" autocomplete="author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.Author" type="text" name="author" id="author" autocomplete="author" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="total_copies" class="block text-sm font-medium leading-6 text-gray-900">Total copies</label>
                             <div class="mt-2">
-                                <input asp-for="book.TotalCopies" type="text" name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.TotalCopies" type="text" name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="available_copies" class="block text-sm font-medium leading-6 text-gray-900">Available copies</label>
                             <div class="mt-2">
-                                <input asp-for="book.AvailableCopies" type="text" name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.AvailableCopies" type="text" name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="shelf_location" class="block text-sm font-medium leading-6 text-gray-900">Shelf location</label>
                             <div class="mt-2">
-                                <input asp-for="book.ShelfLocation" type="text" name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.ShelfLocation" type="text" name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
                             </div>
                         </div>
 

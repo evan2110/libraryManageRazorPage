@@ -3,6 +3,38 @@
 @model ProjectPRN221.Pages.SignUpModel
 @{
     List<Role> listRoles = ViewData["listRoles"] as List<Role>;
+    string code = ViewData["code"] as string; 
+}
+@if (ViewData["LetCheck"] == "Check")
+{
+    <div id="model" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Verify Account</h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">A OTP code sent to your phone number.Please enter OTP code.</p>
+                                </div>
+                                    <input type="text" name="otp" id="otp" autocomplete="family-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:none;" id="infor" class="alert alert-danger" role="alert">Wrong OTP</div>
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button onclick="checkNumberPhone('@code')" type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Verify</button>
+                        <button onclick="closeModal()" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -45,9 +77,7 @@
                     <div class="absolute inset-y-0 left-0 flex items-center">
                         <label for="country" class="sr-only">Country</label>
                         <select id="country" name="country" class="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
-                            <option>US</option>
-                            <option>CA</option>
-                            <option>EU</option>
+                            <option>VN</option>
                         </select>
                         <svg class="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
@@ -92,3 +122,22 @@
         </div>
     </form>
 </div>
+
+<script>
+    function closeModal(){
+        var modal = document.getElementById("model");
+        modal.style.display = "none";
+    }
+
+    function checkNumberPhone(code){
+        var otp = document.getElementById("otp");
+        var otpValue = otp.value;
+        var checkCode = code;
+        if (otpValue == checkCode) {
+            window.location.href = "/Index";
+        } else {
+            var modal = document.getElementById("infor");
+            modal.style.display = "block";
+        }
+    }
+</script>
