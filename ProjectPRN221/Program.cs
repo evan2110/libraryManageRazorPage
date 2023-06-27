@@ -1,4 +1,7 @@
+using ManageBookLibrary.BusinessObject;
+using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using ProjectPRN221.Hubs;
 
 namespace ProjectPRN221
 {
@@ -16,6 +19,10 @@ namespace ProjectPRN221
                 options.Cookie.IsEssential = true; 
             });
             builder.Services.AddRazorPages();
+            builder.Services.AddSignalR();
+            builder.Services.AddDbContext<DatabaseTestProjectContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ProjectDB")));
+            builder.Services.AddScoped<DatabaseTestProjectContext>();
 
             var app = builder.Build();
 
@@ -32,6 +39,7 @@ namespace ProjectPRN221
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.MapHub<SignalRhub>("/signalrServer");
             app.UseSession();
 
             app.UseAuthorization();

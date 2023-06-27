@@ -6,6 +6,6 @@
     <WebStackScaffolding_ViewDialogWidth>650</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_DbContextDialogWidth>650</WebStackScaffolding_DbContextDialogWidth>
     <WebStackScaffolding_LayoutPageFile>~/Pages/Shared/_Layout.cshtml</WebStackScaffolding_LayoutPageFile>
-    <NameOfLastUsedPublishProfile>D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\Properties\PublishProfiles\nhatduclibrary-001-site1 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\Properties\PublishProfiles\nhatduclibrary-001-site1 - FTP.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
