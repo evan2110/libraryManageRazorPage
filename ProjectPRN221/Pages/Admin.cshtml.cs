@@ -87,10 +87,6 @@ namespace ProjectPRN221.Pages
                     ViewData["accs"] = PagedAccounts;
                     ViewData["mode"] = "acc";
                 }
-                if (mode == "createAcc")
-                {
-                    ViewData["mode"] = "createAcc";
-                }
                 if (mode == "editAcc")
                 {
                     var acc = accountRepository.GetAccountById(id);
@@ -238,17 +234,16 @@ namespace ProjectPRN221.Pages
                 if (acc.AccountId != 0)
                 {
                     Account accFind = accountRepository.GetAccountById(acc.AccountId);
+                    acc.RoleId = accFind.RoleId;
+                    acc.Email = accFind.Email;
+                    acc.Phone = accFind.Phone;
                     acc.CreatedTime = accFind.CreatedTime;
                     acc.Status = accFind.Status;
                     acc.UpdateTime = DateTime.Now;
+                    acc.Password = accFind.Password;
                     accountRepository.UpdateAccount(acc);
                 }
-                else
-                {
-                    acc.CreatedTime = DateTime.Now;
-                    acc.Status = true;
-                    accountRepository.InsertAccount(acc);
-                }
+                
                 var accs = accountRepository.GetAllAccounts();
                 var pageNumber = 1;
                 var pageSize = 10;

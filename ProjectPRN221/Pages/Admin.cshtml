@@ -313,8 +313,11 @@
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleName)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">
-                                        <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('editRole', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
-                                        <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('deleteRole', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                                        @if(item.RoleName != "Admin")
+                                        {
+                                            <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('editRole', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
+                                            <button type="button" data-bookid="@item.RoleId" onclick="redirectToAdmin('deleteRole', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -430,33 +433,6 @@
                         <button onclick="searching(this, 'acc')" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
                     </div>
 
-                    <div style="display:flex;">
-                            <span class="hidden sm:block mr-5">
-                            <button onclick="redirectToAdmin('createAcc', null)" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                <i class="fa-solid fa-circle-plus" style="color: #4838ca; margin:3px;"></i>
-                                Create
-                            </button>
-                        </span>
-
-                        @*<span class="ml-3 hidden sm:block">
-                            <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
-                                Export
-                            </button>
-                        </span>*@
-
-                        @*<form method="post" enctype="multipart/form-data">
-                    <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
-                    <label for="img" class="upload-label ml-3">Upload file</label>
-
-                    <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                    <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
-                    Import
-                    </button>
-                    </form>*@
-
-                    </div>
-
                 </div>
 
                 <div style="background-color:white;">
@@ -473,7 +449,7 @@
                                 <th style="border: 1px solid #ACD3FF;" class="p-2">Address</th>
                                 <th style="border: 1px solid #ACD3FF;" class="p-2">Gender</th>
                                 <th style="border: 1px solid #ACD3FF;" class="p-2">Status</th>
-                                <th style="border: 1px solid #ACD3FF;" class="p-2">Pass</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Password</th>
                                 <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                             </tr>
                         </thead>
@@ -491,10 +467,13 @@
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
-                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Password)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">*****</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">
+                                    @if(item.RoleId != 1)
+                                    {
                                         <button type="button" data-bookid="@item.AccountId" onclick="redirectToAdmin('editAcc', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.AccountId" onclick="redirectToAdmin('deleteAcc', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                                    }
                                     </td>
                                 </tr>
                             }
@@ -606,21 +585,21 @@
                                 <div class="sm:col-span-3">
                                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                                     <div class="mt-2">
-                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Email : string.Empty)">
+                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Email : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                                     <div class="mt-2">
-                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Password.Trim() : string.Empty)">
+                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Password.Trim() : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone</label>
                                     <div class="mt-2">
-                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Phone : string.Empty)">
+                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Phone : string.Empty)">
                                     </div>
                                 </div>
 
@@ -633,7 +612,7 @@
                                     <div class="sm:col-span-3">
                                         <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
                                         <div style=" border: 1px solid #ACD3FF;" class="mt-2">
-                                            <select id="role" name="roleid" autocomplete="role-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="acc.RoleId" asp-items="@(new SelectList(listRoles, "RoleId", "RoleName"))"></select>
+                                            <select disabled id="role" name="roleid" autocomplete="role-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="acc.RoleId" asp-items="@(new SelectList(listRoles, "RoleId", "RoleName"))"></select>
                                         </div>
                                     </div>
                                 <div class="sm:col-span-3">

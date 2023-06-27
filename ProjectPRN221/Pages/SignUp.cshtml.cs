@@ -32,37 +32,71 @@ namespace ProjectPRN221.Pages
 
         public void OnPost(Account account)
         {
-            /*try
-            {
-                string phone = account.Phone;
-                int index = phone.IndexOf('0');
-                if (index >= 0)
-                {
-                    phone = phone.Substring(0, index) + "+84" + phone.Substring(index + 1);
-                }
-                var accountSid = "ACef875dab95bd8f3737e10358fe6311af";
-                var authToken = "200a0829411a87d7bdb204b4cdeff7c8";
-                TwilioClient.Init(accountSid, authToken);
-                Console.WriteLine(phone);
-
-                var message = MessageResource.Create(to: new Twilio.Types.PhoneNumber(phone),
-                    from: new Twilio.Types.PhoneNumber("+14179003335"),
-                    body: "Hello " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + $"/nYour code is: {code}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }*/
-            Console.WriteLine($"{code}");
+            
             account.CreatedTime = DateTime.Now;
             account.Status = false;
-            accountRepository.InsertAccount(account);
             List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
+            bool shouldExecute = true;
+
+            if (account.Email == null)
+            {
+                ViewData["emailnull"] = "emailnull";
+            }
+            else if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Email == account.Email) != null)
+            {
+                ViewData["emaildub"] = "emaildub";
+            }
+            else if (account.Password == null)
+            {
+                ViewData["passnull"] = "passnull";
+            }
+            else if (account.Phone == null)
+            {
+                ViewData["phonenull"] = "phonenull";
+            }
+            else if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Phone == account.Phone) != null)
+            {
+                ViewData["phonedub"] = "phonedub";
+            }
+            else
+            {
+                shouldExecute = false; 
+            }
+
+            if (!shouldExecute)
+            {
+                try
+                {
+                    string phone = account.Phone;
+                    int index = phone.IndexOf('0');
+                    if (index >= 0)
+                    {
+                        phone = phone.Substring(0, index) + "+84" + phone.Substring(index + 1);
+                    }
+                    var accountSid = "ACef875dab95bd8f3737e10358fe6311af";
+                    var authToken = "200a0829411a87d7bdb204b4cdeff7c8";
+                    TwilioClient.Init(accountSid, authToken);
+                    Console.WriteLine(phone);
+
+                    var message = MessageResource.Create(to: new Twilio.Types.PhoneNumber(phone),
+                        from: new Twilio.Types.PhoneNumber("+14179003335"),
+                        body: "Hello " + DateTime.Now.ToString("MM/dd/yyyy hh:mm tt") + $"/nYour code is: {code}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                Console.WriteLine($"{code}");
+                accountRepository.InsertAccount(account);
+                ViewData["accountPhone"] = account.Phone;
+                ViewData["code"] = code;
+                ViewData["infor"] = "registersuss";
+                ViewData["LetCheck"] = "Check";
+
+            }
+
+
             ViewData["listRoles"] = listRoles;
-            ViewData["LetCheck"] = "Check";
-            ViewData["code"] = code;
-            ViewData["infor"] = "registersuss";
-            ViewData["accountPhone"] = account.Phone;
         }
 
         public static string GenerateVerificationCode()

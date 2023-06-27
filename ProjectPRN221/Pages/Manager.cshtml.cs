@@ -31,19 +31,34 @@ namespace ProjectPRN221.Pages
 
         public void OnPost(Book book)
         {
+            
             if (book.BookId != 0)
             {
-                bookRepository.UpdateBook(book);
-                var bookFind = bookRepository.GetBookByID(book.BookId);
-                ViewData["book"] = bookFind;
-                ViewData["infor"] = "updatesuss";
-                Response.Redirect("Manager");
+                if (book.TotalCopies < book.AvailableCopies)
+                {
+                    var bookFind = bookRepository.GetBookByID(book.BookId);
+                    ViewData["book"] = bookFind;
+                    ViewData["oversize"] = "oversize";
+                }
+                else
+                {
+                    bookRepository.UpdateBook(book);
+                    var bookFind = bookRepository.GetBookByID(book.BookId);
+                    ViewData["book"] = bookFind;
+                    ViewData["infor"] = "updatesuss";
+                }
             }
             else
             {
-                bookRepository.InsertBook(book);
-                ViewData["infor"] = "insertsuss";
-                Response.Redirect("Manager");
+                if (book.TotalCopies < book.AvailableCopies)
+                {
+                    ViewData["oversize"] = "oversize";
+                }
+                else
+                {
+                    bookRepository.InsertBook(book);
+                    ViewData["infor"] = "insertsuss";
+                }
             }
         }
     }

@@ -68,15 +68,27 @@
                 </div>
             </div>
             <div class="sm:col-span-2">
-                <label for="password" class="block text-sm font-semibold leading-6 text-gray-900">Password</label>
-                <div class="mt-2.5">
-                    <input asp-for="account.Password" type="password" name="password" id="password" autocomplete="organization" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-            </div>
-            <div class="sm:col-span-2">
                 <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
                 <div class="mt-2.5">
                     <input asp-for="account.Email" type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    @if (ViewData["emailnull"] == "emailnull")
+                    {
+                        <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Email can not null</span>
+                    }
+                    @if (ViewData["emaildub"] == "emaildub")
+                    {
+                        <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Email is exist</span>
+                    }
+                </div>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="password" class="block text-sm font-semibold leading-6 text-gray-900">Password</label>
+                <div class="mt-2.5">
+                    <input asp-for="account.Password" type="password" name="password" id="password" autocomplete="organization" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    @if(ViewData["passnull"] == "passnull")
+                    {
+                        <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Password can not null</span>
+                    }
                 </div>
             </div>
             <div class="sm:col-span-2">
@@ -92,6 +104,14 @@
                         </svg>
                     </div>
                     <input asp-for="account.Phone" type="tel" name="phone" id="phone-number" autocomplete="tel" class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    @if (ViewData["phonenull"] == "phonenull")
+                    {
+                        <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Phone can not null</span>
+                    }
+                    @if (ViewData["phonedub"] == "phonedub")
+                    {
+                        <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Phone is exist</span>
+                    }
                 </div>
             </div>
             <div class="sm:col-span-2">
@@ -104,7 +124,7 @@
                 <legend class="text-sm font-semibold leading-6 text-gray-900">Gender</legend>
                 <div class="mt-6 space-y-6">
                     <div class="flex items-center gap-x-3">
-                        <input asp-for="account.Gender" id="male" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="true">
+                        <input checked asp-for="account.Gender" id="male" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="true">
                         <label for="male" class="block text-sm font-medium leading-6 text-gray-900">Male</label>
 
                         <input asp-for="account.Gender" id="female" name="gender" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="false">
