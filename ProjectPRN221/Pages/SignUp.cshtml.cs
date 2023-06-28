@@ -38,21 +38,9 @@ namespace ProjectPRN221.Pages
             List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
             bool shouldExecute = true;
 
-            if (account.Email == null)
-            {
-                ViewData["emailnull"] = "emailnull";
-            }
-            else if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Email == account.Email) != null)
+            if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Email == account.Email) != null)
             {
                 ViewData["emaildub"] = "emaildub";
-            }
-            else if (account.Password == null)
-            {
-                ViewData["passnull"] = "passnull";
-            }
-            else if (account.Phone == null)
-            {
-                ViewData["phonenull"] = "phonenull";
             }
             else if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Phone == account.Phone) != null)
             {
@@ -74,7 +62,7 @@ namespace ProjectPRN221.Pages
                         phone = phone.Substring(0, index) + "+84" + phone.Substring(index + 1);
                     }
                     var accountSid = "ACef875dab95bd8f3737e10358fe6311af";
-                    var authToken = "200a0829411a87d7bdb204b4cdeff7c8";
+                    var authToken = "a0f53565f0f388d9f680d80ff332170e";
                     TwilioClient.Init(accountSid, authToken);
                     Console.WriteLine(phone);
 

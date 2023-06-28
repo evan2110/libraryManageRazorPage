@@ -260,11 +260,17 @@ namespace ProjectPRN221.Pages
             {
                 if (book.BookId != 0)
                 {
-                    bookRepository.UpdateBook(book);
+                    if(book.TotalCopies >= book.AvailableCopies)
+                    {
+                        bookRepository.UpdateBook(book);
+                    }
                 }
                 else
                 {
-                    bookRepository.InsertBook(book);
+                    if(book.TotalCopies >= book.AvailableCopies)
+                    {
+                        bookRepository.InsertBook(book);
+                    }
                 }
                 var books = bookRepository.GetBooks();
                 var pageNumber = 1;

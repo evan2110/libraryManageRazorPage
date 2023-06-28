@@ -25,7 +25,7 @@
                         <div class="col-span-full">
                             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                             <div class="mt-2">
-                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.Title" type="text" name="title" id="title" autocomplete="title" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.Title" type="text" required name="title" id="title" autocomplete="title" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Title : string.Empty)">
                             </div>
                         </div>
 
@@ -39,28 +39,28 @@
                         <div class="col-span-full">
                             <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Author</label>
                             <div class="mt-2">
-                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.Author" type="text" name="author" id="author" autocomplete="author" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.Author" type="text" required name="author" id="author" autocomplete="author" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="total_copies" class="block text-sm font-medium leading-6 text-gray-900">Total copies</label>
                             <div class="mt-2">
-                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.TotalCopies" type="text" name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.TotalCopies" type="text" required name="totalcopies" id="total_copies" autocomplete="total_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.TotalCopies : string.Empty)">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="available_copies" class="block text-sm font-medium leading-6 text-gray-900">Available copies</label>
                             <div class="mt-2">
-                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.AvailableCopies" type="text" name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.AvailableCopies" type="text" required name="availablecopies" id="available_copies" autocomplete="available_copies" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.AvailableCopies : string.Empty)">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="shelf_location" class="block text-sm font-medium leading-6 text-gray-900">Shelf location</label>
                             <div class="mt-2">
-                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.ShelfLocation" type="text" name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
+                                <input style=" border: 1px solid #ACD3FF;" asp-for="book.ShelfLocation" type="text" required name="shelflocation" id="shelf_location" autocomplete="shelf_location" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" inputmode="numeric" pattern="[0-9]*" value="@(book != null ? book.ShelfLocation : string.Empty)">
                             </div>
                         </div>
 
