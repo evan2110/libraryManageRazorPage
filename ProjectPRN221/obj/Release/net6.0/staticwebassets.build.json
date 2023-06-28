@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wqzplRBCtX0F9JfAJ5zI2Cm/kL2tUG5bP+iCIhqGrCQ=",
+  "Hash": "srZtn0K1j7TzlpYVVOMn4wP6fOqYFT8aGHYXZ2Xf70U=",
   "Source": "ProjectPRN221",
   "BasePath": "_content/ProjectPRN221",
   "Mode": "Default",
@@ -1086,6 +1086,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ProjectPRN221\\wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.js",
+      "SourceId": "ProjectPRN221",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ProjectPRN221\\wwwroot\\",
+      "BasePath": "_content/ProjectPRN221",
+      "RelativePath": "lib/microsoft/signalr/dist/browser/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Identity": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ProjectPRN221\\wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.min.js",
+      "SourceId": "ProjectPRN221",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C Sharp\\PRN221_Trenlop\\libraryManageRazorPage\\ProjectPRN221\\wwwroot\\",
+      "BasePath": "_content/ProjectPRN221",
+      "RelativePath": "lib/microsoft/signalr/dist/browser/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\microsoft\\signalr\\dist\\browser\\signalr.min.js"
     }
   ]
 }

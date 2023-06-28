@@ -161,7 +161,10 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Borrow</div>
+                            @if(ViewData["totalBorrow"] != null)
+                            {
                             <div class="number">@ViewData["totalBorrow"]</div>
+                            }
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Up from yesterday</span>
@@ -172,7 +175,10 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Register</div>
+                            @if(ViewData["totalAcc"] != null)
+                            {
                             <div class="number">@ViewData["totalAcc"]</div>
+                            }
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Up from yesterday</span>
@@ -183,7 +189,10 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Book</div>
+                            @if(ViewData["totalBook"] != null)
+                            {
                             <div class="number">@ViewData["totalBook"]</div>
+                            }
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Up from yesterday</span>
@@ -194,7 +203,10 @@
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total Return</div>
+                            @if (ViewData["totalReturn"] != null)
+                            {
                             <div class="number">@ViewData["totalReturn"]</div>
+                            }
                             <div class="indicator">
                                 <i class='bx bx-down-arrow-alt down'></i>
                                 <span class="text">Down From Today</span>
@@ -210,32 +222,45 @@
                         <div class="sales-details">
                             <ul class="details">
                                 <li class="topic">Date Borrow</li>
-                                @foreach (var i in @recentBorrow)
+                                @if(recentBorrow != null)
                                 {
-                                    <li><a href="#">@i.DateBorrowed</a></li>
+                                    @foreach (var i in @recentBorrow)
+                                    {
+                                        <li><a href="#">@i.DateBorrowed</a></li>
+                                    }
                                 }
                             </ul>
                             <ul class="details">
                                 <li class="topic">Customer</li>
-                                @foreach (var i in @recentBorrow)
+                                @if (recentBorrow != null)
                                 {
-                                <li><a href="#">@i.ReceivedBy</a></li>
+                                    @foreach (var i in @recentBorrow)
+                                    {
+                                        <li><a href="#">@i.ReceivedBy</a></li>
+                                    }
                                 }
-                            </ul>
+                                </ul>
                             <ul class="details">
                                 <li class="topic">Date Due</li>
-                                @foreach (var i in @recentBorrow)
+                                @if (recentBorrow != null)
                                 {
-                                <li><a href="#">@i.DueDate</a></li>
+                                    @foreach (var i in @recentBorrow)
+                                    {
+                                        <li><a href="#">@i.DueDate</a></li>
+                                    }
                                 }
                             </ul>
                             <ul class="details">
                                 <li class="topic">Date Return</li>
-                                @foreach (var i in recentBorrow)
+                                @if (recentBorrow != null)
                                 {
-                                    <li><a href="#">@(i.DateReturn != null ? i.DateReturn.ToString() : "Haven't returned the book")</a></li>
+                                    @foreach (var i in recentBorrow)
+                                    {
+                                        <li><a href="#">@(
+                                        i.DateReturn != null ? i.DateReturn.ToString() : "Haven't returned the book"
+                                        )</a></li>
+                                    }
                                 }
-
                             </ul>
                         </div>
                         <div class="button">
@@ -245,7 +270,9 @@
                     <div class="top-sales box">
                         <div class="title">Top Borrow Book</div>
                         <ul class="top-sales-details">
-                            @foreach (var item in topBorrow)
+                            @if(topBorrow != null)
+                            {
+                                 @foreach (var item in topBorrow)
                             {
                                 <li>
                                     <a href="#">
@@ -254,6 +281,7 @@
                                     </a>
                                     <span class="price">@item.Value</span>
                                 </li>
+                            }   
                             }
                         </ul>
                     </div>

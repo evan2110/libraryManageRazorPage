@@ -136,7 +136,7 @@ namespace ProjectPRN221.Pages
                         borrowRepository.DeleteBookBorrow(b.BookBorrowId);
                     }
                     bookRepository.DeleteBook(idDelete);
-                    Response.Redirect("Admin?mode=book");
+                    Response.Redirect("/Admin?mode=book");
                 }
                 if (mode == "bookborrow")
                 {
