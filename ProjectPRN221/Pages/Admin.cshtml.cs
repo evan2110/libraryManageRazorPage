@@ -217,17 +217,9 @@ namespace ProjectPRN221.Pages
                 {
                     roleRepository.InsertRole(role);
                 }
-                var roles = roleRepository.GetRoles();
-                var pageNumber = 1;
-                var pageSize = 10;
-                PagedRoles = roles.ToPagedList(pageNumber, pageSize);
-                var totalRoles = PagedRoles.PageCount;
-                ViewData["totalRoles"] = totalRoles;
-                ViewData["roles"] = PagedRoles;
-                ViewData["mode"] = "role";
-
-                Response.Redirect("Admin?mode=role");
-
+                
+                ViewData["mode"] = "createRole";
+                ViewData["createRoleSuss"] = "suss";
             }
             else if (acc.FirstName != null)
             {
@@ -243,17 +235,11 @@ namespace ProjectPRN221.Pages
                     acc.Password = accFind.Password;
                     accountRepository.UpdateAccount(acc);
                 }
-                
-                var accs = accountRepository.GetAllAccounts();
-                var pageNumber = 1;
-                var pageSize = 10;
-                PagedAccounts = accs.ToPagedList(pageNumber, pageSize);
-                var totalAccs = PagedAccounts.PageCount;
-                ViewData["totalAccs"] = totalAccs;
-                ViewData["accs"] = PagedAccounts;
-                ViewData["mode"] = "acc";
 
-                Response.Redirect("Admin?mode=acc");
+                List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
+                ViewData["listRoles"] = listRoles;
+                ViewData["mode"] = "createAcc";
+
 
             }
             else if (book.Title != null)
@@ -272,16 +258,9 @@ namespace ProjectPRN221.Pages
                         bookRepository.InsertBook(book);
                     }
                 }
-                var books = bookRepository.GetBooks();
-                var pageNumber = 1;
-                var pageSize = 10;
-                PagedBooks = books.ToPagedList(pageNumber, pageSize);
-                var totalBooks = PagedBooks.PageCount;
-                ViewData["totalBooks"] = totalBooks;
-                ViewData["books"] = PagedBooks;
-                ViewData["mode"] = "book";
+                
+                ViewData["mode"] = "createBook";
 
-                Response.Redirect("Admin?mode=book");
 
             }
             else if(booksBorrow.ReceivedBy != null)
@@ -294,16 +273,9 @@ namespace ProjectPRN221.Pages
                 {
                     borrowRepository.InsertBookBorrow(booksBorrow);
                 }
-                var bookBorrows = borrowRepository.GetBooksBorrows();
-                var pageNumber = 1;
-                var pageSize = 10;
-                PagedBooksBorrows = bookBorrows.ToPagedList(pageNumber, pageSize);
-                var totalBookBorrows = PagedBooksBorrows.PageCount;
-                ViewData["totalBookBorrows"] = totalBookBorrows;
-                ViewData["bookBorrows"] = PagedBooksBorrows;
-                ViewData["mode"] = "bookborrow";
+                
+                ViewData["mode"] = "createBookBorrow";
 
-                Response.Redirect("Admin?mode=bookborrow");
             }
 
         }

@@ -86,6 +86,18 @@
                                             <a href="StudentHistory"><p style="width:240%;margin-left: -10px; font-family: 'Arial', sans-serif; font-size: 16px; font-weight: bold; color: #333333; text-align: center;">Please check your history !</p></a>
                                         </div>
                                     </div>
+                                <script>
+                                    var notificationIcon = document.getElementById('notificationIcon');
+                                    var notificationMessage = document.getElementById('notificationMessage');
+
+                                    notificationIcon.addEventListener('click', function () {
+                                        if (notificationMessage.style.display === 'none') {
+                                            notificationMessage.style.display = 'block';
+                                        } else {
+                                            notificationMessage.style.display = 'none';
+                                        }
+                                    });
+                                </script>
                                 }
                                 <a style="margin-right:10px;" href="/AccountDetail" class="text-sm font-semibold leading-6 text-gray-900">Hello @context.Session.GetString("Email")</a>
                                 <a href="/Login" class="text-sm font-semibold leading-6 text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a>
@@ -151,15 +163,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-<script>
-    var notificationIcon = document.getElementById('notificationIcon');
-    var notificationMessage = document.getElementById('notificationMessage');
-
-    notificationIcon.addEventListener('click', function () {
-        if (notificationMessage.style.display === 'none') {
-            notificationMessage.style.display = 'block';
-        } else {
-            notificationMessage.style.display = 'none';
-        }
-    });
-</script>

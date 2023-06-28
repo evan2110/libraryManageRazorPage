@@ -69,7 +69,6 @@
 <head>
     <meta charset="UTF-8">
     <title> Library </title>
-    <link rel="stylesheet" href="style.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -286,10 +285,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+                </div>
         }else if(ViewData["mode"] == "role")
         {
-            <div class="home-content">
+                <div class="home-content">
                 <div class="search-container mb-3" style="display:flex; justify-content:space-between;">
                     <div class="ml-5">
                             <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
@@ -599,42 +598,42 @@
                                 <div class="sm:col-span-3">
                                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
                                     <div class="mt-2">
-                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.FirstName" type="text" name="firstName" id="first-name" autocomplete="given-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.FirstName : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.FirstName" type="text" name="firstName" required id="first-name" autocomplete="given-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.FirstName : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
                                     <div class="mt-2">
-                                        <input style=" border: 1px solid #ACD3FF;"  asp-for="acc.LastName" type="text" name="lastName" id="last-name" autocomplete="family-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.LastName : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;"  asp-for="acc.LastName" type="text" name="lastName" required id="last-name" autocomplete="family-name" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.LastName : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                                     <div class="mt-2">
-                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Email" id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Email : string.Empty)">
+                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Email" id="email" name="email" required type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Email : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                                     <div class="mt-2">
-                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Password" type="password" name="password" id="password" autocomplete="password" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Password.Trim() : string.Empty)">
+                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Password" type="password" required name="password" id="password" autocomplete="password" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Password.Trim() : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone</label>
                                     <div class="mt-2">
-                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Phone" type="text" name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Phone : string.Empty)">
+                                        <input disabled style=" border: 1px solid #ACD3FF;" asp-for="acc.Phone" type="text" name="phone" required id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Phone : string.Empty)">
                                     </div>
                                 </div>
 
                                 <div class="sm:col-span-3">
                                     <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
                                     <div class="mt-2">
-                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Address" type="text" name="address" id="address" autocomplete="address" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Address : string.Empty)">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Address" type="text" name="address" id="address" required autocomplete="address" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Address : string.Empty)">
                                     </div>
                                 </div>
                                     <div class="sm:col-span-3">
