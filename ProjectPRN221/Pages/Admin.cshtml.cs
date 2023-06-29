@@ -176,6 +176,10 @@ namespace ProjectPRN221.Pages
                 }
                 if (mode == "deleteBookBorrow")
                 {
+                    var bo = borrowRepository.GetBooksBorrowByID(idDelete);
+                    Book b = bookRepository.GetBookByID(bo.BookId);
+                    b.AvailableCopies++;
+                    bookRepository.UpdateBook(b);
                     borrowRepository.DeleteBookBorrow(idDelete);
                     Response.Redirect("Admin?mode=bookborrow");
                 }
@@ -353,6 +357,9 @@ namespace ProjectPRN221.Pages
                     else
                     {
                         booksBorrow.Status = true;
+                        Book b = bookRepository.GetBookByID(booksBorrow.BookId);
+                        b.AvailableCopies--;
+                        bookRepository.UpdateBook(b);
                         borrowRepository.InsertBookBorrow(booksBorrow);
                         ViewData["createBorrowSuss"] = "suss";
                     }

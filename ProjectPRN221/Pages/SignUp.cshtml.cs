@@ -21,7 +21,7 @@ namespace ProjectPRN221.Pages
         public void OnGet(string? accPhone)
         {
             List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
-            if(accPhone != null)
+            if (accPhone != null)
             {
                 var accFind = accountRepository.GetAllAccounts().Where(s => s.Phone == accPhone).ToList();
                 accFind[0].Status = true;
@@ -32,26 +32,25 @@ namespace ProjectPRN221.Pages
 
         public void OnPost(Account account)
         {
-            
+
             account.CreatedTime = DateTime.Now;
             account.Status = false;
             List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
-            bool shouldExecute = true;
-
-            if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Email == account.Email) != null)
+            if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Email == account.Email) != null ||
+                accountRepository.GetAllAccounts().SingleOrDefault(s => s.Phone == account.Phone) != null
+                )
             {
-                ViewData["emaildub"] = "emaildub";
-            }
-            else if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Phone == account.Phone) != null)
-            {
-                ViewData["phonedub"] = "phonedub";
+                if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Email == account.Email) != null)
+                {
+                    ViewData["emaildub"] = "emaildub";
+                }
+                if (accountRepository.GetAllAccounts().SingleOrDefault(s => s.Phone == account.Phone) != null)
+                {
+                    ViewData["phonedub"] = "phonedub";
+                }
+                ViewData["account"] = account;
             }
             else
-            {
-                shouldExecute = false; 
-            }
-
-            if (!shouldExecute)
             {
                 try
                 {

@@ -37,7 +37,7 @@ namespace ProjectPRN221.Pages
                 if (book.TotalCopies < book.AvailableCopies)
                 {
                     var bookFind = bookRepository.GetBookByID(book.BookId);
-                    ViewData["book"] = bookFind;
+                    ViewData["book"] = book;
                     ViewData["oversize"] = "oversize";
                 }
                 else
@@ -53,6 +53,7 @@ namespace ProjectPRN221.Pages
                 if (book.TotalCopies < book.AvailableCopies)
                 {
                     ViewData["oversize"] = "oversize";
+                    ViewData["book"] = book;
                 }
                 else
                 {

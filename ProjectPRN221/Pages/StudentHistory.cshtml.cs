@@ -10,6 +10,7 @@ namespace ProjectPRN221.Pages
     {
         IBookBorrowRepository bookBorrowRepository = new BookBorrowRepository();
         IAccountRepository accountRepository = new AccountRepository();
+        IBookRepository bookRepository = new BookRepository();
 
         public IPagedList<BookBorrowDTO> PagedBookBorrows { get; set; }
 
@@ -27,6 +28,10 @@ namespace ProjectPRN221.Pages
                 if(id != null)
                 {
                     var booksBorrowFind = bookBorrowRepository.GetBooksBorrowByID(id);
+                    var b = bookRepository.GetBookByID(booksBorrowFind.BookId);
+                    b.AvailableCopies++;
+                    bookRepository.UpdateBook(b);
+
                     booksBorrowFind.DateReturn = DateTime.Now;
                     bookBorrowRepository.UpdateBookBorrow(booksBorrowFind);
                     ViewData["id"] = id;
