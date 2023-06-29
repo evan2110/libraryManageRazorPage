@@ -155,12 +155,23 @@ namespace ProjectPRN221.Pages
                 }
                 if (mode == "createBookBorrow")
                 {
+                    var accounts = accountRepository.GetAllAccounts().Where(a => a.RoleId == 3).ToList();
+                    var books = bookRepository.GetBooks().Where(b => b.AvailableCopies > 0).ToList();
+
+                    ViewData["lstAcc"] = accounts;
+                    ViewData["lstBook"] = books;
+
                     ViewData["mode"] = "createBookBorrow";
                 }
                 if (mode == "editBookBorrow")
                 {
                     var bookBorrow = borrowRepository.GetBooksBorrowByID(id);
                     ViewData["mode"] = "createBookBorrow";
+                    var accounts = accountRepository.GetAllAccounts().Where(a => a.RoleId == 3).ToList();
+                    var books = bookRepository.GetBooks().Where(b => b.AvailableCopies > 0).ToList();
+
+                    ViewData["lstAcc"] = accounts;
+                    ViewData["lstBook"] = books;
                     ViewData["bookBorrow"] = bookBorrow;
                 }
                 if (mode == "deleteBookBorrow")
@@ -209,17 +220,41 @@ namespace ProjectPRN221.Pages
         {
             if (role.RoleName != null)
             {
+                
                 if (role.RoleId != 0)
                 {
-                    roleRepository.UpdateRole(role);
+                    var roleFind = roleRepository.GetRoleById(role.RoleId);
+
+                    if (roleRepository.GetRoles().Where(r => r.RoleName != roleFind.RoleName).
+                        FirstOrDefault(r => r.RoleName == role.RoleName) != null)
+                    {
+                        ViewData["roleExist"] = "suss";
+                    }
+                    else
+                    {
+                        roleRepository.UpdateRole(role);
+                        ViewData["updateRoleSuss"] = "suss";
+                    }
+                    ViewData["mode"] = "createRole";
+                    ViewData["role"] = role;
+
                 }
                 else
                 {
-                    roleRepository.InsertRole(role);
+                    if (roleRepository.GetRoles().
+                        FirstOrDefault(r => r.RoleName == role.RoleName) != null)
+                    {
+                        ViewData["roleExist"] = "suss";
+                        ViewData["role"] = role;
+                    }
+                    else
+                    {
+                        roleRepository.InsertRole(role);
+                        ViewData["createRoleSuss"] = "suss";
+                    }
                 }
-                
+
                 ViewData["mode"] = "createRole";
-                ViewData["createRoleSuss"] = "suss";
             }
             else if (acc.FirstName != null)
             {
@@ -239,7 +274,9 @@ namespace ProjectPRN221.Pages
                 List<Role> listRoles = roleRepository.GetRoles().Where(r => r.RoleName != "Admin").ToList();
                 ViewData["listRoles"] = listRoles;
                 ViewData["mode"] = "createAcc";
-
+                var accResult = accountRepository.GetAccountById(acc.AccountId);
+                ViewData["acc"] = accResult;
+                ViewData["updateAccSuss"] = "suss";
 
             }
             else if (book.Title != null)
@@ -249,13 +286,25 @@ namespace ProjectPRN221.Pages
                     if(book.TotalCopies >= book.AvailableCopies)
                     {
                         bookRepository.UpdateBook(book);
+                        ViewData["updateBookSuss"] = "suss";
                     }
+                    else
+                    {
+                        ViewData["totalLess"] = "suss";
+                    }
+                    ViewData["book"] = book;
                 }
                 else
                 {
                     if(book.TotalCopies >= book.AvailableCopies)
                     {
                         bookRepository.InsertBook(book);
+                        ViewData["createBookSuss"] = "suss";
+                    }
+                    else
+                    {
+                        ViewData["totalLess"] = "suss";
+                        ViewData["book"] = book;
                     }
                 }
                 
@@ -267,13 +316,52 @@ namespace ProjectPRN221.Pages
             {
                 if (booksBorrow.BookBorrowId != 0)
                 {
-                    borrowRepository.UpdateBookBorrow(booksBorrow);
+                    if (booksBorrow.DateBorrowed > booksBorrow.DueDate || booksBorrow.DateBorrowed > booksBorrow.DateReturn)
+                    {
+                        if (booksBorrow.DateBorrowed > booksBorrow.DueDate)
+                        {
+                            ViewData["dueDateError"] = "suss";
+                        }
+                        if (booksBorrow.DateBorrowed > booksBorrow.DateReturn)
+                        {
+                            ViewData["dateReturnError"] = "suss";
+                        }
+                    }
+                    else
+                    {
+                        booksBorrow.Status = true;
+                        borrowRepository.UpdateBookBorrow(booksBorrow);
+                        ViewData["updateBorrowSuss"] = "suss";
+                    }
+                    ViewData["bookBorrow"] = booksBorrow;
                 }
                 else
                 {
-                    borrowRepository.InsertBookBorrow(booksBorrow);
+                    if(booksBorrow.DateBorrowed > booksBorrow.DueDate || booksBorrow.DateBorrowed > booksBorrow.DateReturn)
+                    {
+                        if (booksBorrow.DateBorrowed > booksBorrow.DueDate)
+                        {
+                            ViewData["dueDateError"] = "suss";
+                            ViewData["bookBorrow"] = booksBorrow;
+                        }
+                        if (booksBorrow.DateBorrowed > booksBorrow.DateReturn)
+                        {
+                            ViewData["dateReturnError"] = "suss";
+                            ViewData["bookBorrow"] = booksBorrow;
+                        }
+                    }
+                    else
+                    {
+                        booksBorrow.Status = true;
+                        borrowRepository.InsertBookBorrow(booksBorrow);
+                        ViewData["createBorrowSuss"] = "suss";
+                    }
                 }
-                
+                var accounts = accountRepository.GetAllAccounts();
+                var books = bookRepository.GetBooks();
+
+                ViewData["lstAcc"] = accounts;
+                ViewData["lstBook"] = books;
                 ViewData["mode"] = "createBookBorrow";
 
             }

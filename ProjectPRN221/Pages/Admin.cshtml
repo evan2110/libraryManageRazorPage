@@ -20,6 +20,8 @@
     var totalBooks = ViewData["totalBooks"];
 
     var bookBorrows = ViewData["bookBorrows"] as IPagedList<BooksBorrow>;
+    var lstAcc = ViewData["lstAcc"] as List<Account>;
+    var lstBook = ViewData["lstBook"] as List<Book>;
     var bookBorrow = ViewData["bookBorrow"] as BooksBorrow;
     var totalBookBorrows = ViewData["totalBookBorrows"];
 
@@ -302,24 +304,6 @@
                                     Create
                                 </button>
                             </span>
-
-                            @*<span class="ml-3 hidden sm:block">
-                                <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                    <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
-                                    Export
-                                </button>
-                            </span>*@
-
-                            @*<form method="post" enctype="multipart/form-data">
-                                <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
-                                <label for="img" class="upload-label ml-3">Upload file</label>
-
-                                <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                    <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
-                                    Import
-                                </button>
-                            </form>*@
-
                         </div>
 
                 </div>
@@ -443,11 +427,19 @@
                         
                     </div>
                     <div class="mt-10">
-                        @if (ViewData["infor"] == "registersuss")
+                        @if (ViewData["createRoleSuss"] != null)
                         {
-                            <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Register success</span>
+                            <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Create role success</span>
                         }
-                        <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                        @if (ViewData["updateRoleSuss"] != null)
+                        {
+                            <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Update role success</span>
+                        }
+                            @if (ViewData["roleExist"] != null)
+                        {
+                            <span style="margin-bottom: 10px; text-align: center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Role is exist</span>
+                        }
+                            <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                     </div>
                 </form>
             </div>
@@ -636,12 +628,12 @@
                                         <input style=" border: 1px solid #ACD3FF;" asp-for="acc.Address" type="text" name="address" id="address" required autocomplete="address" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(acc != null ? acc.Address : string.Empty)">
                                     </div>
                                 </div>
-                                    <div class="sm:col-span-3">
-                                        <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
-                                        <div style=" border: 1px solid #ACD3FF;" class="mt-2">
-                                            <select disabled id="role" name="roleid" autocomplete="role-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="acc.RoleId" asp-items="@(new SelectList(listRoles, "RoleId", "RoleName"))"></select>
-                                        </div>
+                                <div class="sm:col-span-3">
+                                    <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role</label>
+                                    <div style=" border: 1px solid #ACD3FF;" class="mt-2">
+                                        <select disabled id="role" name="roleid" autocomplete="role-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="acc.RoleId" asp-items="@(new SelectList(listRoles, "RoleId", "RoleName", acc.RoleId))"></select>
                                     </div>
+                                </div>
                                 <div class="sm:col-span-3">
                                     <fieldset>
                                         <legend class="text-sm font-semibold leading-6 text-gray-900">Gender</legend>
@@ -667,10 +659,10 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        @if (ViewData["infor"] == "updatesuss")
-                        {
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
-                        }
+                            @if (ViewData["updateAccSuss"] != null)
+                            {
+                                <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Update account success</span>
+                            }
                         <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                     </div>
                 </form>
@@ -692,24 +684,6 @@
                                 Create
                             </button>
                         </span>
-
-                        @*<span class="ml-3 hidden sm:block">
-                            <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
-                                Export
-                            </button>
-                        </span>*@
-
-                        @*<form method="post" enctype="multipart/form-data">
-                    <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
-                    <label for="img" class="upload-label ml-3">Upload file</label>
-
-                    <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                    <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
-                    Import
-                    </button>
-                    </form>*@
-
                     </div>
 
                 </div>
@@ -888,14 +862,18 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        @if (ViewData["infor"] == "updatesuss")
+                        @if (ViewData["updateBookSuss"] != null)
                         {
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
-                        }
-                        @if (ViewData["infor"] == "insertsuss")
+                                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Update book success</span>
+                            }
+                        @if (ViewData["createBookSuss"] != null)
                         {
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Inserted success</span>
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Create book success</span>
                         }
+                            @if (ViewData["totalLess"] != null)
+                        {
+                                <span style="margin-bottom: 10px; text-align: center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Total book must be greater than available book</span>
+                            }
                         <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                     </div>
                 </form>
@@ -917,24 +895,6 @@
                                 Create
                             </button>
                         </span>
-
-                        @*<span class="ml-3 hidden sm:block">
-                            <button onclick="redirectExcel('export')" type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                <i class="fa-solid fa-file-export" style="color: #4838ca; margin:3px;"></i>
-                                Export
-                            </button>
-                        </span>*@
-
-                        @*<form method="post" enctype="multipart/form-data">
-                    <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
-                    <label for="img" class="upload-label ml-3">Upload file</label>
-
-                    <button onclick="importFile()" class="ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                    <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
-                    Import
-                    </button>
-                    </form>*@
-
                     </div>
 
                 </div>
@@ -1068,16 +1028,16 @@
                                 </div>
 
                                 <div class="col-span-full">
-                                    <label for="AccountId" class="block text-sm font-medium leading-6 text-gray-900">Account ID</label>
-                                    <div class="mt-2">
-                                        <input style="border: 1px solid #ACD3FF;"  asp-for="bookBorrow.AccountId" type="text" name="AccountId" id="AccountId" autocomplete="AccountId" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.AccountId : string.Empty)">
+                                    <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Account</label>
+                                    <div style=" border: 1px solid #ACD3FF;" class="mt-2">
+                                            <select id="AccountId" name="AccountId" autocomplete="AccountId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="bookBorrow.AccountId" asp-items="@(new SelectList(lstAcc, "AccountId", "FirstName", bookBorrow != null ? bookBorrow.AccountId : "AccountId"))"></select>
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
-                                    <label for="BookId" class="block text-sm font-medium leading-6 text-gray-900">Book ID</label>
-                                    <div class="mt-2">
-                                        <input style="border: 1px solid #ACD3FF;"  asp-for="bookBorrow.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.BookId : string.Empty)">
+                                    <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Book</label>
+                                    <div style=" border: 1px solid #ACD3FF;" class="mt-2">
+                                            <select id="BookId" name="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="bookBorrow.BookId" asp-items="@(new SelectList(lstBook, "BookId", "Title", bookBorrow != null ? bookBorrow.BookId : "BookId"))"></select>
                                     </div>
                                 </div>
 
@@ -1092,20 +1052,28 @@
                                     <label for="DueDate" class="block text-sm font-medium leading-6 text-gray-900">DueDate</label>
                                     <div class="mt-2">
                                         <input style="border: 1px solid #ACD3FF;"  asp-for="bookBorrow.DueDate" type="text" name="DueDate" id="DueDate" autocomplete="DueDate" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DueDate.ToString("yyyy-MM-dd HH:mm") : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                            @if (ViewData["dueDateError"] != null)
+                                            {
+                                                <span style="margin-bottom: 10px; text-align: center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Due date can not be less than borrowed Date</span>
+                                            }
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="DateReturn" class="block text-sm font-medium leading-6 text-gray-900">DateReturn</label>
                                     <div class="mt-2">
-                                        <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.DateReturn" type="text" name="DateReturn" id="DateReturn" autocomplete="DateReturn" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateReturn : DateTime.Now.ToString("yyyy-MM-dd HH:mm"))'>
+                                            <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.DateReturn" type="text" name="DateReturn" id="DateReturn" autocomplete="DateReturn" class="mb-10 block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 datetimepicker" placeholder="Select date and time" value='@(bookBorrow != null ? bookBorrow.DateReturn?.ToString("yyyy-MM-dd HH:mm") : null)'>
+                                            @if (ViewData["dateReturnError"] != null)
+                                            {
+                                                <span style="margin-bottom: 10px; text-align: center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Return date can not be less than borrowed Date</span>
+                                            }
                                     </div>
                                 </div>
 
                                 <div class="col-span-full">
                                     <label for="ReceivedBy" class="block text-sm font-medium leading-6 text-gray-900">ReceivedBy</label>
                                     <div class="mt-2">
-                                        <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.ReceivedBy" type="text" name="ReceivedBy" id="ReceivedBy" autocomplete="ReceivedBy" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? bookBorrow.ReceivedBy : string.Empty)">
+                                        <input style="border: 1px solid #ACD3FF;" asp-for="bookBorrow.ReceivedBy" type="text" name="ReceivedBy" id="ReceivedBy" required autocomplete="ReceivedBy" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(bookBorrow != null ? bookBorrow.ReceivedBy : string.Empty)">
                                     </div>
                                 </div>
 
@@ -1115,13 +1083,13 @@
                     </div>
 
                     <div class="mt-6 flex items-center justify-end gap-x-6">
-                        @if (ViewData["infor"] == "updatesuss")
+                        @if (ViewData["createBorrowSuss"] != null)
                         {
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Updated success</span>
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Create book borrow success</span>
                         }
-                        @if (ViewData["infor"] == "insertsuss")
+                        @if (ViewData["updateBorrowSuss"] != null)
                         {
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Inserted success</span>
+                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 show">Update book borrow success</span>
                         }
                         <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                     </div>
