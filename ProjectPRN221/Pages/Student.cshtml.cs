@@ -20,7 +20,7 @@ namespace ProjectPRN221.Pages
         {
             _environment = environment;
         }
-        public void OnGet(int? handler, int? bookId, string? search, int? bookIdDelete)
+        public void OnGet(int? handler, int? bookId, string? search, int? bookIdDelete, string? fromDate, string? toDate)
         {
             
             if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
@@ -29,10 +29,32 @@ namespace ProjectPRN221.Pages
                 var pageSize = 10;
 
                 var books = bookRepository.GetBooks();
-                if (search != null)
+
+                if (fromDate != null && toDate == null && search == null)
                 {
-                    books = bookRepository.SearchBooksByTitleOrAuthorOrPublicDateOrLocaion(search.Trim());
+                    books = bookRepository.GetBooks().Where(b => b.PublicationDate >= DateTime.Parse(fromDate)).ToList();
+                }else if(toDate != null && fromDate == null & search == null)
+                {
+                    books = bookRepository.GetBooks().Where(b => b.PublicationDate <= DateTime.Parse(toDate)).ToList();
+
+                }else if(search != null && fromDate == null && toDate == null)
+                {
+                    books = bookRepository.GetBooks().Where(e => e.Title.Contains(search.Trim()) || e.Author.Contains(search.Trim()) || e.ShelfLocation.Contains(search.Trim())).ToList();
+                }else if(fromDate != null && toDate != null && search == null)
+                {
+                    books = bookRepository.GetBooks().Where(b => b.PublicationDate <= DateTime.Parse(toDate) && b.PublicationDate >= DateTime.Parse(fromDate)).ToList();
+                }else if(search != null && fromDate != null && toDate == null)
+                {
+                    books = bookRepository.GetBooks().Where(e => e.Title.Contains(search.Trim()) || e.Author.Contains(search.Trim()) || e.ShelfLocation.Contains(search.Trim()) && e.PublicationDate >= DateTime.Parse(fromDate)).ToList();
                 }
+                else if(search != null && toDate != null && fromDate == null)
+                {
+                    books = bookRepository.GetBooks().Where(e => e.Title.Contains(search.Trim()) || e.Author.Contains(search.Trim()) || e.ShelfLocation.Contains(search.Trim()) && e.PublicationDate <= DateTime.Parse(toDate)).ToList();
+                }else if(search != null && fromDate != null && toDate != null)
+                {
+                    books = bookRepository.GetBooks().Where(e => e.Title.Contains(search.Trim()) || e.Author.Contains(search.Trim()) || e.ShelfLocation.Contains(search.Trim()) && e.PublicationDate <= DateTime.Parse(toDate) && e.PublicationDate >= DateTime.Parse(fromDate)).ToList();
+                }
+
                 PagedBooks = books.ToPagedList(pageNumber, pageSize);
                 var totalBooks = PagedBooks.PageCount;
                 
@@ -62,9 +84,16 @@ namespace ProjectPRN221.Pages
                     Response.Redirect("Student");
                 }
 
+                if (fromDate != null)
+                {
+
+                }
+
                 ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));
                 ViewData["totalBooks"] = totalBooks;
                 ViewData["search"] = search;
+                ViewData["fromDate"] = fromDate;
+                ViewData["toDate"] = toDate;
                 ViewData["books"] = PagedBooks;
             }
             else
@@ -121,7 +150,12 @@ namespace ProjectPRN221.Pages
                                 book.AvailableCopies = int.Parse(worksheet.Cells[row, 4].Value?.ToString());
                                 book.TotalCopies = int.Parse(worksheet.Cells[row, 5].Value?.ToString());
                                 book.ShelfLocation = worksheet.Cells[row, 6].Value?.ToString();
-                                Console.WriteLine(book.Title);
+                                if(book.Title == null || book.Author == null || book.PublicationDate == null ||
+                                    book.AvailableCopies == null || book.TotalCopies == null || book.ShelfLocation == null
+                                    || book.TotalCopies < book.AvailableCopies)
+                                {
+                                    continue;
+                                }
                                 lstbooks.Add(book);
                             }
 
