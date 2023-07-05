@@ -34,7 +34,7 @@
                             <label for="email" class="text-sm font-semibold leading-6 text-gray-900">Email address</label>
                             <div class="mt-2">
                                 <input style=" border: 1px solid #ACD3FF;" asp-for="account.Email" id="email" required name="email" type="email" autocomplete="email" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Email">
-                                @if (ViewData["emaildub"] != null)
+                                @if (ViewData["errorMail"] != null)
                                 {
                                     <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Email is exist</span>
                                 }
@@ -51,7 +51,7 @@
                         <div class="sm:col-span-2 sm:col-start-1">
                             <label for="phone" class="text-sm font-semibold leading-6 text-gray-900">Phone</label>
                             <div class="mt-2">
-                                <input style=" border: 1px solid #ACD3FF;" asp-for="account.Phone" type="text" required name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Phone">
+                                <input disabled style=" border: 1px solid #ACD3FF;" asp-for="account.Phone" type="text" required name="phone" id="phone" autocomplete="phone" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@acc.Phone">
                                 @if (ViewData["phonedub"] != null)
                                 {
                                     <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">Phone is exist</span>

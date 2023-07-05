@@ -29,15 +29,23 @@ namespace ProjectPRN221.Pages
             Account acc = accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password")));
 
             int accountID = acc.AccountId;
-            account.AccountId = accountID;
-            account.RoleId = acc.RoleId;
-            account.Status = acc.Status;
-            account.CreatedTime = acc.CreatedTime;
-            account.UpdateTime = DateTime.Now;
+            account.Phone = acc.Phone;
+            if (accountRepository.GetAllAccounts().Where(e => e.Email != account.Email).FirstOrDefault(e => e.Email == acc.Email) != null)
+            {
+                ViewData["errorMail"] = "check";
+            }
+            else
+            {
+                account.AccountId = accountID;
+                account.RoleId = acc.RoleId;
 
-            accountRepository.UpdateAccount(account);
+                account.Status = acc.Status;
+                account.CreatedTime = acc.CreatedTime;
+                account.UpdateTime = DateTime.Now;
+                accountRepository.UpdateAccount(account);
+                ViewData["infor"] = "updatesuss";
+            }
             ViewData["acc"] = account;
-            ViewData["infor"] = "updatesuss";
         }
 
         
