@@ -225,3 +225,5 @@ D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\bin\Debug\net6.0\
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\bin\Debug\net6.0\Mono.TextTemplating.dll
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\bin\Debug\net6.0\System.CodeDom.dll
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\bin\Debug\net6.0\Properties\launchSettings.json
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\bin\Debug\net6.0\libman.json
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\bin\Debug\net6.0\lib\microsoft\signalr\package.json

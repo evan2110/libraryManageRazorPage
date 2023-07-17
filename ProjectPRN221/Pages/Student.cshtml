@@ -132,7 +132,7 @@
                     <tr>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
-                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>
+                        <td style="border: 1px solid #ACD3FF;" class="p-2">@item.PublicationDate.ToString("dd/MM/yyyy")</td>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>

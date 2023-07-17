@@ -61,7 +61,7 @@ namespace ProjectPRN221.Pages
                         phone = phone.Substring(0, index) + "+84" + phone.Substring(index + 1);
                     }
                     var accountSid = "ACef875dab95bd8f3737e10358fe6311af";
-                    var authToken = "a0f53565f0f388d9f680d80ff332170e";
+                    var authToken = "2bf46c68bbcb440feaa4bc17f830ffcf";
                     TwilioClient.Init(accountSid, authToken);
                     Console.WriteLine(phone);
 

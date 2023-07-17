@@ -1,5 +1,7 @@
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\ProjectPRN221.exe
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\libman.json
+D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\lib\microsoft\signalr\package.json
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\package-lock.json
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\package.json
 D:\C Sharp\PRN221_Trenlop\libraryManageRazorPage\ProjectPRN221\obj\Release\net6.0\PubTmp\Out\ProjectPRN221.dll

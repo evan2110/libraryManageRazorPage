@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAEyLpggUyPU+gDpRJHlzb9QAAAAACAAAAAAAQZgAAAAEAACAAAACM/hrux7bPSDQYuqEbbfYRl1DF+NnK4pVmQ8eR5wqKTAAAAAAOgAAAAAIAACAAAAD4MCQNUgVj41sg3QbxK7ZhVT+DA41TAgMLG9yUnByHbyAAAAC1Se5i51tGeovNsDXwtzSeDu5sUM+88oVRidc23jcH2UAAAACV5ZT9l223vH/0RA0d4+gUhWWkuSBsIKl4yYgi+UmVYbYaAOwG4Ukfq8mewXZNHzZMc/65U8hjsgavNNwbrB7V</EncryptedPassword>
+    <History>True|2023-07-05T02:04:34.5511551Z;False|2023-07-05T09:00:39.4268676+07:00;False|2023-07-05T08:56:02.0157656+07:00;True|2023-07-05T08:48:54.9560362+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="ProjectDB">
+      <Value>Data Source=SQL8001.site4now.net%3bInitial Catalog=db_a9bcd0_nhatduck2110%3bUser Id=db_a9bcd0_nhatduck2110_admin%3bPassword=Chich1412</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="ManageBookLibrary.BusinessObject.DatabaseTestProjectContext">
+      <Value>Data Source=SQL8001.site4now.net%3bInitial Catalog=db_a9bcd0_nhatduck2110%3bUser Id=db_a9bcd0_nhatduck2110_admin%3bPassword=Chich1412</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
