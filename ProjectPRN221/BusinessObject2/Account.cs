@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ManageBookLibrary.BusinessObject;
+namespace ProjectPRN221.BusinessObject2;
 
 public partial class Account
 {

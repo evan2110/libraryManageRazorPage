@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ManageBookLibrary.BusinessObject
+﻿namespace ProjectPRN221.BusinessObject2
 {
     public class BookBorrowDTO
     {

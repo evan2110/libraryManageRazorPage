@@ -1,12 +1,10 @@
-﻿using ManageBookLibrary.BusinessObject;
-using ManageBookLibrary.Repository;
-using Microsoft.AspNetCore.Mvc;
+﻿using ManageBookLibrary.Repository;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Net;
+using ProjectPRN221.BusinessObject2;
 
 namespace ProjectPRN221.Pages
 {
-    
+
     public class ManagerModel : PageModel
     {
         

@@ -1,10 +1,6 @@
-using Azure;
-using Azure.Core;
-using ManageBookLibrary.BusinessObject;
 using ManageBookLibrary.Repository;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ProjectPRN221.BusinessObject2;
 
 namespace ProjectPRN221.Pages
 {

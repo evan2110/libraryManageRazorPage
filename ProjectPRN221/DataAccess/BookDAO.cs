@@ -1,9 +1,4 @@
-﻿using ManageBookLibrary.BusinessObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProjectPRN221.BusinessObject2;
 
 namespace ManageBookLibrary.DataAccess
 {
@@ -41,6 +36,7 @@ namespace ManageBookLibrary.DataAccess
                     ShelfLocation = b.ShelfLocation,
                     Title = b.Title,
                     TotalCopies = b.TotalCopies,
+                    Image = b.Image,
                 })
                     .ToList();
             }

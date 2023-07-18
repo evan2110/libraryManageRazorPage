@@ -1,9 +1,9 @@
-using ManageBookLibrary.BusinessObject;
 using ManageBookLibrary.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Identity.Client;
 using PagedList;
+using ProjectPRN221.BusinessObject2;
 using System.Data;
 using static System.Reflection.Metadata.BlobBuilder;
 

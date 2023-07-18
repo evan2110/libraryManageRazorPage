@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
-namespace ManageBookLibrary.BusinessObject;
+namespace ProjectPRN221.BusinessObject2;
 
 public partial class DatabaseTestProjectContext : DbContext
 {
@@ -22,6 +21,8 @@ public partial class DatabaseTestProjectContext : DbContext
 
     public virtual DbSet<BooksBorrow> BooksBorrows { get; set; }
 
+    public virtual DbSet<Comment> Comments { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,6 +34,7 @@ public partial class DatabaseTestProjectContext : DbContext
         optionsBuilder.UseSqlServer(configuration.GetConnectionString("ProjectDB"));
 
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
@@ -90,6 +92,10 @@ public partial class DatabaseTestProjectContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("author");
             entity.Property(e => e.AvailableCopies).HasColumnName("available_copies");
+            entity.Property(e => e.Image)
+                .HasMaxLength(200)
+                .IsFixedLength()
+                .HasColumnName("image");
             entity.Property(e => e.PublicationDate)
                 .HasColumnType("date")
                 .HasColumnName("publication_date");
@@ -137,6 +143,22 @@ public partial class DatabaseTestProjectContext : DbContext
                 .HasForeignKey(d => d.BookId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_BooksBorrow_Books");
+        });
+
+        modelBuilder.Entity<Comment>(entity =>
+        {
+            entity.ToTable("Comment");
+
+            entity.Property(e => e.CommentId).HasColumnName("comment_id");
+            entity.Property(e => e.BookId).HasColumnName("book_id");
+            entity.Property(e => e.Content)
+                .HasMaxLength(300)
+                .HasColumnName("content");
+
+            entity.HasOne(d => d.Book).WithMany(p => p.Comments)
+                .HasForeignKey(d => d.BookId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Comment_Books");
         });
 
         modelBuilder.Entity<Role>(entity =>

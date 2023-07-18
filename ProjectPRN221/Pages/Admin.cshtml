@@ -1,6 +1,6 @@
 ﻿@page
-@using ManageBookLibrary.BusinessObject;
 @using PagedList;
+@using ProjectPRN221.BusinessObject2;
 @model ProjectPRN221.Pages.AdminModel
 @{
     HttpContext context = Request.HttpContext;
@@ -484,7 +484,7 @@
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Phone)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
-                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@item.Status</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">*****</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">
                                     @if(item.RoleId != 1)
@@ -916,7 +916,7 @@
                                     <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
                                     <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
                                     <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
-                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@Html.DisplayFor(modelItem => item.Status)</td>
+                                    <td style="border: 1px solid #ACD3FF;"  class="p-2">@item.Status</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">
                                         <button type="button" data-bookid="@item.BookBorrowId" onclick="redirectToAdmin('editBookBorrow', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.BookBorrowId" onclick="redirectToAdmin('deleteBookBorrow', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
