@@ -10,16 +10,15 @@ namespace ProjectPRN221.Pages
     {
         IAccountRepository accountRepository = new AccountRepository();
         IBookRepository bookRepository = new BookRepository();
-        ICommentRepository  commentRepository = new CommentRepository();
+        ICommentRepository commentRepository = new CommentRepository();
         public Book book { get; set; }
         public List<Comment> comments { get; set; }
-        public int countComment { get; set; }
 
         public string nameComment { get; set; }
+
         public void OnGet(string? mode, int? bookId)
         {
             book = bookRepository.GetBookByID(bookId);
-            countComment = commentRepository.GetAllComments().Where(e => e.BookId == bookId).Count();
             comments = commentRepository.GetAllComments().Where(e => e.BookId == bookId).ToList();
         }
     }

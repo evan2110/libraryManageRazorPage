@@ -1,4 +1,6 @@
-﻿using ProjectPRN221.BusinessObject3;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectPRN221.BusinessObject3;
+using System.ComponentModel.Design;
 
 namespace ProjectPRN221.DataAccess
 {
@@ -27,7 +29,7 @@ namespace ProjectPRN221.DataAccess
             try
             {
                 using var context = new DatabaseTestProjectContext();
-                listComment = context.Comments.ToList();
+                listComment = context.Comments.Include(e => e.Account).ToList();
             }
             catch (Exception ex)
             {
@@ -118,6 +120,6 @@ namespace ProjectPRN221.DataAccess
         }
 
         
-
+        
     }
 }

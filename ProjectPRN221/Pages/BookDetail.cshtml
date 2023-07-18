@@ -6,71 +6,76 @@
 <div class="relative isolate px-6 pt-14 lg:px-8">
 
     <div class="relative overflow-hidden bg-white" style="margin-top:65px;">
-                        <div class="bg-white">
-                            <div class="pt-6">
+        <div class="bg-white">
+            <div class="pt-6">
 
-                                <!-- Image gallery -->
-                                <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                                    <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                                        <img src="@Model.book.Image" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
-                                    </div>
+                <!-- Image gallery -->
+                <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                    <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                        <img src="@Model.book.Image" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
+                    </div>
+                </div>
+
+                <!-- Product info -->
+                <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+                    <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">@Model.book.Title</h1>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="mt-4 lg:row-span-3 lg:mt-0">
+                        <h2 class="sr-only">Book information</h2>
+                        <!-- Reviews -->
+                        <div class="mt-6">
+                            <h3 class="sr-only">Reviews</h3>
+                            <div class="flex items-center">
+                                <div class="flex items-center">
+                                    <!-- Active: "text-gray-900", Default: "text-gray-200" -->
+                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <p class="sr-only">4 out of 5 stars</p>
+                                <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">@Model.comments.Count() reviews</a>
+                            </div>
+                        </div>
+
+                        <form class="mt-10">
+                            <!-- Colors -->
+                            <div>
+                                <div class="alert alert-primary" role="alert">
+                                    View all reivews
                                 </div>
 
-                                <!-- Product info -->
-                                <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-                                    <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                                    <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">@Model.book.Title</h1>
+
+                                <fieldset class="code-fieldset">
+                                    <div class="code-content">
+                                        @foreach (var item in Model.comments)
+                                        {
+                                            <div class="code-row" style="border-bottom: 1px dotted  gray;">
+                                                <p class="code-author">@item.Account.FirstName @item.Account.LastName</p>
+                                                <p class="code-comment">@item.Content</p>
+                                            </div>
+                                        }
                                     </div>
+                                </fieldset>
 
-                                    <!-- Options -->
-                                    <div class="mt-4 lg:row-span-3 lg:mt-0">
-                                        <h2 class="sr-only">Book information</h2>
-                                        <!-- Reviews -->
-                                        <div class="mt-6">
-                                            <h3 class="sr-only">Reviews</h3>
-                                            <div class="flex items-center">
-                                                <div class="flex items-center">
-                                                    <!-- Active: "text-gray-900", Default: "text-gray-200" -->
-                                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <svg class="text-gray-900 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                                    </svg>
-                                                    <svg class="text-gray-200 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                                    </svg>
-                                                </div>
-                                                <p class="sr-only">4 out of 5 stars</p>
-                                                <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">@Model.countComment reviews</a>
-                                            </div>
-                                        </div>
+                            </div>
 
-                                        <form class="mt-10">
-                                            <!-- Colors -->
-                                            <div>
-                                                <div class="alert alert-primary" role="alert">
-                                                    View all reivews
-                                                </div>
-                                                <fieldset class="mt-4">
-                                                    <legend class="sr-only">Choose a color</legend>
-                                                    <div class="flex items-center space-x-3">
-                                                    @foreach(var item in Model.comments)
-                                                    {
-                                                        <p>@item.Content</p>
-                                                    }
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-
-                                            <!-- Sizes -->
-                                            <div class="mt-10">
+                            <!-- Sizes -->
+                            <div class="mt-10">
                                 <div>
                                     <p class="text-sm text-gray-700">
                                         Showing
@@ -82,64 +87,96 @@
                                 </div>
                                 <div>
                                     <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                                        
-                                            <a href="" class="mr-5 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                                <span class="sr-only">Previous</span>
-                                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-                                                </svg>
-                                            </a>
 
-                                        
-                                            <a href="" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                                <span class="sr-only">Next</span>
-                                                <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                                                </svg>
-                                            </a>
+                                        <a href="" class="mr-5 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                            <span class="sr-only">Previous</span>
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+
+
+                                        <a href="" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                                            <span class="sr-only">Next</span>
+                                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
                                     </nav>
                                 </div>
-                                            </div>
-
-                                            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Comment</button>
-                                        </form>
-                                    </div>
-
-                                    <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-                                        <!-- Description and details -->
-                                        <div>
-                                            <h3 class="sr-only">Description</h3>
-
-                                            <div class="space-y-6">
-                                            <p class="text-base text-gray-900">Author: @Model.book.Author</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-10">
-                                            <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-
-                                            <div class="mt-4">
-                                                <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-                                                    <li class="text-gray-400"><span class="text-gray-600">Unique Handcrafted Storytelling</span></li>
-                                                    <li class="text-gray-400"><span class="text-gray-600">Vibrant and Captivating Imagery</span></li>
-                                                    <li class="text-gray-400"><span class="text-gray-600">Multifaceted Characters</span></li>
-                                                    <li class="text-gray-400"><span class="text-gray-600">Gripping Plot and Unpredictable Twists</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-10">
-                                            <h2 class="text-sm font-medium text-gray-900">Description</h2>
-
-                                            <div class="mt-4 space-y-6">
-                                                <p class="text-sm text-gray-600">@Model.book.Description</p>
-                                            </div>
-                                        </div>
-                                    </div>
                             </div>
+
+                            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Comment</button>
+                        </form>
+                    </div>
+
+                    <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+                        <!-- Description and details -->
+                        <div>
+                            <h3 class="sr-only">Description</h3>
+
+                            <div class="space-y-6">
+                                <p class="text-base text-gray-900">Author: @Model.book.Author</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-10">
+                            <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+
+                            <div class="mt-4">
+                                <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                                    <li class="text-gray-400"><span class="text-gray-600">Unique Handcrafted Storytelling</span></li>
+                                    <li class="text-gray-400"><span class="text-gray-600">Vibrant and Captivating Imagery</span></li>
+                                    <li class="text-gray-400"><span class="text-gray-600">Multifaceted Characters</span></li>
+                                    <li class="text-gray-400"><span class="text-gray-600">Gripping Plot and Unpredictable Twists</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-10">
+                            <h2 class="text-sm font-medium text-gray-900">Description</h2>
+
+                            <div class="mt-4 space-y-6">
+                                <p class="text-sm text-gray-600">@Model.book.Description</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
 
 
 </div>
+
+<style>
+    .code-fieldset {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .code-legend {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .code-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .code-row {
+        margin-bottom: 10px;
+    }
+
+    .code-author {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .code-comment {
+        margin-bottom: 0;
+    }
+</style>
