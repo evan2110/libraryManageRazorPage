@@ -15,6 +15,8 @@ namespace ManageBookLibrary.Repository
 
         public List<BooksBorrow> GetBooksBorrows() => BookBorrowDAO.Instance.GetBooksBorrows();
 
+        public List<TopBookBorrow> GetTopBookBorrow() => BookBorrowDAO.Instance.GetTopBookBorrow();
+
         public void InsertBookBorrow(BooksBorrow booksBorrow) => BookBorrowDAO.Instance.AddNew(booksBorrow);
 
         public List<BooksBorrow> SearchBookBorrowByReceivedBy(string? search) => BookBorrowDAO.Instance.SearchBookBorrowByReceivedBy(search);

@@ -1,4 +1,5 @@
-﻿using ProjectPRN221.BusinessObject3;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectPRN221.BusinessObject3;
 
 namespace ManageBookLibrary.DataAccess
 {
@@ -211,6 +212,23 @@ namespace ManageBookLibrary.DataAccess
                 throw new Exception(ex.Message);
             }
             return booksBorrows;
+        }
+
+        public List<TopBookBorrow> GetTopBookBorrow()
+        {
+            using var context = new DatabaseTestProjectContext();
+
+            var result = (from bb in context.BooksBorrows
+                          join b in context.Books on bb.BookId equals b.BookId
+                          group b by new { b.BookId, b.Image } into g
+                          orderby g.Count() descending
+                          select new TopBookBorrow
+                          {
+                              BookId = g.Key.BookId,
+                              BorrowCount = g.Count(),
+                              Image = g.Key.Image
+                          }).Take(5).ToList();
+            return result;
         }
     }
 }

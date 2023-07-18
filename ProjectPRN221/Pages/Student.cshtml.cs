@@ -56,7 +56,6 @@ namespace ProjectPRN221.Pages
                 }
 
                 PagedBooks = books.ToPagedList(pageNumber, pageSize);
-                var totalBooks = PagedBooks.PageCount;
                 
                 if(bookId != null)
                 {
@@ -84,13 +83,8 @@ namespace ProjectPRN221.Pages
                     Response.Redirect("Student");
                 }
 
-                if (fromDate != null)
-                {
-
-                }
-
+                ViewData["topBookBorrow"] = bookBorrowRepository.GetTopBookBorrow();
                 ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));
-                ViewData["totalBooks"] = totalBooks;
                 ViewData["search"] = search;
                 ViewData["fromDate"] = fromDate;
                 ViewData["toDate"] = toDate;
@@ -150,12 +144,15 @@ namespace ProjectPRN221.Pages
                                 book.AvailableCopies = int.Parse(worksheet.Cells[row, 4].Value?.ToString());
                                 book.TotalCopies = int.Parse(worksheet.Cells[row, 5].Value?.ToString());
                                 book.ShelfLocation = worksheet.Cells[row, 6].Value?.ToString();
-                                if(book.Title == null || book.Author == null || book.PublicationDate == null ||
+                                book.Image = worksheet.Cells[row, 7].Value?.ToString();
+                                book.Description = worksheet.Cells[row, 8].Value?.ToString();
+                                if (book.Title == null || book.Author == null || book.PublicationDate == null ||
                                     book.AvailableCopies == null || book.TotalCopies == null || book.ShelfLocation == null
                                     || book.TotalCopies < book.AvailableCopies)
                                 {
                                     continue;
                                 }
+                                
                                 lstbooks.Add(book);
                             }
 
@@ -178,7 +175,7 @@ namespace ProjectPRN221.Pages
             var pageNumber = 1;
             var pageSize = 10;
             PagedBooks = books.ToPagedList(pageNumber, pageSize);
-            var totalBooks = PagedBooks.PageCount;
+            ViewData["topBookBorrow"] = bookBorrowRepository.GetTopBookBorrow();
             ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));
             ViewData["books"] = PagedBooks;
         }

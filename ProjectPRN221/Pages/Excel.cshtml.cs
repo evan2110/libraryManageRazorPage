@@ -29,6 +29,8 @@ namespace ProjectPRN221.Pages
                     worksheet.Cells[1, 4].Value = "AvailableCopies";
                     worksheet.Cells[1, 5].Value = "TotalCopies";
                     worksheet.Cells[1, 6].Value = "ShelfLocation";
+                    worksheet.Cells[1, 7].Value = "Image";
+                    worksheet.Cells[1, 8].Value = "Description";
 
                     for (int i = 0; i < allBooks.Count; i++)
                     {
@@ -39,6 +41,9 @@ namespace ProjectPRN221.Pages
                         worksheet.Cells[i + 2, 4].Value = book.AvailableCopies;
                         worksheet.Cells[i + 2, 5].Value = book.TotalCopies;
                         worksheet.Cells[i + 2, 6].Value = book.ShelfLocation;
+                        worksheet.Cells[i + 2, 7].Value = book.Image;
+                        worksheet.Cells[i + 2, 8].Value = book.Description;
+
                     }
 
                     package.Save();

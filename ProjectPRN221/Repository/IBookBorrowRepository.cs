@@ -16,5 +16,7 @@ namespace ManageBookLibrary.Repository
         BooksBorrow GetBooksBorrowByID(int? booksBorrowId);
         List<BooksBorrow> GetBooksBorrows();
         List<BooksBorrow> SearchBookBorrowByReceivedBy(string? search);
+
+        List<TopBookBorrow> GetTopBookBorrow();
     }
 }
