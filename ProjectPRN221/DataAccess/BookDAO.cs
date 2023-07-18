@@ -37,6 +37,7 @@ namespace ManageBookLibrary.DataAccess
                     Title = b.Title,
                     TotalCopies = b.TotalCopies,
                     Image = b.Image,
+                    Description = b.Description,
                 })
                     .ToList();
             }

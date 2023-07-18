@@ -60,13 +60,13 @@ namespace ProjectPRN221.DataAccess
                 Comment commentFind = GetCommentByID(comment.CommentId);
                 if (commentFind == null)
                 {
-                    throw new Exception("The comment is already exist.");
-                }
-                else
-                {
                     using var context = new DatabaseTestProjectContext();
                     context.Comments.Add(comment);
                     context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The comment is already exist.");
                 }
             }
             catch (Exception ex)
@@ -82,13 +82,13 @@ namespace ProjectPRN221.DataAccess
                 Comment commentFind = GetCommentByID(comment.CommentId);
                 if (commentFind != null)
                 {
-                    throw new Exception("The comment does not already exist.");
-                }
-                else
-                {
                     using var context = new DatabaseTestProjectContext();
                     context.Comments.Update(comment);
                     context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("The comment does not already exist.");
                 }
             }
             catch (Exception ex)

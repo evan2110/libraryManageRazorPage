@@ -132,7 +132,7 @@
                     @foreach (var item in Books)
                     {
                         <tr>
-                            <td style="border: 1px solid #ACD3FF;" class="p-2"><a href="/BookDetail?mode=@context.Session.GetString("UserRole")&bookId=@item.BookId">@Html.DisplayFor(modelItem => item.Title)</a></td>
+                            <td style="border: 1px solid #ACD3FF;" class="p-2"><a href="/BookDetail?bookId=@item.BookId">@Html.DisplayFor(modelItem => item.Title)</a></td>
                             <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
                             <td style="border: 1px solid #ACD3FF;" class="p-2">@item.PublicationDate.ToString("dd/MM/yyyy")</td>
                             <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
