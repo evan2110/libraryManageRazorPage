@@ -19,10 +19,14 @@ namespace ProjectPRN221.Pages
 
         public Comment comment { get; set; }
 
-        public void OnGet(int? handler, int? bookId)
+        public void OnGet(int? handler, int? bookId, int? commentIdDelete)
         {
             if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
             {
+                if(commentIdDelete != null)
+                {
+                    commentRepository.DeleteComment(commentIdDelete);
+                }
                 var pageNumber = handler ?? 1;
                 var pageSize = 2;
                 var book = bookRepository.GetBookByID(bookId);

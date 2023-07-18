@@ -11,6 +11,39 @@
 }
 @if (context.Session.GetString("UserRole") == "Student" || context.Session.GetString("UserRole") == "Manager")
 {
+    <div id="model" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display:none;">
+
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Deactivate comment</h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">Are you sure you want to deactivate your comment? All of your data will be permanently removed. This action cannot be undone.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button onclick="redirectToDelete()" type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Deactivate</button>
+                        <button onclick="closeModal()" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*End Model*@
 <div class="relative isolate px-6 pt-14 lg:px-8">
 
     <div class="relative overflow-hidden bg-white" style="margin-top:65px;">
@@ -77,7 +110,7 @@
                                                 <p class="code-comment">@item.Content</p>
                                                     @if (context.Session.GetString("UserRole") == "Manager")
                                                     {
-                                                        <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Delete</button>
+                                                        <button data-bookid="@item.CommentId" type="button" onclick="redirectToComment(this)" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-2 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-24">Delete</button>
                                                     }
                                             </div>
                                         }
@@ -197,6 +230,7 @@
 
 </div>
 
+
 <style>
     .code-fieldset {
         border: 1px solid #ccc;
@@ -228,4 +262,22 @@
         margin-bottom: 0;
     }
 </style>
+
+    <script>
+        var commentIdDelete;
+        function redirectToComment(button) {
+            commentIdDelete = button.getAttribute("data-bookid");
+            var modal = document.getElementById("model");
+            modal.style.display = "block";
+        }
+
+        function redirectToDelete() {
+            window.location.href = '/BookDetail?bookId=@book.BookId&commentIdDelete=' + commentIdDelete;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("model");
+            modal.style.display = "none";
+        }
+    </script>
 }
