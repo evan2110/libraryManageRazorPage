@@ -16,8 +16,8 @@ namespace ProjectPRN221.Pages
         IBookRepository bookRepository = new BookRepository();
         ICommentRepository commentRepository = new CommentRepository();
         public IPagedList<Comment> PagedComments { get; set; }
-
         public Comment comment { get; set; }
+        public List<string> banWord { get; set; } = new List<string>() { "cc", "dmm", "lol", "cmm", "clmm", "loz", "clgt", "wtf"};
 
         public void OnGet(int? handler, int? bookId, int? commentIdDelete)
         {
@@ -45,19 +45,32 @@ namespace ProjectPRN221.Pages
 
         public void OnPost(Comment comment)
         {
-            Comment newComment = new Comment();
-            newComment.BookId = comment.BookId;
-            newComment.AccountId = accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))).AccountId;
-            newComment.Content = comment.Content;
-            newComment.DateComment = DateTime.Now;
-            commentRepository.InsertComment(newComment);
-
+            bool check = false;
+            foreach(var item in banWord)
+            {
+                if (comment.Content.Contains(item))
+                {
+                    check = true;
+                }
+            }
+            if (check == false)
+            {
+                Comment newComment = new Comment();
+                newComment.BookId = comment.BookId;
+                newComment.AccountId = accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))).AccountId;
+                newComment.Content = comment.Content;
+                newComment.DateComment = DateTime.Now;
+                commentRepository.InsertComment(newComment);
+            }
+            else
+            {
+                ViewData["error"] = "Don't use bad word !";
+            }
             var pageNumber = 1;
             var pageSize = 2;
             var book = bookRepository.GetBookByID(comment.BookId);
             var totalComment = commentRepository.GetAllComments().Where(e => e.BookId == comment.BookId).Count();
             PagedComments = commentRepository.GetAllComments().Where(e => e.BookId == comment.BookId).ToPagedList(pageNumber, pageSize);
-
             ViewData["book"] = book;
             ViewData["totalComment"] = totalComment;
             ViewData["PagedComments"] = PagedComments;

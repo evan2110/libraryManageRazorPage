@@ -7,7 +7,7 @@
     var book = ViewData["book"] as Book;
     var totalComment = ViewData["totalComment"];
     var PagedComments = ViewData["PagedComments"] as IPagedList<Comment>;
-
+    var error = ViewData["error"];
 }
 @if (context.Session.GetString("UserRole") == "Student" || context.Session.GetString("UserRole") == "Manager")
 {
@@ -171,6 +171,10 @@
                                 <input asp-for="comment.BookId" type="text" name="BookId" id="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="display:none;" value="@book.BookId">
                                 <input asp-for="comment.Content" type="text" name="Content" id="Content" autocomplete="Content" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
+                                @if (error != null)
+                                {
+                                <span style="margin-bottom: 10px; text-align:center;" class="block w-full items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 show">@error</span>
+                                }
                                 <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Comment</button>
                             }
                         </form>
