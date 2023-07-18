@@ -2,7 +2,7 @@ using ManageBookLibrary.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PagedList;
-using ProjectPRN221.BusinessObject2;
+using ProjectPRN221.BusinessObject3;
 
 namespace ProjectPRN221.Pages
 {

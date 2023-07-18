@@ -1,4 +1,4 @@
-﻿namespace ProjectPRN221.BusinessObject2
+﻿namespace ProjectPRN221.BusinessObject3
 {
     public class BookBorrowDTO
     {

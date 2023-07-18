@@ -1,6 +1,6 @@
 ﻿@page
 @using PagedList;
-@using ProjectPRN221.BusinessObject2;
+@using ProjectPRN221.BusinessObject3;
 @model ProjectPRN221.Pages.AdminModel
 @{
     HttpContext context = Request.HttpContext;
@@ -693,6 +693,7 @@
                                 <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies</th>
                                 <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies</th>
                                 <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation</th>
+                                <th style="border: 1px solid #ACD3FF;" class="p-2">Image</th>
                                 <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                             </tr>
                         </thead>
@@ -703,11 +704,12 @@
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
-                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.PublicationDate)</td>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">@item.PublicationDate.ToString("dd/MM/yyyy")</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.TotalCopies)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AvailableCopies)</td>
                                     <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ShelfLocation)</td>
-                                        <td style="border: 1px solid #ACD3FF;" class="p-2">
+                                    <th style="border: 1px solid #ACD3FF;" class="p-2"><img width="100" height="100" src="@item.Image" /></th>
+                                    <td style="border: 1px solid #ACD3FF;" class="p-2">
                                         <button type="button" data-bookid="@item.BookId" onclick="redirectToAdmin('editBook', this)" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
                                         <button type="button" data-bookid="@item.BookId" onclick="redirectToAdmin('deleteBook', this)" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
                                     </td>
@@ -823,6 +825,13 @@
                                     <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Author</label>
                                     <div class="mt-2">
                                         <input style=" border: 1px solid #ACD3FF;" asp-for="book.Author" type="text" required name="author" id="author" autocomplete="author" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Author : string.Empty)">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-full">
+                                    <label for="image" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
+                                    <div class="mt-2">
+                                        <input style=" border: 1px solid #ACD3FF;" asp-for="book.Image" type="text"  name="Image" id="Image" autocomplete="Image" class="block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="@(book != null ? book.Image : string.Empty)">
                                     </div>
                                 </div>
 

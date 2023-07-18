@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProjectPRN221.BusinessObject2;
+namespace ProjectPRN221.BusinessObject3;
 
 public partial class DatabaseTestProjectContext : DbContext
 {
@@ -92,6 +92,10 @@ public partial class DatabaseTestProjectContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("author");
             entity.Property(e => e.AvailableCopies).HasColumnName("available_copies");
+            entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("description");
             entity.Property(e => e.Image)
                 .HasMaxLength(200)
                 .IsFixedLength()
@@ -150,10 +154,19 @@ public partial class DatabaseTestProjectContext : DbContext
             entity.ToTable("Comment");
 
             entity.Property(e => e.CommentId).HasColumnName("comment_id");
+            entity.Property(e => e.AccountId).HasColumnName("account_id");
             entity.Property(e => e.BookId).HasColumnName("book_id");
             entity.Property(e => e.Content)
                 .HasMaxLength(300)
                 .HasColumnName("content");
+            entity.Property(e => e.DateComment)
+                .HasColumnType("datetime")
+                .HasColumnName("date_comment");
+
+            entity.HasOne(d => d.Account).WithMany(p => p.Comments)
+                .HasForeignKey(d => d.AccountId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Comment_Account");
 
             entity.HasOne(d => d.Book).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.BookId)

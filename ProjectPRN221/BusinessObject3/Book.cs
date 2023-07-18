@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProjectPRN221.BusinessObject2;
+namespace ProjectPRN221.BusinessObject3;
 
 public partial class Book
 {
@@ -20,6 +20,8 @@ public partial class Book
     public int BookId { get; set; }
 
     public string? Image { get; set; }
+
+    public string? Description { get; set; }
 
     public virtual ICollection<BooksBorrow> BooksBorrows { get; set; } = new List<BooksBorrow>();
 
@@ -47,5 +49,12 @@ public partial class Book
     {
         BookId = bookId;
         Image = image;
+    }
+
+    public Book(string title, string author, DateTime publicationDate, int availableCopies, int totalCopies, string shelfLocation, int bookId, string? image, string? description, ICollection<BooksBorrow> booksBorrows, ICollection<Comment> comments) : this(title, author, publicationDate, availableCopies, totalCopies, shelfLocation, bookId, image)
+    {
+        Description = description;
+        BooksBorrows = booksBorrows;
+        Comments = comments;
     }
 }

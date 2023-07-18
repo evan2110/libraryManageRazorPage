@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProjectPRN221.BusinessObject2;
+namespace ProjectPRN221.BusinessObject3;
 
 public partial class Account
 {
@@ -40,6 +40,8 @@ public partial class Account
 
     public virtual ICollection<BooksBorrow> BooksBorrows { get; set; } = new List<BooksBorrow>();
 
+    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
     public virtual Role Role { get; set; } = null!;
 
     public Account(string? firstName, string? lastName, string email, int roleId, DateTime? createdTime, DateTime? updateTime, string? phone, string? address, bool gender, bool? status, string password, int accountId, ICollection<BooksBorrow> booksBorrows, Role role)
@@ -68,5 +70,22 @@ public partial class Account
 
     public Account()
     {
+    }
+
+    public Account(string? firstName, string? lastName, string email, int roleId, DateTime? createdTime, DateTime? updateTime, string? phone, string? address, bool gender, bool? status, string password, int accountId, ICollection<BooksBorrow> booksBorrows, ICollection<Comment> comments, Role role) : this(firstName, lastName)
+    {
+        Email = email;
+        RoleId = roleId;
+        CreatedTime = createdTime;
+        UpdateTime = updateTime;
+        Phone = phone;
+        Address = address;
+        Gender = gender;
+        Status = status;
+        Password = password;
+        AccountId = accountId;
+        BooksBorrows = booksBorrows;
+        Comments = comments;
+        Role = role;
     }
 }

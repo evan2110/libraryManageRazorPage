@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProjectPRN221.BusinessObject2;
+namespace ProjectPRN221.BusinessObject3;
 
 public partial class Role
 {

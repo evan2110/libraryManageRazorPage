@@ -1,4 +1,4 @@
-﻿using ProjectPRN221.BusinessObject2;
+﻿using ProjectPRN221.BusinessObject3;
 
 namespace ManageBookLibrary.DataAccess
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OfficeOpenXml;
 using PagedList;
-using ProjectPRN221.BusinessObject2;
+using ProjectPRN221.BusinessObject3;
 using System.ComponentModel.DataAnnotations;
 using static System.Reflection.Metadata.BlobBuilder;
 
