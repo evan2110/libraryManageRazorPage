@@ -21,26 +21,19 @@ namespace ProjectPRN221.Pages
 
         public void OnGet(int? handler, int? bookId, int? commentIdDelete)
         {
-            if (HttpContext.Session.GetString("UserRole") == "Student" || HttpContext.Session.GetString("UserRole") == "Manager")
+            if(commentIdDelete != null)
             {
-                if(commentIdDelete != null)
-                {
-                    commentRepository.DeleteComment(commentIdDelete);
-                }
-                var pageNumber = handler ?? 1;
-                var pageSize = 2;
-                var book = bookRepository.GetBookByID(bookId);
-                var totalComment = commentRepository.GetAllComments().Where(e => e.BookId == bookId).Count();
-                PagedComments = commentRepository.GetAllComments().Where(e => e.BookId == bookId).ToPagedList(pageNumber, pageSize);
+                commentRepository.DeleteComment(commentIdDelete);
+            }
+            var pageNumber = handler ?? 1;
+            var pageSize = 2;
+            var book = bookRepository.GetBookByID(bookId);
+            var totalComment = commentRepository.GetAllComments().Where(e => e.BookId == bookId).Count();
+            PagedComments = commentRepository.GetAllComments().Where(e => e.BookId == bookId).ToPagedList(pageNumber, pageSize);
 
-                ViewData["book"] = book;
-                ViewData["totalComment"] = totalComment;
-                ViewData["PagedComments"] = PagedComments;
-            }
-            else
-            {
-                Response.Redirect("Error");
-            }
+            ViewData["book"] = book;
+            ViewData["totalComment"] = totalComment;
+            ViewData["PagedComments"] = PagedComments;
         }
 
         public void OnPost(Comment comment)

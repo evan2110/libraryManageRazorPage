@@ -220,15 +220,17 @@ namespace ManageBookLibrary.DataAccess
 
             var result = (from bb in context.BooksBorrows
                           join b in context.Books on bb.BookId equals b.BookId
-                          group b by new { b.BookId, b.Image } into g
+                          group b by new { b.BookId, b.Title, b.Image } into g
                           orderby g.Count() descending
                           select new TopBookBorrow
                           {
                               BookId = g.Key.BookId,
+                              Title = g.Key.Title,
                               BorrowCount = g.Count(),
                               Image = g.Key.Image
                           }).Take(5).ToList();
             return result;
         }
+
     }
 }

@@ -83,7 +83,6 @@ namespace ProjectPRN221.Pages
                     Response.Redirect("Student");
                 }
 
-                ViewData["topBookBorrow"] = bookBorrowRepository.GetTopBookBorrow();
                 ViewData["account"] = accountRepository.CheckReturnBook(accountRepository.GetAccountByEmailAndPass(new Account(HttpContext.Session.GetString("Email"), HttpContext.Session.GetString("Password"))));
                 ViewData["search"] = search;
                 ViewData["fromDate"] = fromDate;

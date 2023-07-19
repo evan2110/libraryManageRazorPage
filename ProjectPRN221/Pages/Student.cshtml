@@ -6,7 +6,6 @@
 
 @{
     var Books = ViewData["books"] as IPagedList<Book>;
-    var topBookBorrow = ViewData["topBookBorrow"] as List<TopBookBorrow>;
     HttpContext context = Request.HttpContext;
 }
 @if (context.Session.GetString("UserRole") == "Student" || context.Session.GetString("UserRole") == "Manager")
@@ -45,27 +44,7 @@
 
     @*End Model*@
     <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div style="margin-left:50%;" id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-            <div style="margin-bottom:3px">
-                <h1 style="font-size:20px; margin-right:6px; color:darkblue;">Top book borrow <i class="fa-solid fa-fire fa-fade fa-lg" style="color: #ff0000;"></i></h1>
-            </div>
-            <div class="carousel-inner" style="z-index:1000;">
-                @for (var i = 0; i < topBookBorrow.Count; i++)
-                {
-                    <div class="carousel-item @(i == 0 ? "active" : "")">
-                        <a href="/BookDetail?BookId=@topBookBorrow[i].BookId"><img height="50" width="150" src="@topBookBorrow[i].Image" class="d-block" alt="..."></a>
-                    </div>
-                }
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+        
 
 
         <div class="flex" style="display: flex;
@@ -141,20 +120,20 @@
             <table class="table border-collapse mt-3">
                 <thead style="background-color:#DBECFF;">
                     <tr style="border: 1px solid #ACD3FF;">
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">Title</th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">Author</th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate</th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies</th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies</th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation</th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">Image</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Title <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Author <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Image <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
                         <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Books)
                     {
-                        <tr>
+                        <tr class="tr-body">
                             <td style="border: 1px solid #ACD3FF;" class="p-2"><a href="/BookDetail?bookId=@item.BookId">@Html.DisplayFor(modelItem => item.Title)</a></td>
                             <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
                             <td style="border: 1px solid #ACD3FF;" class="p-2">@item.PublicationDate.ToString("dd/MM/yyyy")</td>
@@ -328,6 +307,10 @@
 
         .button-select-date:hover + #selectDate {
             display: block;
+        }
+
+        .tr-body:hover{
+            background-color: aliceblue;
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

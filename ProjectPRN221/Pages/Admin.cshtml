@@ -326,7 +326,7 @@
                             <tbody>
                                 @foreach (var item in roles)
                                 {
-                                    <tr>
+                                    <tr class="tr-body">
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleName)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">
@@ -481,7 +481,7 @@
                             <tbody>
                                 @foreach (var item in accs)
                                 {
-                                    <tr>
+                                    <tr class="tr-body">
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Email)</td>
@@ -707,7 +707,7 @@
                             <tbody>
                                 @foreach (var item in books)
                                 {
-                                    <tr>
+                                    <tr class="tr-body">
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Title)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Author)</td>
@@ -931,7 +931,7 @@
                             <tbody>
                                 @foreach (var item in bookBorrows)
                                 {
-                                    <tr>
+                                    <tr class="tr-body">
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
@@ -1172,7 +1172,11 @@
             }
 
         </script>
-
+        <style>
+            .tr-body:hover {
+                background-color: aliceblue;
+            }
+        </style>
 
     </body>
     </html>
