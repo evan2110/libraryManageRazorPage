@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
 </head>
 <body>
-    
+        <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
             <div class="bg-white">
@@ -115,7 +115,7 @@
             </div>
 
         </main>
-
+    </div>
     @*Footer*@
     <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -127,6 +127,11 @@
                         <label for="email-address" class="sr-only">Email address</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" placeholder="Enter your email">
                         <button type="submit" class="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Subscribe</button>
+                    </div>
+                    <div class="social-buttons">
+                        <a href="https://www.facebook.com/nhatduc2110/" class="social-button facebook"><i class="fa-brands fa-facebook fa-lg" style="color: #1268fd;"></i></a>
+                        <a href="https://www.instagram.com/evannnn2110/" class="social-button instagram"><i class="fa-brands fa-instagram fa-lg" style="color: #f20707;"></i></a>
+                        <a href="https://twitter.com/NhatUc1561" class="social-button twitter"><i class="fa-brands fa-twitter fa-lg" style="color: #395e9d;"></i></a>
                     </div>
                 </div>
                 <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">

@@ -58,15 +58,7 @@
             {
                 <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Book System</h2>
             }
-            <span class="ml-3 hidden sm:block">
-                <button id="button" style=" border: 1px solid #ACD3FF;" onclick="redirectToStudentHistory()" type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
-                    <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
-                        <path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" />
-                    </svg>
-                    History
-                </button>
-            </span>
+            
         </div>
 
         <div class="search-container" style="display:flex; justify-content:space-between;">
@@ -104,7 +96,7 @@
 
                     <form method="post" enctype="multipart/form-data">
                         <input asp-for="@Model.FileUpload" id="img" style="display:none;" />
-                        <label for="img" class="upload-label ml-3">Upload file</label>
+                        <label style=" border: 1px solid #ACD3FF;" for="img" class="upload-label ml-3">Upload file</label>
 
                         <button id="button" style=" border: 1px solid #ACD3FF;" onclick="importFile()" class="ml-3 inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
                             <i class="fa-solid fa-file-arrow-down" style="color: #4838ca; margin:3px;"></i>
@@ -112,6 +104,29 @@
                         </button>
                     </form>
 
+                    <span class="ml-3 hidden sm:block">
+                        <button id="button" style=" border: 1px solid #ACD3FF;" onclick="redirectToStudentHistory()" type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                            <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
+                                <path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" />
+                            </svg>
+                            History
+                        </button>
+                    </span>
+                </div>
+            }
+            else if (context.Session.GetString("UserRole") == "Student")
+            {
+                <div style="display:flex;">
+                    <span class="ml-3 hidden sm:block">
+                        <button id="button" style=" border: 1px solid #ACD3FF;" onclick="redirectToStudentHistory()" type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                            <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M12.232 4.232a2.5 2.5 0 013.536 3.536l-1.225 1.224a.75.75 0 001.061 1.06l1.224-1.224a4 4 0 00-5.656-5.656l-3 3a4 4 0 00.225 5.865.75.75 0 00.977-1.138 2.5 2.5 0 01-.142-3.667l3-3z" />
+                                <path d="M11.603 7.963a.75.75 0 00-.977 1.138 2.5 2.5 0 01.142 3.667l-3 3a2.5 2.5 0 01-3.536-3.536l1.225-1.224a.75.75 0 00-1.061-1.06l-1.224 1.224a4 4 0 105.656 5.656l3-3a4 4 0 00-.225-5.865z" />
+                            </svg>
+                            History
+                        </button>
+                    </span>
                 </div>
             }
 
@@ -120,13 +135,13 @@
             <table class="table border-collapse mt-3">
                 <thead style="background-color:#DBECFF;">
                     <tr style="border: 1px solid #ACD3FF;">
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">Title <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">Author <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
-                        <th style="border: 1px solid #ACD3FF;" class="p-2">Image <span style="margin-left:3px;"><i class="fa-solid fa-sort-up fa-xl" style="color: #4838ca;"></i></span></th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Title</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Author</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">PublicationDate</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">TotalCopies</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">AvailableCopies</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">ShelfLocation</th>
+                        <th style="border: 1px solid #ACD3FF;" class="p-2">Image</th>
                         <th style="border: 1px solid #ACD3FF;" class="p-2"></th>
                     </tr>
                 </thead>
@@ -146,17 +161,18 @@
                                 {
                                     @if (item.AvailableCopies <= 0)
                                     {
-                                        <button style="width:54px; text-align:center;" type="button" class="text-white inline-flex items-center rounded-md bg-red-500 px-2 py-1 text-xs font-medium ring-1 ring-inset ring-red-500/10 borrow-link" disabled>Clear</button>
+                                        <button style="width: 70px; text-align: center;" type="button" class="text-white inline-flex items-center rounded-md bg-red-500 px-3 py-2 text-sm font-medium ring-1 ring-inset ring-red-500/10 borrow-link" disabled>Clear</button>
                                     }
                                     else
                                     {
-                                        <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Borrow')" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
+                                        <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Borrow')" class="inline-flex items-center rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Borrow</button>
                                     }
                                 }
                                 else
                                 {
-                                    <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Edit')" class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
-                                    <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Delete')" class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+                                    <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Edit')" class="inline-flex items-center rounded-md bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 borrow-link">Edit</button>
+                                    <button type="button" data-bookid="@item.BookId" onclick="redirectToStudent(this, 'Delete')" class="inline-flex items-center rounded-md bg-pink-50 px-3 py-2 text-sm font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">Delete</button>
+
                                 }
 
                             </td>

@@ -593,3 +593,61 @@ nav .profile-details i {
 
 }
 
+@keyframes burning {
+    0% {
+        color: #FF4500;
+        text-shadow: 0 0 10px #FF4500, 0 0 20px #FF4500, 0 0 30px #FF4500, 0 0 40px #FF4500, 0 0 50px #FF4500, 0 0 60px #FF4500, 0 0 70px #FF4500, 0 0 80px #FF4500;
+    }
+
+    50% {
+        color: #FFA500;
+        text-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500, 0 0 30px #FFA500, 0 0 40px #FFA500, 0 0 50px #FFA500, 0 0 60px #FFA500, 0 0 70px #FFA500, 0 0 80px #FFA500;
+    }
+
+    100% {
+        color: #FF4500;
+        text-shadow: 0 0 10px #FF4500, 0 0 20px #FF4500, 0 0 30px #FF4500, 0 0 40px #FF4500, 0 0 50px #FF4500, 0 0 60px #FF4500, 0 0 70px #FF4500, 0 0 80px #FF4500;
+    }
+}
+
+.fire-effect {
+    font-size: 48px;
+    animation: burning 1s infinite;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-right: 65%;
+}
+
+.social-button {
+    display: inline-block;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.social-button:hover {
+    background-color: #333;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.instagram {
+    background-color: #C13584;
+}
+
+.twitter {
+    background-color: #1DA1F2;
+}
+

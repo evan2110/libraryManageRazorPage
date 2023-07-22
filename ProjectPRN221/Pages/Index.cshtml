@@ -10,7 +10,7 @@
 }
 <div class="relative isolate px-6 pt-14 lg:px-8">
 
-    <div class="relative overflow-hidden bg-white" style="margin-top:65px;">
+    <div class="relative overflow-hidden bg-white" style="margin-top:150px;">
         <div class="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
             <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
                 <div class="sm:max-w-lg">
@@ -69,10 +69,10 @@
     </div>
 
     <div style="margin-left:2%; margin-top:10%; margin-bottom:5%; border-top: 1px dotted gray;" id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-        <div style="margin-bottom:4%; margin-left:45%; margin-top: 5%;">
+        <div style="margin-bottom:4%; margin-left:43%; margin-top: 5%;">
             <h1 style="font-size:30px; margin-right:6px; color:darkblue;">Top book borrow <i class="fa-solid fa-fire fa-fade fa-lg" style="color: #ff0000;"></i></h1>
         </div>
-        <div class="carousel-inner" style="z-index:1000; display:flex; justify-content:space-between; margin-left:5%;">
+        <div class="carousel-inner" style="z-index:1000; display:flex; justify-content:space-between;">
             @*@for (var i = 0; i < topBookBorrow.Count; i++)
             {
             <div class="carousel-item @(i == 0 ? "active" : "")">
@@ -83,8 +83,11 @@
             @for (var i = 0; i < topBookBorrow.Count; i++)
             {
                 <div>
-                    <a href="/BookDetail?BookId=@topBookBorrow[i].BookId"><img height="50" width="150" src="@topBookBorrow[i].Image" class="d-block" alt="..."></a>
-                    <p style="align-content:center; margin-top:6%; font-weight:bold;">@topBookBorrow[i].Title</p>
+                    <div style="margin-left: 38%; font-size:20px; color:red;" class="alert alert-light fire-effect" role="alert">
+                        TOP @(i + 1)
+                    </div>
+                    <a href="/BookDetail?BookId=@topBookBorrow[i].BookId"><img height="50" width="250" src="@topBookBorrow[i].Image" class="d-block" alt="..."></a>
+                    <p style="margin-top:6%; font-weight:bold; margin-left: 10%;">@topBookBorrow[i].Title</p>
                 </div>
             }
         </div>
@@ -146,3 +149,4 @@
         </div>
     </div>
 </div>
+

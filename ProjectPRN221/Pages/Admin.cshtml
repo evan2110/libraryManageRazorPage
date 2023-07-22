@@ -78,10 +78,7 @@
     <body>
         <div class="sidebar">
             <div class="logo-details">
-                <a href="/Index">
-                    <i class='bx bxl-c-plus-plus'></i>
-                    <span class="logo_name">Library</span>
-                </a>
+                <i class='logo bx bxl-c-plus-plus'></i>
             </div>
             <ul class="nav-links">
                 <li>
@@ -228,7 +225,7 @@
                                     {
                                         @foreach (var i in @recentBorrow)
                                         {
-                                            <li><a href="#">@i.DateBorrowed</a></li>
+                                            <li><a href="#">@i.DateBorrowed.ToString("dd/MM/yyyy")</a></li>
                                         }
                                     }
                                 </ul>
@@ -248,7 +245,7 @@
                                     {
                                         @foreach (var i in @recentBorrow)
                                         {
-                                            <li><a href="#">@i.DueDate</a></li>
+                                            <li><a href="#">@i.DueDate.ToString("dd/MM/yyyy")</a></li>
                                         }
                                     }
                                 </ul>
@@ -261,7 +258,7 @@
                                             <li>
                                                 <a href="#">
                                                     @(
-                                                        i.DateReturn != null ? i.DateReturn.ToString() : "Haven't returned the book"
+                                                        i.DateReturn != null ? i.DateReturn.Value.ToString("dd/MM/yyyy") : "Haven't returned the book"
                                                         )
                                                 </a>
                                             </li>
@@ -426,7 +423,7 @@
                                 </div>
                                 <label for="role-name" class="block text-sm font-semibold leading-6 text-gray-900">Role name</label>
                                 <div class="mt-2.5">
-                                    <input style=" border: 1px solid #ACD3FF;" asp-for="role.RoleName" required value="@(role != null ? role.RoleName : string.Empty)" type="text" name="RoleName" id="role-name" autocomplete="given-name" class="block w-full rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input style=" border: 1px solid #ACD3FF; width:210%;" asp-for="role.RoleName" required value="@(role != null ? role.RoleName : string.Empty)" type="text" name="RoleName" id="role-name" autocomplete="given-name" class="block rounded-md px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
 
@@ -486,8 +483,12 @@
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Email)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.RoleId)</td>
-                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.CreatedTime)</td>
-                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.UpdateTime)</td>
+                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@item.CreatedTime.Value.ToString("dd/MM/yyyy")</td>
+                                        <td style="border: 1px solid #ACD3FF;" class="p-2">
+                                            @(
+                                                item.UpdateTime != null ? item.UpdateTime.Value.ToString("dd/MM/yyyy") : ""
+                                                )
+                                        </td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Phone)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Address)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.Gender)</td>
@@ -935,9 +936,13 @@
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookBorrowId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.AccountId)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.BookId)</td>
-                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.DateBorrowed)</td>
-                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.DueDate)</td>
-                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.DateReturn)</td>
+                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@item.DateBorrowed.ToString("dd/MM/yyyy")</td>
+                                        <td style="border: 1px solid #ACD3FF;" class="p-2">@item.DueDate.ToString("dd/MM/yyyy")</td>
+                                        <td style="border: 1px solid #ACD3FF;" class="p-2">
+                                            @(
+                                                item.DateReturn != null ? item.DateReturn.Value.ToString("dd/MM/yyyy") : ""
+                                                )
+                                        </td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@Html.DisplayFor(modelItem => item.ReceivedBy)</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">@item.Status</td>
                                         <td style="border: 1px solid #ACD3FF;" class="p-2">
@@ -1041,14 +1046,14 @@
                                     <div class="col-span-full">
                                         <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Account</label>
                                         <div style=" border: 1px solid #ACD3FF;" class="mt-2">
-                                            <select id="AccountId" name="AccountId" autocomplete="AccountId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="bookBorrow.AccountId" asp-items="@(new SelectList(lstAcc, "AccountId", "FirstName", bookBorrow != null ? bookBorrow.AccountId : "AccountId"))"></select>
+                                            <select id="AccountId" name="AccountId" autocomplete="AccountId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" asp-for="bookBorrow.AccountId" asp-items="@(new SelectList(lstAcc, "AccountId", "FirstName", bookBorrow != null ? bookBorrow.AccountId : "AccountId"))"></select>
                                         </div>
                                     </div>
 
                                     <div class="col-span-full">
                                         <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Book</label>
                                         <div style=" border: 1px solid #ACD3FF;" class="mt-2">
-                                            <select id="BookId" name="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" asp-for="bookBorrow.BookId" asp-items="@(new SelectList(lstBook, "BookId", "Title", bookBorrow != null ? bookBorrow.BookId : "BookId"))"></select>
+                                            <select id="BookId" name="BookId" autocomplete="BookId" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" asp-for="bookBorrow.BookId" asp-items="@(new SelectList(lstBook, "BookId", "Title", bookBorrow != null ? bookBorrow.BookId : "BookId"))"></select>
                                         </div>
                                     </div>
 
