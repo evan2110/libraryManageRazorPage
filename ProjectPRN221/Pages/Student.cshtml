@@ -63,7 +63,7 @@
 
         <div class="search-container" style="display:flex; justify-content:space-between;">
             <div>
-                <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Searching...">
+                <input style=" border: 1px solid #ACD3FF;" value="@ViewData["search"]" id="search-input" type="text" class="search-input" placeholder="Title, Author, ShelfLocation">
                 <button onclick="searching(this)" class="search-button"><i class="fa-solid fa-magnifying-glass fa-beat-fade fa-lg" style="color: #ffffff;"></i></button>
             </div>
             @if (context.Session.GetString("UserRole") == "Manager")
